@@ -1,0 +1,19 @@
+@import "./header";
+@import "./controls";
+@import "./table";
+
+body{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+main{
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: rgba(105,184,235,.3);
+}
+
+p{
+    font-size: .75rem;
+    margin: 0;
+}

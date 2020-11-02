@@ -1,0 +1,24 @@
+.table-container{
+    padding: .5rem;
+    background: white;
+}
+
+table{
+    background: white;
+    border: 1px solid black;
+    font-size: .75rem;
+    width: 100%;
+    
+    border-collapse: collapse;
+}
+
+th{
+    text-align: left;
+    background: #C31A21;
+    color: white;
+    text-decoration: underline;
+}
+
+.row-selected{
+    background: #65FFFF;
+}
