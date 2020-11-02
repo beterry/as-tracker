@@ -14,6 +14,7 @@ const database = [
         mailWeeks: 2,
         acctSpecialist: "LucasT",
         label: undefined,
+        artDue: "2020-11-12",
         scheduledTask: [
             {
                 action: "Call",

@@ -8,7 +8,8 @@ export default class Controls extends Component {
                 <div className="controls-init">
                     <div>
                         <label htmlFor="specialist">Acct Specialist</label>
-                        <select id="specialist" name="specialist" type="">
+                        <select id="specialist" name="specialist" defaultValue="all">
+                            <option value="all" disabled>All</option>
                             <option value="LucasT">Lucas Templin</option>
                             <option value="TarrynG">Tarryn Hendel</option>
                             <option value="SaraP">Sara Putt</option>
@@ -16,9 +17,9 @@ export default class Controls extends Component {
                     </div>
                     <div>
                         <label htmlFor="start">Art Due Start Date</label>
-                        <input type="date" id="start" name="start-date" defaultValue="2020-11-02" />
+                        <input type="date" id="start" name="start" defaultValue="2020-11-02" />
                         <label htmlFor="end" className="middle">to</label>
-                        <input type="date" id="end" name="end-date" defaultValue="2020-11-14" />
+                        <input type="date" id="end" name="end" defaultValue="2020-11-14" />
                     </div>
                     <div>
                         <button>Go</button>
@@ -50,7 +51,8 @@ export default class Controls extends Component {
                                 <button>Add</button>
                             </div>
                             <div>
-                                <select id="reassign" name="reassign">
+                                <select id="reassign" name="reassign" defaultValue="default">
+                                    <option value="default" disabled>Name</option>
                                     <option value="LucasT">Lucas Templin</option>
                                     <option value="TarrynG">Tarryn Hendel</option>
                                     <option value="SaraP">Sara Putt</option>
@@ -64,13 +66,13 @@ export default class Controls extends Component {
                                 <button>Search</button>
                             </div>
                             <div className="hide-complete">
-                                <input type="checkbox" id="hide-complete" name="hide-complete" readOnly checked />
-                                <label htmlFor="hide-complete">Hide Completed</label>
+                                <input type="checkbox" id="hide" name="hide" readOnly checked />
+                                <label htmlFor="hide">Hide Completed</label>
                             </div>
                         </div>
                         <div className="label">
-                            <label htmlFor="label-filter">Client Type</label>
-                            <select id="filter-label" name="filter-label" defaultValue="all">
+                            <label htmlFor="label">Client Type</label>
+                            <select id="label" name="label" defaultValue="all">
                                 <option value="all" disabled>All</option>
                                 <option value="marcos">marcos</option>
                                 <option value="fox">fox</option>
