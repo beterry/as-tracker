@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 const TaskCell = ({task}) => {
     const taskName = `${task.action} ${task.who}: ${task.what}`;
-    const time = `${task.date} ${task.time}`;
+    const time = task.date.format('M-D-YY h:mma');
     return (
         <div><strong>{taskName}</strong><br />{time}</div>
     )

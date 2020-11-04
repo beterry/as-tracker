@@ -1,0 +1,28 @@
+.scheduler-overlay{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    background: rgba(0,0,0,.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scheduler{
+    background: white;
+    border: 1px solid black;
+    width: 768px;
+    padding: .5rem 1rem;
+    box-sizing: border-box;
+    &>*{
+        margin: .5rem 0;
+    }
+}
+
+.scheduler-last, .scheduler-scheduled{
+    padding: 1rem;
+    background: rgba(105,184,235,.3);
+    box-sizing: border-box;
+}

@@ -1,3 +1,5 @@
+import moment from 'moment';
+
 const database = [
     {
         id: 100,
@@ -5,7 +7,7 @@ const database = [
         group: "J",
         code: 28062,
         timezone: -2,
-        company: "20 after 4 novelties and more",
+        company: "Client A",
         product: "POSTCARD",
         address: "19622 Middlebelt Rd, Livonia, MI 48152",
         version: undefined,
@@ -14,14 +16,14 @@ const database = [
         mailWeeks: 2,
         acctSpecialist: "LucasT",
         label: undefined,
-        artDue: "2020-11-12",
+        artDue: moment().add(10, 'days').calendar(),
+        note: 'Do NOT call client on Mondays, he will shoot you!',
         scheduledTasks: [
             {
                 action: "Call",
                 who: "Client",
                 what: "Artwork",
-                date: "2020-11-05",
-                time: "13:30",
+                date: moment(),
                 acctSpecialist: "LucasT",
                 note: []
             },
@@ -31,8 +33,7 @@ const database = [
                 action: "System",
                 who: "Client",
                 what: "New Order",
-                date: "2020-11-02",
-                time: "8:30",
+                date: moment(),
                 acctSpecialist: "LucasT",
                 note: []
             },
@@ -44,7 +45,7 @@ const database = [
         group: "J",
         code: 28062,
         timezone: -2,
-        company: "Client 2",
+        company: "Client B",
         product: "POSTCARD",
         address: "19622 Middlebelt Rd, Livonia, MI 48152",
         version: undefined,
@@ -53,14 +54,14 @@ const database = [
         mailWeeks: 2,
         acctSpecialist: "LucasT",
         label: undefined,
-        artDue: "2020-11-12",
+        artDue: moment().add(10, 'days').calendar(),
+        note: '',
         scheduledTasks: [
             {
                 action: "Call",
                 who: "Client",
                 what: "Artwork",
-                date: "2020-11-05",
-                time: "13:30",
+                date: moment(),
                 acctSpecialist: "LucasT",
                 note: []
             },
@@ -70,8 +71,7 @@ const database = [
                 action: "System",
                 who: "Client",
                 what: "New Order",
-                date: "2020-11-02",
-                time: "8:30",
+                date: moment(),
                 acctSpecialist: "LucasT",
                 note: []
             },

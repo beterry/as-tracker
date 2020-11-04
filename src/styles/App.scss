@@ -1,10 +1,14 @@
 @import "./header";
 @import "./actions";
 @import "./table";
+@import "./scheduler";
 
 body{
     font-family: Arial, Helvetica, sans-serif;
     box-sizing: border-box;
+    margin: 0;
+    padding: 10px;
+    position: relative;
 }
 
 main{
@@ -20,6 +24,12 @@ h1{
     font-size: 1rem;
     text-transform: uppercase;
     margin: 1rem 0 1.5rem;
+}
+
+h3{
+    font-weight: bold;
+    margin: 0;
+    font-size: 1.25rem;
 }
 
 p{
