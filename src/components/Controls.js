@@ -35,31 +35,7 @@ export default class Controls extends Component {
                                 <button>Master Log</button>
                             </div>
                         </div>
-                        <div className="multi-actions">
-                            <div>
-                                <select id="action" name="action" defaultValue="default">
-                                    <option value="default" disabled>Action</option>
-                                    <option value="art-approve">Art Approved</option>
-                                    <option value="art-unapprove">Art Unapproved</option>
-                                    <option value="map-approve">Map Approved</option>
-                                    <option value="map-unapprove">Map Unapproved</option>
-                                </select>
-                                <button>Apply</button>
-                            </div>
-                            <div>
-                                <input placeholder="Filter Label" type="text" />
-                                <button>Add</button>
-                            </div>
-                            <div>
-                                <select id="reassign" name="reassign" defaultValue="default">
-                                    <option value="default" disabled>Name</option>
-                                    <option value="LucasT">Lucas Templin</option>
-                                    <option value="TarrynG">Tarryn Hendel</option>
-                                    <option value="SaraP">Sara Putt</option>
-                                </select>
-                                <button>Reassign</button>
-                            </div>
-                        </div>
+                        {this.props.children}
                         <div className="filters">
                             <div>
                                 <input placeholder="Client name" type="text" />

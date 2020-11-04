@@ -1,0 +1,39 @@
+.actions{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+}
+
+.actions-left{
+    display: flex;
+    input, select{
+        width: 150px;
+        box-sizing: border-box;
+    }
+    &>div{
+        margin-right: 1rem;
+    }
+}
+
+.action-button{
+    width: 150px;
+}
+
+.action-button.large{
+    height: 42px;
+}
+
+.info-box{
+    background: white;
+    border: 1px solid black;
+    padding: .5rem 1rem;
+    text-align: center;
+    h3{
+        font-size: .875rem;
+        color: #C31A21;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin: 0 0 .25rem 0;
+    }
+
+}

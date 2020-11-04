@@ -1,9 +1,18 @@
 import React, { Component } from 'react';
 
+const TaskCell = ({task}) => {
+    const taskName = `${task.action} ${task.who}: ${task.what}`;
+    const time = `${task.date} ${task.time}`;
+    return (
+        <div><strong>{taskName}</strong><br />{time}</div>
+    )
+}
+
 export default class JobRow extends Component {
 
     render() {
         const {
+            id,
             push,
             group,
             timezone,
@@ -14,7 +23,9 @@ export default class JobRow extends Component {
             options,
             quantity,
             mailWeeks,
-            acctSpecialist
+            acctSpecialist, 
+            scheduledTasks,
+            lastActions
         } = this.props.job
         return (
             <tr className={this.props.selected ? "row-selected" : ""}>
@@ -31,8 +42,12 @@ export default class JobRow extends Component {
                 <td>{code}</td>
                 <td>{company}</td>
                 <td>{product}</td>
-                <td>Scheduled Task</td>
-                <td>Last Action</td>
+                <td>
+                    {scheduledTasks.map((task, index) => <TaskCell task={task} key={`${id} scheduled ${index}`}/>)}
+                </td>
+                <td>
+                    <TaskCell task={lastActions[0]} />
+                </td>
                 <td>{version}</td>
                 <td>{options}</td>
                 <td>{quantity}</td>

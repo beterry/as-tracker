@@ -1,5 +1,5 @@
 @import "./header";
-@import "./controls";
+@import "./actions";
 @import "./table";
 
 body{
@@ -13,7 +13,30 @@ main{
     background: rgba(105,184,235,.3);
 }
 
+h1{
+    text-align: center;
+    color: #C31A21;
+    font-weight: bold;
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin: 1rem 0 1.5rem;
+}
+
 p{
     font-size: .75rem;
     margin: 0;
+}
+
+label{
+    text-transform: uppercase;
+    font-size: .75rem;
+}
+
+// margin utility
+.mr-s{
+    margin-right: .5rem;
+}
+
+.mx-s{
+    margin: 0 .5rem;
 }

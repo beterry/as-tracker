@@ -22,3 +22,21 @@ th{
 .row-selected{
     background: #65FFFF;
 }
+
+.table-filters{
+    display: flex;
+    justify-content: space-between;
+}
+
+.table-filters_tabs{
+    align-self: flex-end;
+}
+
+.table-filters_form{
+    display: flex;
+    align-items: center;
+    margin-bottom: .25rem;
+    &>div{
+        margin-left: 1rem;
+    }
+}
