@@ -8,12 +8,20 @@ import Table from './components/Table';
 import JobRow from './components/JobRow';
 import Scheduler from './components/Scheduler';
 
+import DateFilter from './components/filters/DateFilter';
+import SpecialistFilter from './components/filters/SpecialistFilter';
+import ClientTypeFilter from './components/filters/ClientTypeFilter';
+import CheckboxFilter from './components/filters/CheckboxFilter';
+import SearchFilter from './components/filters/SearchFilter';
+
 //import data
-import data from './data/database'
+import data from './data/database';
 
 //utility libraries
 import moment from 'moment';
 import sortJobs from './util/sortJobs';
+import filterJobs from './util/filterJobs';
+
 
 class App extends Component {
     constructor(props){
@@ -26,6 +34,12 @@ class App extends Component {
             showScheduler: false,
             sortBy: "scheduledTasks",
             sortDirection: true,
+            filterDateStart: moment().subtract(7, "days"),
+            filterDateEnd: moment().add(21, "days"),
+            filterSpecialist: "all",
+            filterClientType: "all",
+            hideCompleted: true,
+            filterSearchWord: "",
         };
         this.editSelected = this.editSelected.bind(this);
         this.addType = this.addType.bind(this);
@@ -33,6 +47,12 @@ class App extends Component {
         this.takeAction = this.takeAction.bind(this);
         this.handleSaveAndCloseScheduler = this.handleSaveAndCloseScheduler.bind(this);
         this.changeSortBy = this.changeSortBy.bind(this);
+        this.changeFilterStartDate = this.changeFilterStartDate.bind(this);
+        this.changeFilterEndDate = this.changeFilterEndDate.bind(this);
+        this.changeFilterSpecialist = this.changeFilterSpecialist.bind(this);
+        this.changeFilterClientType = this.changeFilterClientType.bind(this);
+        this.toggleHideCompleted = this.toggleHideCompleted.bind(this);
+        this.changeFilterSearchWord = this.changeFilterSearchWord.bind(this);
     }
 
     editSelected(id, e){
@@ -184,12 +204,39 @@ class App extends Component {
         }else{
             this.setState({sortBy, sortDirection: true});
         }
+    }
 
+    changeFilterStartDate(e){
+        this.setState({filterDateStart: moment(e.target.value)});
+    }
+
+    changeFilterEndDate(e){
+        this.setState({filterDateEnd: moment(e.target.value)});
+    }
+
+    changeFilterSpecialist(e){
+        this.setState({filterSpecialist: e.target.value});
+    }
+
+    changeFilterClientType(e){
+        this.setState({filterClientType: e.target.value});
+    }
+
+    toggleHideCompleted(){
+        this.setState(state => ({hideCompleted: !state.hideCompleted}));
+    }
+
+    changeFilterSearchWord(word, e){
+        e.preventDefault();
+        this.setState({filterSearchWord: word});
     }
 
     render(){
         const firstSelectedJob = this.state.jobs.find(job => job.id === this.state.selected[0]);
-        const jobs = sortJobs(this.state.sortBy, this.state.jobs, this.state.sortDirection);
+        
+        const filteredJobs = filterJobs(this.state)
+        const sortedJobs = sortJobs(this.state.sortBy, filteredJobs, this.state.sortDirection);
+
         return (
             <>
               <Header />
@@ -202,10 +249,42 @@ class App extends Component {
                         handleApplyAction={this.takeAction}
                         openScheduler={() => this.toggleScheduler()}
                     />
+                    <div className="table-filters">
+                        <div className="table-filters_tabs">
+                            <button className="table-tab">Weekly</button>
+                            <button className="table-tab">Monthly</button>
+                        </div>
+                        <form className="table-filters_form">
+                            <DateFilter
+                                start={this.state.filterDateStart}
+                                end={this.state.filterDateEnd}
+                                changeStartDate={this.changeFilterStartDate}
+                                changeEndDate={this.changeFilterEndDate}
+                            />
+                            <SpecialistFilter
+                                specialist={this.state.filterSpecialist}
+                                changeSpecialist={this.changeFilterSpecialist}
+                            />
+                            <ClientTypeFilter
+                                clientType={this.state.filterClientType}
+                                options={["marcos", "fox"]}
+                                changeClientType={this.changeFilterClientType}
+                            />
+                            <CheckboxFilter
+                                checked={this.state.hideCompleted}
+                                handleToggle={this.toggleHideCompleted}
+                                label="Hide Completed"
+                            />
+                            <SearchFilter
+                                filterSearchWord={this.state.filterSearchWord}
+                                changeFilterSearchWord={this.changeFilterSearchWord}
+                            />
+                        </form>
+                    </div>
                     <Table
                         handleHeaderClick={this.changeSortBy}
                     >
-                        {jobs.map((job, index) => 
+                        {sortedJobs.map((job, index) => 
                             <JobRow
                                 job={job}
                                 selected={this.state.selected.includes(job.id)}

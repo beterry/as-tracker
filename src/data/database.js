@@ -16,8 +16,9 @@ const database = [
         mailWeeks: 2,
         acctSpecialist: "LucasT",
         label: undefined,
-        artDue: moment().add(10, 'days').calendar(),
+        artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
+        status: 5,
         scheduledTasks: [
             {
                 action: "Call",
@@ -54,8 +55,9 @@ const database = [
         mailWeeks: 2,
         acctSpecialist: "TarrynH",
         label: undefined,
-        artDue: moment().add(10, 'days').calendar(),
+        artDue: moment().add(10, 'days'),
         note: '',
+        status: 4,
         scheduledTasks: [
             {
                 action: "Call",
