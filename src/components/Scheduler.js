@@ -1,48 +1,240 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 
+const ActionOptions = ({task}) => {
+    if (task.who === "Client"){
+        return (
+            <>
+                <option value="Art Approved">Art Approved</option>
+                <option value="Art Unapproved">Art Unapproved</option>
+                <option value="Changes Requested">Art Changes</option>
+                <option value="Map Approved">Map Approved</option>
+                <option value="Map Unapproved">Map Unapproved</option>
+            </>
+        )
+    }else{
+        return(
+            <>
+                <optgroup label="Client">
+                    <option value="Art Approved">Art Approved</option>
+                    <option value="Art Unapproved">Art Unapproved</option>
+                    <option value="Changes Requested">Art Changes</option>
+                    <option value="Map Approved">Map Approved</option>
+                    <option value="Map Unapproved">Map Unapproved</option>
+                </optgroup>
+                <optgroup label="Print">
+                    <option value="print-upload">Upoad Print</option>
+                    <option value="print-approve">Approve Print</option>
+                    <option value="print-unapprove">Unapprove Print</option>
+                </optgroup>
+                <optgroup label="Map">
+                    <option value="map-approve">Approve Map</option>
+                    <option value="map-unapprove">Unapprove Map</option>
+                    <option value="map-upload">Upload Map</option>
+                </optgroup>
+            </>
+        )
+    }
+}
+
+class ScheduledTask extends Component {
+   
+    render() {
+        const {action, who, what, date, actionTaken, note} = this.props.task;
+        return (
+            <form className='scheduler-scheduled'>      
+                <div className="scheduler-scheduled_title">
+                    <h3>Scheduled Task</h3>
+                    <div className="scheduler-scheduled_date">
+                        <label className="mr-s" htmlFor="due">Due</label>
+                        <input
+                            type="datetime-local"
+                            name="due"
+                            value={date.format("YYYY-MM-DDTkk:mm")}
+                            onChange={this.props.handleChangeDate}
+                        />
+                    </div>
+                </div>
+                <div className="scheduler-scheduled_dropdowns">
+                    <select
+                        value={action}
+                        onChange={this.props.handleChangeAction}
+                        className="mr-s"
+                    >
+                        <option value="" disabled>Action</option>
+                        <option value="Call">Call</option>
+                        <option value="Email">Email</option>
+                        <option value="System">System</option>
+                    </select>
+                    <select
+                        value={who}
+                        onChange={this.props.handleChangeWho}
+                        className="mr-s"
+                    >
+                        <option value="" disabled>Who</option>
+                        <option value="Client">Client</option>
+                        <option value="Artist">Artist</option>
+                        <option value="Artque">ArtQue</option>
+                    </select>
+                    <select
+                        value={what}
+                        onChange={this.props.handleChangeWhat}
+                    >
+                        <option value="" disabled>What</option>
+                        <optgroup label="Client">
+                            <option value="Artwork">Artwork</option>
+                            <option value="Mapping">Mapping</option>
+                            <option value="General">General</option>
+                            <option value="New Order">New Order</option>
+                        </optgroup>
+                        <optgroup label="Artist">
+                            <option value="Artwork">Artwork</option>
+                            <option value="General">General</option>
+                            <option value="New Order">New Order</option>
+                        </optgroup>
+                        <optgroup label="System">
+                            <option value="New Order">New Order</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <textarea
+                    value={note}
+                    placeholder="Comments"
+                    onChange={this.props.handleChangeNote}
+                />
+                <select
+                    value={actionTaken}
+                    onChange={this.props.handleActionTaken}
+                    style={{color: actionTaken === "" ? "red" : "green"}}
+                >
+                    <option value="">Uncomplete</option>
+                    <ActionOptions task={this.props.task} />
+                </select>
+            </form>
+        )
+    }
+}
+
 export default class Scheduler extends Component {
     constructor(props){
         super(props)
         this.state = ({
-            scheduledTasks: [
-                {
-                    action: "Work now",
-                    who: "",
-                    what: "",
-                    date: moment(),
-                    acctSpecialist: "",
-                    note: []
-                },
-            ],
+            scheduledTasks: props.job.scheduledTasks,
+            completedTasks: [],
+            taskEdited: false
         })
     }
 
-    componentDidMount() {
-        console.log("Scheduler enabled");
+    handleTaskEdited(detail, index, e){
+        let task = this.state.scheduledTasks[index];
+        let newScheduledTasks = this.state.scheduledTasks;
+        let newCompletedTasks = this.state.completedTasks;
+
+        if (detail === "date"){
+            task.date = moment(e.target.value);
+            newScheduledTasks.splice(index, 1, task);
+        }else if (detail === "actionTaken"){
+            task.actionTaken = e.target.value;
+            newCompletedTasks.push(task);
+        }else {
+            task[detail] = e.target.value;
+            newScheduledTasks.splice(index, 1, task);
+        }
+
         this.setState({
-            scheduledTasks: this.props.job.scheduledTasks,
+            scheduledTasks: newScheduledTasks,
+            completedTasks: newCompletedTasks,
+            taskEdited: true
         });
     }
 
-    componentWillUnmount() {
-        console.log("Scheduler hidden");
+    handleNewTask(e){
+        const newScheduledTasks = this.state.scheduledTasks;
+        const newTask = {
+            action: "",
+            who: "",
+            what: "",
+            date: moment().add(1, "days"),
+            actionTaken: "",
+            note: ""
+        }
+        newScheduledTasks.push(newTask);
+        this.setState({scheduledTasks: newScheduledTasks});
+    }
+
+    handleSaveAndClose(e){
+        this.props.close();
+        this.props.saveScheduledTasks(this.state.scheduledTasks, e);
+    }
+
+    // why is this saving data?
+    handleCloseAndDontSave(){
+        this.props.close();
     }
 
     render() {
+        const {action, who, what, actionTaken, date, note} = this.props.job.lastActions[0];
+
+        const scheduledTasks = this.state.scheduledTasks.filter((task) => task.actionTaken === "");
+
+        const scheduledTasksNotFilledOut = scheduledTasks.filter((task) => (
+            (task.action === "") || (task.who === "") || (task.what === ""))
+        );
+
         return (
-            <div
-                className="scheduler-overlay"
-                onClick={this.props.toggle}
-            >
+            <div className="scheduler-container">
+
+                {/* clickable overlay */}
+                <div className="scheduler-overlay" onClick={() => this.handleCloseAndDontSave()} />
+                
+                {/* start of scheduler box */}
                 <div className="scheduler">
-                    {this.props.job.note ? <p>{this.props.job.note}</p> : null}
-                    <div className="scheduler-last">
-                        <h3>Last Completed</h3>
+                    <div className="scheduler-note">
+                        <p>{`Client Note: ${this.props.job.note}`}</p>
+                        <div className="scheduler-note_buttons">
+                            <button className="mr-s" >Email Sales</button>
+                            <button>Email Team Leader</button>
+                        </div>
                     </div>
-                    <form className='scheduler-scheduled'>
-                        <h3>Scheduled Task</h3>
-                    </form>
+                    <div className="scheduler-last">
+                        <div>
+                            <div className="scheduler-last_title">
+                                <h3>{actionTaken}</h3>
+                                <p>{`COMPLETED ${date.format("MM-DD-YY h:mma")}`}</p>
+                            </div>
+                        </div>
+                        <div className="scheduler-last_details">
+                            <p><strong>{`${action} ${who}: ${what}`}</strong></p>
+                        </div>
+                        <p>{`Comments: ${note}`}</p>
+                    </div>
+                    {this.state.scheduledTasks.map((task, index) => 
+                        <ScheduledTask
+                            task={task}
+                            index={index}
+                            key={`scheduled ${index}`}
+                            handleChangeAction={(e) => this.handleTaskEdited("action", index, e)}
+                            handleChangeWho={(e) => this.handleTaskEdited("who", index, e)}
+                            handleChangeWhat={(e) => this.handleTaskEdited("what", index, e)}
+                            handleChangeNote={(e) => this.handleTaskEdited("note", index, e)}
+                            handleChangeDate={(e) => this.handleTaskEdited("date", index, e)}
+                            handleActionTaken={(e) => this.handleTaskEdited("actionTaken", index, e)}
+                        />
+                    )}
+                    <div className="scheduler-buttons">
+                        <button
+                            onClick={(e) => this.handleNewTask(e)}
+                            className="scheduler-button_add"
+                        >
+                            + Add Scheduled Task
+                        </button>
+                        <button
+                            disabled={!(this.state.taskEdited && scheduledTasks.length > 0 && scheduledTasksNotFilledOut.length === 0)}
+                            onClick={(e) => this.handleSaveAndClose(e)}
+                            className="scheduler-button_save"
+                        >Save & Close</button>
+                    </div>
+                    
                 </div>
             </div>
         )

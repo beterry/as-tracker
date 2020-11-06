@@ -24,8 +24,8 @@ const database = [
                 who: "Client",
                 what: "Artwork",
                 date: moment(),
-                acctSpecialist: "LucasT",
-                note: []
+                actionTaken: "",
+                note: ""
             },
         ],
         lastActions: [
@@ -34,8 +34,8 @@ const database = [
                 who: "Client",
                 what: "New Order",
                 date: moment(),
-                acctSpecialist: "LucasT",
-                note: []
+                actionTaken: "Order Accepted",
+                note: ""
             },
         ],
     },
@@ -62,8 +62,8 @@ const database = [
                 who: "Client",
                 what: "Artwork",
                 date: moment(),
-                acctSpecialist: "LucasT",
-                note: []
+                actionTaken: "",
+                note: ""
             },
         ],
         lastActions: [
@@ -72,8 +72,8 @@ const database = [
                 who: "Client",
                 what: "New Order",
                 date: moment(),
-                acctSpecialist: "LucasT",
-                note: []
+                actionTaken: "Order Accepted",
+                note: ""
             },
         ],
     },

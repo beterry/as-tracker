@@ -1,3 +1,14 @@
+.scheduler-container{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .scheduler-overlay{
     position: absolute;
     top: 0;
@@ -5,19 +16,36 @@
     width: 100%;
     min-height: 100vh;
     background: rgba(0,0,0,.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }
 
 .scheduler{
     background: white;
     border: 1px solid black;
     width: 768px;
-    padding: .5rem 1rem;
+    padding: 1rem 1rem;
     box-sizing: border-box;
+    z-index: 1;
     &>*{
         margin: .5rem 0;
+    }
+}
+
+.scheduler-note{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    p{
+        color: gray;
+    }
+}
+
+.scheduler-note_buttons{
+    button{
+        align-self: flex-start;
+        background: none;
+        border: none;
+        color: blue;
+        text-decoration: underline;
     }
 }
 
@@ -25,4 +53,48 @@
     padding: 1rem;
     background: rgba(105,184,235,.3);
     box-sizing: border-box;
+}
+
+.scheduler-last_title, .scheduler-scheduled_title{
+    display: flex;
+    justify-content: space-between;
+}
+
+.scheduler-last_details{
+    display: flex;
+    margin: .5rem 0;
+    p{
+        margin-right: 1rem;
+    }
+}
+
+.scheduler-scheduled{
+    textarea{
+        width: 100%;
+        margin: .5rem 0;
+    }
+}
+
+.scheduler-scheduled_dropdowns{
+    margin: .5rem 0;
+    select{
+        width: 120px;
+    }
+}
+
+.scheduler-buttons{
+    display: flex;
+    flex-direction: column;
+}
+
+.scheduler-button_save{
+    align-self: center;
+}
+
+.scheduler-button_add{
+    align-self: flex-start;
+    background: none;
+    border: none;
+    color: blue;
+    text-decoration: underline;
 }

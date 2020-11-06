@@ -28,6 +28,7 @@ class App extends Component {
         this.addType = this.addType.bind(this);
         this.reassignSpecialist = this.reassignSpecialist.bind(this);
         this.takeAction = this.takeAction.bind(this);
+        this.handleSaveAndCloseScheduler = this.handleSaveAndCloseScheduler.bind(this);
     }
 
     editSelected(id, e){
@@ -82,35 +83,42 @@ class App extends Component {
 
     takeAction(action, e){
         e.preventDefault();
-        console.log(`running action: ${action}`);
         let what = ""
+        let actionTaken = ""
         
         switch(action){
             case "proof-artist":
-                what = "Changes sent to Artist";
+                what = "Art";
+                actionTaken = "Changes sent to the artist"
                 break;
             case "proof-upload":
-                what = "Proof Uploaded";
+                what = "Art";
+                actionTaken = "Art Uploaded"
                 break;
             case "proof-client":
-                what = "Sent proof to client";
+                what = "Art";
+                actionTaken = "Art proof sent to the client"
                 break;
             case "proof-approve":
-                what = "Approved proof";
+                what = "Art";
+                actionTaken = "Art approved"
                 break;
             case "proof-unapprove":
-                what = "Upapproved proof";
+                what = "Art";
+                actionTaken = "Art unapproved"
                 break;
             default:
-                what = "Action taken";
+                what = "Action";
+                action = "Default quick action"
         }
 
         let tempAction = {
             action: "Quick",
             who: "Action",
-            what: what,
+            what,
             date: moment(),
             acctSpecialist: this.state.specialist,
+            actionTaken,
             note: []
         }
 
@@ -128,14 +136,43 @@ class App extends Component {
         this.setState({jobs})
     }
 
-    toggleScheduler(e){
-        e.preventDefault()
+    toggleScheduler(){
         this.setState(state => ({
             showScheduler: !this.state.showScheduler
         }))
     }
 
+    closeScheduler(){
+        this.setState({showScheduler: false});
+    }
+
+    handleSaveAndCloseScheduler(newScheduledTasks, e){
+        e.preventDefault();
+        
+        //date from state
+        let jobs = this.state.jobs;
+        let job = this.state.jobs.find(job => job.id === this.state.selected[0]);
+        let index = this.state.jobs.findIndex(job => job.id === this.state.selected[0]);
+
+        //seperate tasks from Scheduler into categories
+        const completedTasks = newScheduledTasks.filter((task) => task.actionTaken !== "");
+        const scheduledTasks = newScheduledTasks.filter((task) => task.actionTaken === "");
+
+        //add completed actions to log
+        completedTasks.forEach(task => job.lastActions.unshift(task));
+
+        //replace scheduled tasks with new scheduled tasks
+        job.scheduledTasks = scheduledTasks
+
+        //replace old info with new data from the Scheduler
+        jobs.splice(index, 1, job);
+
+        //update state
+        this.setState({jobs});
+    }
+
     render(){
+        const firstSelectedJob = this.state.jobs.find(job => job.id === this.state.selected[0]);
         return (
             <>
               <Header />
@@ -146,7 +183,7 @@ class App extends Component {
                         handleAddType={this.addType}
                         handleReassign={this.reassignSpecialist}
                         handleApplyAction={this.takeAction}
-                        toggleScheduler={(e) => this.toggleScheduler(e)}
+                        openScheduler={() => this.toggleScheduler()}
                     />
                     <Table>
                         {this.state.jobs.map((job, index) => 
@@ -159,10 +196,11 @@ class App extends Component {
                         }
                     </Table>
               </main>
-              {this.state.showScheduler && this.state.selected[0] ?
+              {this.state.showScheduler ?
                 <Scheduler
-                    toggle={(e) => this.toggleScheduler(e)}
-                    job={this.state.jobs.find(job => job.id === this.state.selected[0])}
+                    close={() => this.closeScheduler()}
+                    job={firstSelectedJob}
+                    saveScheduledTasks={this.handleSaveAndCloseScheduler}
                 />:
                 null
               }

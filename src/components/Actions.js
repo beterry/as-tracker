@@ -37,6 +37,11 @@ export default class Actions extends Component {
         this.setState({action: ""})
     }
 
+    handleSchedulerButton(e){
+        e.preventDefault();
+        this.props.openScheduler();
+    }
+
     render() {
         return (
             <section className="actions">
@@ -45,7 +50,7 @@ export default class Actions extends Component {
                         <button
                             className="action-button large"
                             disabled={!(this.props.numberSelected === 1)}
-                            onClick={this.props.toggleScheduler}
+                            onClick={(e) => this.handleSchedulerButton(e)}
                         >Schedule Task</button>
                         <button
                             className="action-button large"
