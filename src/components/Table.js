@@ -48,21 +48,21 @@ export default class Table extends Component {
                         <thead>
                             <tr>
                                 <th><input type="checkbox" readOnly/></th>
-                                <th>Psh</th>
-                                <th>Grp</th>
-                                <th>TZ</th>
-                                <th>Code</th>
-                                <th>Company</th>
-                                <th>Product</th>
-                                <th>Scheduled Task</th>
-                                <th>Last Action</th>
+                                <th onClick={() => this.props.handleHeaderClick("push")}>Psh</th>
+                                <th onClick={() => this.props.handleHeaderClick("group")}>Grp</th>
+                                <th onClick={() => this.props.handleHeaderClick("timezone")}>TZ</th>
+                                <th onClick={() => this.props.handleHeaderClick("code")}>Code</th>
+                                <th onClick={() => this.props.handleHeaderClick("company")}>Company</th>
+                                <th onClick={() => this.props.handleHeaderClick("product")}>Product</th>
+                                <th onClick={() => this.props.handleHeaderClick("scheduledTasks")}>Scheduled Task</th>
+                                <th onClick={() => this.props.handleHeaderClick("lastAction")}>Last Action</th>
                                 <th>V#</th>
                                 <th>Options</th>
-                                <th>Qty</th>
-                                <th>Wks</th>
-                                <th>Spec</th>
+                                <th onClick={() => this.props.handleHeaderClick("quantity")}>Qty</th>
+                                <th onClick={() => this.props.handleHeaderClick("weeks")}>Wks</th>
+                                <th onClick={() => this.props.handleHeaderClick("specialist")}>Spec</th>
                                 <th>Note</th>
-                                <th>Proof - Print - Map</th>
+                                <th onClick={() => this.props.handleHeaderClick("status")}>Proof - Print - Map</th>
                             </tr>
                         </thead>
                         <tbody>{this.props.children}</tbody>

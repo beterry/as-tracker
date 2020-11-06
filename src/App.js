@@ -13,6 +13,7 @@ import data from './data/database'
 
 //utility libraries
 import moment from 'moment';
+import sortJobs from './util/sortJobs';
 
 class App extends Component {
     constructor(props){
@@ -23,12 +24,15 @@ class App extends Component {
             specialist: "LucusT",
             isAdmin: false,
             showScheduler: false,
+            sortBy: "scheduledTasks",
+            sortDirection: true,
         };
         this.editSelected = this.editSelected.bind(this);
         this.addType = this.addType.bind(this);
         this.reassignSpecialist = this.reassignSpecialist.bind(this);
         this.takeAction = this.takeAction.bind(this);
         this.handleSaveAndCloseScheduler = this.handleSaveAndCloseScheduler.bind(this);
+        this.changeSortBy = this.changeSortBy.bind(this);
     }
 
     editSelected(id, e){
@@ -159,7 +163,10 @@ class App extends Component {
         const scheduledTasks = newScheduledTasks.filter((task) => task.actionTaken === "");
 
         //add completed actions to log
-        completedTasks.forEach(task => job.lastActions.unshift(task));
+        completedTasks.forEach(task => {
+            task.date = moment();
+            job.lastActions.unshift(task)
+        });
 
         //replace scheduled tasks with new scheduled tasks
         job.scheduledTasks = scheduledTasks
@@ -171,8 +178,18 @@ class App extends Component {
         this.setState({jobs});
     }
 
+    changeSortBy(sortBy){
+        if (sortBy === this.state.sortBy){
+            this.setState((state) => ({sortDirection: !state.sortDirection}));
+        }else{
+            this.setState({sortBy, sortDirection: true});
+        }
+
+    }
+
     render(){
         const firstSelectedJob = this.state.jobs.find(job => job.id === this.state.selected[0]);
+        const jobs = sortJobs(this.state.sortBy, this.state.jobs, this.state.sortDirection);
         return (
             <>
               <Header />
@@ -185,12 +202,15 @@ class App extends Component {
                         handleApplyAction={this.takeAction}
                         openScheduler={() => this.toggleScheduler()}
                     />
-                    <Table>
-                        {this.state.jobs.map((job, index) => 
+                    <Table
+                        handleHeaderClick={this.changeSortBy}
+                    >
+                        {jobs.map((job, index) => 
                             <JobRow
                                 job={job}
                                 selected={this.state.selected.includes(job.id)}
                                 handleCheckbox={(e) => this.editSelected(job.id, e)}
+                                
                                 key={job.id}
                             />)
                         }
