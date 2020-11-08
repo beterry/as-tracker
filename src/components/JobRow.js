@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import ProgressBar from './ProgressBar';
+
 const TaskCell = ({task}) => {
     const taskName = `${task.action} ${task.who}: ${task.what}`;
     const time = task.date.format('M-D-YY h:mma');
@@ -25,7 +27,10 @@ export default class JobRow extends Component {
             mailWeeks,
             acctSpecialist, 
             scheduledTasks,
-            lastActions
+            lastActions,
+            status,
+            proofs,
+            prints,
         } = this.props.job
         return (
             <tr className={this.props.selected ? "row-selected" : ""}>
@@ -54,7 +59,7 @@ export default class JobRow extends Component {
                 <td>{mailWeeks}</td>
                 <td>{acctSpecialist}</td>
                 <td>Note</td>
-                <td>Proof - Print - Map</td>
+                <td className="col-pbar"><ProgressBar status={status} lastActions={lastActions} proofs={proofs} prints={prints}/></td>
             </tr>
         )
     }

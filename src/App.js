@@ -16,6 +16,7 @@ import SearchFilter from './components/filters/SearchFilter';
 
 //import data
 import data from './data/database';
+import jobStatus from './data/jobStatus';
 
 //utility libraries
 import moment from 'moment';
@@ -44,7 +45,7 @@ class App extends Component {
         this.editSelected = this.editSelected.bind(this);
         this.addType = this.addType.bind(this);
         this.reassignSpecialist = this.reassignSpecialist.bind(this);
-        this.takeAction = this.takeAction.bind(this);
+        this.takeQuickAction = this.takeQuickAction.bind(this);
         this.handleSaveAndCloseScheduler = this.handleSaveAndCloseScheduler.bind(this);
         this.changeSortBy = this.changeSortBy.bind(this);
         this.changeFilterStartDate = this.changeFilterStartDate.bind(this);
@@ -105,36 +106,9 @@ class App extends Component {
         console.log(jobs);
     }
 
-    takeAction(action, e){
+    takeQuickAction(actionTaken, e){
         e.preventDefault();
-        let what = ""
-        let actionTaken = ""
-        
-        switch(action){
-            case "proof-artist":
-                what = "Art";
-                actionTaken = "Changes sent to the artist"
-                break;
-            case "proof-upload":
-                what = "Art";
-                actionTaken = "Art Uploaded"
-                break;
-            case "proof-client":
-                what = "Art";
-                actionTaken = "Art proof sent to the client"
-                break;
-            case "proof-approve":
-                what = "Art";
-                actionTaken = "Art approved"
-                break;
-            case "proof-unapprove":
-                what = "Art";
-                actionTaken = "Art unapproved"
-                break;
-            default:
-                what = "Action";
-                action = "Default quick action"
-        }
+        let what = actionTaken
 
         let tempAction = {
             action: "Quick",
@@ -150,11 +124,17 @@ class App extends Component {
 
         this.state.selected.forEach(id => {
             let job = this.state.jobs.find(job => job.id === id);
-            let index = this.state.jobs.findIndex(job => job.id === id);
+            const index = this.state.jobs.findIndex(job => job.id === id);
 
             job.lastActions.unshift(tempAction);
 
+            if (jobStatus[actionTaken]){
+                job.status = jobStatus[actionTaken];
+                console.log("Quick action status change:", jobStatus[actionTaken]);
+            }
+
             jobs.splice(index, 1, job);
+            // console.log(job);
         })
 
         this.setState({jobs})
@@ -185,7 +165,8 @@ class App extends Component {
         //add completed actions to log
         completedTasks.forEach(task => {
             task.date = moment();
-            job.lastActions.unshift(task)
+            job.lastActions.unshift(task);
+
         });
 
         //replace scheduled tasks with new scheduled tasks
@@ -246,7 +227,7 @@ class App extends Component {
                         numberSelected={this.state.selected.length}
                         handleAddType={this.addType}
                         handleReassign={this.reassignSpecialist}
-                        handleApplyAction={this.takeAction}
+                        handleQuickAction={this.takeQuickAction}
                         openScheduler={() => this.toggleScheduler()}
                     />
                     <div className="table-filters">

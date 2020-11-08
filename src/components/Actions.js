@@ -33,7 +33,7 @@ export default class Actions extends Component {
     }
 
     handleActionButton(e){
-        this.props.handleApplyAction(this.state.action, e);
+        this.props.handleQuickAction(this.state.action, e);
         this.setState({action: ""})
     }
 
@@ -76,21 +76,25 @@ export default class Actions extends Component {
                             >
                                 <option value="" disabled>Quick Action</option>
                                 <optgroup label="Proof">
-                                    <option value="proof-artist">Artist Changes</option>
-                                    <option value="proof-upload">Upload Proof</option>
-                                    <option value="proof-client">Send Proof to Client</option>
-                                    <option value="proof-approve">Approve Proof</option>
-                                    <option value="proof-unapprove">Unapprove Proof</option>
+                                    <option value="Artist Changes">Artist Changes</option>
+                                    <option value="Art Uploaded">Art Uploaded</option>
+                                    <option value="Art to Client">Art to Client</option>
+                                    <option value="Art Approved">Art Approved</option>
+                                    <option value="Art Unapproved">Art Unapproved</option>
                                 </optgroup>
                                 <optgroup label="Print">
-                                    <option value="print-upload">Upoad Print</option>
-                                    <option value="print-approve">Approve Print</option>
-                                    <option value="print-unapprove">Unapprove Print</option>
+                                    <option value="Print Uploaded">Print Uploaded</option>
+                                    <option value="Print Approved">Print Approved</option>
+                                    <option value="Printing">Printing</option>
+                                    <option value="Print Unapproved">Print Unapproved</option>
                                 </optgroup>
                                 <optgroup label="Map">
-                                    <option value="map-approve">Approve Map</option>
-                                    <option value="map-unapprove">Unapprove Map</option>
-                                    <option value="map-upload">Upload Map</option>
+                                    <option value="Map Approved">Map Approved</option>
+                                    <option value="Map Uploaded">Map Uploaded</option>
+                                    <option value="Map Unapproved">Map Unapproved</option>
+                                </optgroup>
+                                <optgroup label="system">
+                                    <option value="Complete">Complete</option>
                                 </optgroup>
                             </select>
                             <button

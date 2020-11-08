@@ -18,18 +18,28 @@ const database = [
         label: undefined,
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
-        status: 5,
+        status: 1,
+        proofs: 1,
+        prints: 1,
         scheduledTasks: [
             {
-                action: "Call",
+                action: "Email",
                 who: "Client",
                 what: "Artwork",
-                date: moment('2020-11-08 14:30'),
+                date: moment('2020-11-09 08:30'),
                 actionTaken: "",
                 note: ""
             },
         ],
         lastActions: [
+            {
+                action: "Call",
+                who: "Client",
+                what: "Artwork",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Artist Changes",
+                note: ""
+            },
             {
                 action: "System",
                 who: "Client",
@@ -57,7 +67,9 @@ const database = [
         label: undefined,
         artDue: moment().add(10, 'days'),
         note: '',
-        status: 4,
+        status: 5,
+        proofs: 1,
+        prints: 1,
         scheduledTasks: [
             {
                 action: "Call",

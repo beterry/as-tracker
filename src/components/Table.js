@@ -24,7 +24,16 @@ export default class Table extends Component {
                                 <th onClick={() => this.props.handleHeaderClick("weeks")}>Wks</th>
                                 <th onClick={() => this.props.handleHeaderClick("specialist")}>Spec</th>
                                 <th>Note</th>
-                                <th onClick={() => this.props.handleHeaderClick("status")}>Proof - Print - Map</th>
+                                <th 
+                                    onClick={() => this.props.handleHeaderClick("status")}
+                                    className="col-pbar"
+                                >
+                                    <div className="pbar">
+                                        <p className="pbar-bar">Proof</p>
+                                        <p className="pbar-bar">Print</p>
+                                        <p className="pbar-bar">Map</p>
+                                    </div>
+                                </th>
                             </tr>
                         </thead>
                         <tbody>{this.props.children}</tbody>

@@ -1,0 +1,12 @@
+.pbar{
+    display: flex;
+}
+
+.pbar-bar{
+    height: 1rem;
+    width: 4rem;
+    margin: 0 .1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
