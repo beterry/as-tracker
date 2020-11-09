@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route
+} from "react-router-dom";
 import './styles/App.scss';
 
 //import components
@@ -7,6 +12,7 @@ import Actions from './components/Actions';
 import Table from './components/Table';
 import JobRow from './components/JobRow';
 import Scheduler from './components/Scheduler';
+import MasterLog from './components/MasterLog';
 
 import DateFilter from './components/filters/DateFilter';
 import SpecialistFilter from './components/filters/SpecialistFilter';
@@ -111,8 +117,8 @@ class App extends Component {
         let what = actionTaken
 
         let tempAction = {
-            action: "Quick",
-            who: "Action",
+            action: "Quick Action",
+            who: "",
             what,
             date: moment(),
             acctSpecialist: this.state.specialist,
@@ -219,62 +225,74 @@ class App extends Component {
         const sortedJobs = sortJobs(this.state.sortBy, filteredJobs, this.state.sortDirection);
 
         return (
-            <>
+            <Router>
               <Header />
               <main>
-                    <h1>Account Specialist Tracking Report</h1>
-                    <Actions 
-                        numberSelected={this.state.selected.length}
-                        handleAddType={this.addType}
-                        handleReassign={this.reassignSpecialist}
-                        handleQuickAction={this.takeQuickAction}
-                        openScheduler={() => this.toggleScheduler()}
-                    />
-                    <div className="table-filters">
-                        <div className="table-filters_tabs">
-                            <button className="table-tab">Weekly</button>
-                            <button className="table-tab">Monthly</button>
-                        </div>
-                        <form className="table-filters_form">
-                            <DateFilter
-                                start={this.state.filterDateStart}
-                                end={this.state.filterDateEnd}
-                                changeStartDate={this.changeFilterStartDate}
-                                changeEndDate={this.changeFilterEndDate}
+                <Switch>
+                    <Route path="/log/:id">
+                        <>
+                            <h1>Master Log</h1>
+                            <MasterLog jobs={this.state.jobs} />
+                        </>
+                    </Route>
+                    <Route path="/">
+                        <>
+                            <h1>Account Specialist Tracking Report</h1>
+                            <Actions 
+                                selected={this.state.selected}
+                                handleAddType={this.addType}
+                                handleReassign={this.reassignSpecialist}
+                                handleQuickAction={this.takeQuickAction}
+                                openScheduler={() => this.toggleScheduler()}
                             />
-                            <SpecialistFilter
-                                specialist={this.state.filterSpecialist}
-                                changeSpecialist={this.changeFilterSpecialist}
-                            />
-                            <ClientTypeFilter
-                                clientType={this.state.filterClientType}
-                                options={["marcos", "fox"]}
-                                changeClientType={this.changeFilterClientType}
-                            />
-                            <CheckboxFilter
-                                checked={this.state.hideCompleted}
-                                handleToggle={this.toggleHideCompleted}
-                                label="Hide Completed"
-                            />
-                            <SearchFilter
-                                filterSearchWord={this.state.filterSearchWord}
-                                changeFilterSearchWord={this.changeFilterSearchWord}
-                            />
-                        </form>
-                    </div>
-                    <Table
-                        handleHeaderClick={this.changeSortBy}
-                    >
-                        {sortedJobs.map((job, index) => 
-                            <JobRow
-                                job={job}
-                                selected={this.state.selected.includes(job.id)}
-                                handleCheckbox={(e) => this.editSelected(job.id, e)}
-                                
-                                key={job.id}
-                            />)
-                        }
-                    </Table>
+                            <div className="table-filters">
+                                <div className="table-filters_tabs">
+                                    <button className="table-tab">Weekly</button>
+                                    <button className="table-tab">Monthly</button>
+                                </div>
+                                <form className="table-filters_form">
+                                    <DateFilter
+                                        start={this.state.filterDateStart}
+                                        end={this.state.filterDateEnd}
+                                        changeStartDate={this.changeFilterStartDate}
+                                        changeEndDate={this.changeFilterEndDate}
+                                    />
+                                    <SpecialistFilter
+                                        specialist={this.state.filterSpecialist}
+                                        changeSpecialist={this.changeFilterSpecialist}
+                                    />
+                                    <ClientTypeFilter
+                                        clientType={this.state.filterClientType}
+                                        options={["marcos", "fox"]}
+                                        changeClientType={this.changeFilterClientType}
+                                    />
+                                    <CheckboxFilter
+                                        checked={this.state.hideCompleted}
+                                        handleToggle={this.toggleHideCompleted}
+                                        label="Hide Completed"
+                                    />
+                                    <SearchFilter
+                                        filterSearchWord={this.state.filterSearchWord}
+                                        changeFilterSearchWord={this.changeFilterSearchWord}
+                                    />
+                                </form>
+                            </div>
+                            <Table
+                                handleHeaderClick={this.changeSortBy}
+                            >
+                                {sortedJobs.map((job, index) => 
+                                    <JobRow
+                                        job={job}
+                                        selected={this.state.selected.includes(job.id)}
+                                        handleCheckbox={(e) => this.editSelected(job.id, e)}
+                                        
+                                        key={job.id}
+                                    />)
+                                }
+                            </Table>
+                        </>
+                    </Route>
+                </Switch>
               </main>
               {this.state.showScheduler ?
                 <Scheduler
@@ -284,7 +302,7 @@ class App extends Component {
                 />:
                 null
               }
-          </>
+          </Router>
         );
     }
 }

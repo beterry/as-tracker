@@ -1,0 +1,16 @@
+.log-controls{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: .5rem;
+}
+
+.log-controls_left{
+    display: flex;
+}
+
+.log-controls_buttons{
+    margin-left: .25rem;
+    button{
+        display: block;
+    }
+}

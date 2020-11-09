@@ -1,4 +1,22 @@
 import React, { Component } from 'react'
+import { useHistory } from "react-router-dom";
+
+const MasterLogButton = ({disabled, selected}) => {
+    const history = useHistory();
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        history.push(`/log/${selected}`);
+    }
+
+    return (
+        <button
+            className="action-button large"
+            disabled={disabled}
+            onClick={(e) => handleClick(e)}
+        >Master Log</button>
+    )
+}
 
 export default class Actions extends Component {
     constructor(props) {
@@ -43,35 +61,38 @@ export default class Actions extends Component {
     }
 
     render() {
+        const numberSelected = this.props.selected.length;
         return (
             <section className="actions">
                 <form className="actions-left">
                     <div>
                         <button
                             className="action-button large"
-                            disabled={!(this.props.numberSelected === 1)}
+                            disabled={!(numberSelected === 1)}
                             onClick={(e) => this.handleSchedulerButton(e)}
                         >Schedule Task</button>
-                        <button
-                            className="action-button large"
-                            disabled={!(this.props.numberSelected === 1)}
-                        >Master Log</button>
+
+                        <MasterLogButton
+                            disabled={!(numberSelected === 1)}
+                            selected={this.props.selected[0]}
+                        />
+
                     </div>
                     <div>
                         <div>
-                            <button disabled={!(this.props.numberSelected === 1)} className="action-button">View Art</button>
-                            <button disabled={!(this.props.numberSelected === 1)} className="action-button">View Proof</button>
+                            <button disabled={!(numberSelected === 1)} className="action-button">View Art</button>
+                            <button disabled={!(numberSelected === 1)} className="action-button">View Proof</button>
                         </div>
                         <div>
-                            <button disabled={!(this.props.numberSelected === 1)} className="action-button">Email Sales</button>
-                            <button disabled={!(this.props.numberSelected === 1)} className="action-button">Email Team Leader</button>
+                            <button disabled={!(numberSelected === 1)} className="action-button">Email Sales</button>
+                            <button disabled={!(numberSelected === 1)} className="action-button">Email Team Leader</button>
                         </div>
                     </div>
                     <div>
                         <div>
                             <select
                                 value={this.state.action}
-                                disabled={this.props.numberSelected === 0}
+                                disabled={numberSelected === 0}
                                 onChange={(e) => this.handleActionChange(e)}
                             >
                                 <option value="" disabled>Quick Action</option>
@@ -98,7 +119,7 @@ export default class Actions extends Component {
                                 </optgroup>
                             </select>
                             <button
-                                disabled={this.props.numberSelected === 0}
+                                disabled={numberSelected === 0}
                                 onClick={(e) => this.handleActionButton(e)}
                             >
                                 Apply
@@ -109,11 +130,11 @@ export default class Actions extends Component {
                                 placeholder="Client Type"
                                 type="text"
                                 value={this.state.clientType}
-                                disabled={this.props.numberSelected === 0}
+                                disabled={numberSelected === 0}
                                 onChange={(e) => this.handleTypeChange(e)}
                             />
                             <button
-                                disabled={this.props.numberSelected === 0}
+                                disabled={numberSelected === 0}
                                 onClick={(e) => this.handleTypeButton(e)}
                             >
                                 Add
@@ -124,7 +145,7 @@ export default class Actions extends Component {
                         <div>
                             <select
                                 value={this.state.specialist}
-                                disabled={this.props.numberSelected === 0}
+                                disabled={numberSelected === 0}
                                 onChange={(e) => this.handleChangeSpecialist(e)}
                             >
                                 <option value="" disabled>Account Specialist</option>
@@ -133,7 +154,7 @@ export default class Actions extends Component {
                                 <option value="SaraP">Sara Putt</option>
                             </select>
                             <button
-                                disabled={this.props.numberSelected === 0}
+                                disabled={numberSelected === 0}
                                 onClick={(e) => this.handleReassign(e)}
                             >
                                 Reassign
