@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { useHistory } from "react-router-dom";
 
+import moment from 'moment';
+
 const MasterLogButton = ({disabled, selected}) => {
     const history = useHistory();
 
@@ -60,6 +62,27 @@ export default class Actions extends Component {
         this.props.openScheduler();
     }
 
+    handleEmailButton(e, who){
+        e.preventDefault();
+        alert("Outlook Pop-up");
+
+        const task = {
+            action: "Email",
+            who,
+            what: "General",
+            date: moment(),
+            actionTaken: "Complete",
+            note: "",
+        }
+
+        this.props.addLastAction(task);
+    }
+
+    handleViewButton(e, what){
+        e.preventDefault();
+        alert(`Pop-up: ${what}`);
+    }
+
     render() {
         const numberSelected = this.props.selected.length;
         return (
@@ -78,14 +101,38 @@ export default class Actions extends Component {
                         />
 
                     </div>
-                    <div>
+                    <div className="button-group">
                         <div>
-                            <button disabled={!(numberSelected === 1)} className="action-button">View Art</button>
-                            <button disabled={!(numberSelected === 1)} className="action-button">View Proof</button>
+                            <button
+                                disabled={!(numberSelected === 1)}
+                                className="action-button"
+                                onClick={(e) => this.handleViewButton(e, "Proof")}
+                            >
+                                View Proof
+                            </button>
+                            <button
+                                disabled={!(numberSelected === 1)}
+                                className="action-button"
+                                onClick={(e) => this.handleViewButton(e, "Print")}
+                            >
+                                View Print
+                            </button>
                         </div>
                         <div>
-                            <button disabled={!(numberSelected === 1)} className="action-button">Email Sales</button>
-                            <button disabled={!(numberSelected === 1)} className="action-button">Email Team Leader</button>
+                            <button
+                                disabled={!(numberSelected === 1)}
+                                className="action-button"
+                                onClick={(e) => this.handleEmailButton(e, "Sales")}
+                            >
+                                Email Sales
+                            </button>
+                            <button
+                                disabled={!(numberSelected === 1)}
+                                className="action-button"
+                                onClick={(e) => this.handleEmailButton(e, "Team Leader")}
+                            >
+                                Email Team Leader
+                            </button>
                         </div>
                     </div>
                     <div>
@@ -96,10 +143,12 @@ export default class Actions extends Component {
                                 onChange={(e) => this.handleActionChange(e)}
                             >
                                 <option value="" disabled>Quick Action</option>
-                                <optgroup label="Proof">
-                                    <option value="Artist Changes">Artist Changes</option>
+                                <optgroup label="Art">
+                                    <option value="Changes to Artist">Changes to Artist</option>
+                                    <option value="Changes Requested">Changes Requested</option>
                                     <option value="Art Uploaded">Art Uploaded</option>
                                     <option value="Art to Client">Art to Client</option>
+                                    <option value="Brief to Artist">Brief to Artist</option>
                                     <option value="Art Approved">Art Approved</option>
                                     <option value="Art Unapproved">Art Unapproved</option>
                                 </optgroup>
@@ -114,8 +163,8 @@ export default class Actions extends Component {
                                     <option value="Map Uploaded">Map Uploaded</option>
                                     <option value="Map Unapproved">Map Unapproved</option>
                                 </optgroup>
-                                <optgroup label="system">
-                                    <option value="Complete">Complete</option>
+                                <optgroup label="System">
+                                    <option value="Job Completed">Job Completed</option>
                                 </optgroup>
                             </select>
                             <button

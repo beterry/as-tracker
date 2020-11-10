@@ -60,6 +60,7 @@ class App extends Component {
         this.changeFilterClientType = this.changeFilterClientType.bind(this);
         this.toggleHideCompleted = this.toggleHideCompleted.bind(this);
         this.changeFilterSearchWord = this.changeFilterSearchWord.bind(this);
+        this.addLastAction = this.addLastAction.bind(this);
     }
 
     editSelected(id, e){
@@ -169,11 +170,18 @@ class App extends Component {
         const scheduledTasks = newScheduledTasks.filter((task) => task.actionTaken === "");
 
         //add completed actions to log
-        completedTasks.forEach(task => {
-            task.date = moment();
-            job.lastActions.unshift(task);
-
-        });
+        if (completedTasks.length > 0){
+            completedTasks.forEach(task => {
+                if (jobStatus[task.actionTaken]){
+                    job.status = jobStatus[task.actionTaken];
+                    console.log("Scheduler status change:", jobStatus[task.actionTaken]);
+                }
+    
+                task.date = moment();
+                job.lastActions.unshift(task);
+    
+            });
+        }
 
         //replace scheduled tasks with new scheduled tasks
         job.scheduledTasks = scheduledTasks
@@ -218,6 +226,22 @@ class App extends Component {
         this.setState({filterSearchWord: word});
     }
 
+    addLastAction(task){
+        //date from state
+        let jobs = this.state.jobs;
+        let job = this.state.jobs.find(job => job.id === this.state.selected[0]);
+        let index = this.state.jobs.findIndex(job => job.id === this.state.selected[0]);
+
+        //add task to last actions array
+        job.lastActions.unshift(task);
+
+        //replace old info with new data from the Scheduler
+        jobs.splice(index, 1, job);
+
+        //update state
+        this.setState({jobs});
+    }
+
     render(){
         const firstSelectedJob = this.state.jobs.find(job => job.id === this.state.selected[0]);
         
@@ -244,6 +268,7 @@ class App extends Component {
                                 handleReassign={this.reassignSpecialist}
                                 handleQuickAction={this.takeQuickAction}
                                 openScheduler={() => this.toggleScheduler()}
+                                addLastAction={this.addLastAction}
                             />
                             <div className="table-filters">
                                 <div className="table-filters_tabs">

@@ -2,36 +2,47 @@ import React, { Component } from 'react';
 import moment from 'moment';
 
 const ActionOptions = ({task}) => {
-    if (task.who === "Client"){
+    if (task.what === "Art"){
         return (
             <>
+                <option value="Changes to Artist">Changes to Artist</option>
+                <option value="Changes Requested">Changes Requested</option>
+                <option value="Art Uploaded">Art Uploaded</option>
+                <option value="Art to Client">Art to Client</option>
                 <option value="Art Approved">Art Approved</option>
                 <option value="Art Unapproved">Art Unapproved</option>
-                <option value="Changes Requested">Art Changes</option>
-                <option value="Map Approved">Map Approved</option>
-                <option value="Map Unapproved">Map Unapproved</option>
             </>
         )
     }else{
         return(
             <>
-                <optgroup label="Client">
-                    <option value="Art Approved">Art Approved</option>
-                    <option value="Art Unapproved">Art Unapproved</option>
-                    <option value="Changes Requested">Art Changes</option>
-                    <option value="Map Approved">Map Approved</option>
-                    <option value="Map Unapproved">Map Unapproved</option>
-                </optgroup>
-                <optgroup label="Print">
-                    <option value="print-upload">Upoad Print</option>
-                    <option value="print-approve">Approve Print</option>
-                    <option value="print-unapprove">Unapprove Print</option>
-                </optgroup>
-                <optgroup label="Map">
-                    <option value="map-approve">Approve Map</option>
-                    <option value="map-unapprove">Unapprove Map</option>
-                    <option value="map-upload">Upload Map</option>
-                </optgroup>
+            <optgroup label="General">
+                <option value="Complete">Complete</option>
+                <option value="Skip">Skip</option>
+            </optgroup>
+            <optgroup label="Art">
+                <option value="Changes to Artist">Changes to Artist</option>
+                <option value="Changes Requested">Changes Requested</option>
+                <option value="Art Uploaded">Art Uploaded</option>
+                <option value="Art to Client">Art to Client</option>
+                <option value="Brief to Artist">Brief to Artist</option>
+                <option value="Art Approved">Art Approved</option>
+                <option value="Art Unapproved">Art Unapproved</option>
+            </optgroup>
+            <optgroup label="Print">
+                <option value="Print Uploaded">Print Uploaded</option>
+                <option value="Print Approved">Print Approved</option>
+                <option value="Printing">Printing</option>
+                <option value="Print Unapproved">Print Unapproved</option>
+            </optgroup>
+            <optgroup label="Map">
+                <option value="Map Approved">Map Approved</option>
+                <option value="Map Uploaded">Map Uploaded</option>
+                <option value="Map Unapproved">Map Unapproved</option>
+            </optgroup>
+            <optgroup label="System">
+                <option value="Job Completed">Job Completed</option>
+            </optgroup>
             </>
         )
     }
@@ -75,26 +86,22 @@ class ScheduledTask extends Component {
                         <option value="Client">Client</option>
                         <option value="Artist">Artist</option>
                         <option value="Artque">ArtQue</option>
+                        <option value="Finalize">Finalize</option>
                     </select>
                     <select
                         value={what}
                         onChange={this.props.handleChangeWhat}
                     >
                         <option value="" disabled>What</option>
-                        <optgroup label="Client">
-                            <option value="Artwork">Artwork</option>
-                            <option value="Mapping">Mapping</option>
-                            <option value="General">General</option>
-                            <option value="New Order">New Order</option>
-                        </optgroup>
-                        <optgroup label="Artist">
-                            <option value="Artwork">Artwork</option>
-                            <option value="General">General</option>
-                            <option value="New Order">New Order</option>
-                        </optgroup>
-                        <optgroup label="System">
-                            <option value="New Order">New Order</option>
-                        </optgroup>
+
+                        <option value="General">General</option>
+                        <option value="Artwork">Artwork</option>
+                        <option value="Change">Change</option>
+                        <option value="Mapping">Mapping</option>
+                        <option value="New Order">New Order</option>
+                        <option value="Brief">Brief</option>
+                        <option value="New Order">New Order</option>
+
                     </select>
                 </div>
                 <textarea
@@ -107,7 +114,7 @@ class ScheduledTask extends Component {
                     onChange={this.props.handleActionTaken}
                     style={{color: actionTaken === "" ? "red" : "green"}}
                 >
-                    <option value="">Uncomplete</option>
+                    <option value="">Incomplete</option>
                     <ActionOptions task={this.props.task} />
                 </select>
             </form>

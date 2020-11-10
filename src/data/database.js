@@ -27,26 +27,69 @@ const database = [
                 action: "Email",
                 who: "Client",
                 what: "Artwork",
-                date: moment('2020-11-09 08:30'),
+                date: moment('2020-11-08 14:30'),
                 actionTaken: "",
                 note: ""
             },
         ],
         lastActions: [
+            
+            {
+                action: "Email",
+                who: "Artist",
+                what: "Change",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Changes to Artist",
+                note: ""
+            },
             {
                 action: "Call",
                 who: "Client",
                 what: "Artwork",
                 date: moment('2020-11-08 14:30'),
-                actionTaken: "Artist Changes",
+                actionTaken: "Changes Requested",
+                note: ""
+            },
+            {
+                action: "Email",
+                who: "Client",
+                what: "Artwork",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Art to Client",
+                note: ""
+            },
+            {
+                action: "Email",
+                who: "Artist",
+                what: "Brief",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Brief to Artist",
+                note: ""
+            },
+            {
+                action: "Email",
+                who: "Client",
+                what: "New Order",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Complete",
                 note: ""
             },
             {
                 action: "System",
-                who: "Client",
+                who: "",
+                what: "Accept Order",
+                date: moment('2020-11-08 14:30'),
+                //what should this action be when completed
+                actionTaken: "Complete",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "",
                 what: "New Order",
-                date: moment('2020-11-05 09:30'),
-                actionTaken: "Order Accepted",
+                date: moment('2020-11-08 14:30'),
+                //what should this action be
+                actionTaken: "Complete",
                 note: ""
             },
         ],
@@ -68,16 +111,17 @@ const database = [
         label: undefined,
         artDue: moment().add(10, 'days'),
         note: '',
-        status: 5,
+        status: 0,
         proofs: 1,
         prints: 1,
         lineNumber: 1,
         scheduledTasks: [
             {
-                action: "Call",
-                who: "Client",
-                what: "Artwork",
-                date: moment('2020-11-07 10:30'),
+                action: "System",
+                who: "",
+                what: "Accept Order",
+                date: moment('2020-11-08 14:30'),
+                //what should this action be when completed
                 actionTaken: "",
                 note: ""
             },
@@ -85,10 +129,11 @@ const database = [
         lastActions: [
             {
                 action: "System",
-                who: "Client",
+                who: "",
                 what: "New Order",
-                date: moment('2020-11-07 08:30'),
-                actionTaken: "Order Accepted",
+                date: moment('2020-11-08 14:30'),
+                //what should this action be when completed
+                actionTaken: "Order Created",
                 note: ""
             },
         ],

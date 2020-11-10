@@ -2,7 +2,7 @@ const jobStatus = {
     "Not Started": 0,
 
     //Art
-    "Artist Changes": 1,
+    "Changes to Artist": 1,
     "Art Uploaded": 2,
     "Art to Client": 3,
     "Art Approved": 4,
@@ -20,7 +20,7 @@ const jobStatus = {
     "Map Unapproved": 7,
 
     //System
-    "Complete": 10, 
+    "Job Completed": 10, 
 }
 
 export default jobStatus;

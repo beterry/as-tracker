@@ -17,7 +17,7 @@ export default function ProgressBar({status, lastActions, proofs, prints}) {
     if (status < 4){
         switch (status){
             case 1:
-                task = lastActions.find(task => task.actionTaken === "Artist Changes");
+                task = lastActions.find(task => task.actionTaken === "Changes to Artist");
                 if (task){
                     artText = task.date.format("MM/DD");
                 }
