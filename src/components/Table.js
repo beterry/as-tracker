@@ -9,7 +9,13 @@ export default class Table extends Component {
                     <table border="1">
                         <thead>
                             <tr>
-                                <th><input type="checkbox" readOnly/></th>
+                                <th>
+                                    <input
+                                        type="checkbox"
+                                        onChange={this.props.handleSelectAll}
+                                        checked={this.props.allSelected}
+                                    />
+                                </th>
                                 <th onClick={() => this.props.handleHeaderClick("push")}>Psh</th>
                                 <th onClick={() => this.props.handleHeaderClick("group")}>Grp</th>
                                 <th onClick={() => this.props.handleHeaderClick("timezone")}>TZ</th>

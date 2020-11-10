@@ -60,6 +60,12 @@ const sortJobs = (sortBy, jobs, sortDirection) => {
         } else{
             sortedJobs.sort((a,b) => compareStringAsc(a.acctSpecialist, b.acctSpecialist))
         }
+    } else if (sortBy === "status"){
+        if (sortDirection){
+            sortedJobs.sort((a,b) => a.status - b.status)
+        } else{
+            sortedJobs.sort((a,b) => b.status - a.status)
+        }
     //default case
     } else {
         if (sortDirection){

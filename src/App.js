@@ -47,6 +47,7 @@ class App extends Component {
             filterClientType: "all",
             hideCompleted: true,
             filterSearchWord: "",
+            allSelected: false,
         };
         this.editSelected = this.editSelected.bind(this);
         this.addType = this.addType.bind(this);
@@ -61,17 +62,24 @@ class App extends Component {
         this.toggleHideCompleted = this.toggleHideCompleted.bind(this);
         this.changeFilterSearchWord = this.changeFilterSearchWord.bind(this);
         this.addLastAction = this.addLastAction.bind(this);
+        this.clearSelected = this.clearSelected.bind(this);
     }
 
     editSelected(id, e){
         let selected = this.state.selected;
+        const filteredJobs = filterJobs(this.state);
+
         if (!this.state.selected.includes(id)){
             selected.push(id)
         } else {
             const index = selected.indexOf(id);
             selected.splice(index, 1);
         }
-        this.setState({selected});
+        
+        this.setState({
+            selected,
+            allSelected: selected.length === filteredJobs.length
+        });
         // console.log(selected);
     }
 
@@ -202,27 +210,33 @@ class App extends Component {
     }
 
     changeFilterStartDate(e){
+        this.clearSelected();
         this.setState({filterDateStart: moment(e.target.value)});
     }
 
     changeFilterEndDate(e){
+        this.clearSelected();
         this.setState({filterDateEnd: moment(e.target.value)});
     }
 
     changeFilterSpecialist(e){
+        this.clearSelected();
         this.setState({filterSpecialist: e.target.value});
     }
 
     changeFilterClientType(e){
+        this.clearSelected();
         this.setState({filterClientType: e.target.value});
     }
 
     toggleHideCompleted(){
+        this.clearSelected();
         this.setState(state => ({hideCompleted: !state.hideCompleted}));
     }
 
     changeFilterSearchWord(word, e){
         e.preventDefault();
+        this.clearSelected();
         this.setState({filterSearchWord: word});
     }
 
@@ -240,6 +254,32 @@ class App extends Component {
 
         //update state
         this.setState({jobs});
+    }
+
+    handleSelectAll(){
+        if (this.state.allSelected){
+            this.setState({
+                selected: [],
+                allSelected: false,
+            })
+        } else {
+            const filteredJobs = filterJobs(this.state);
+            let ids = [];
+
+            filteredJobs.forEach((job) => ids.push(job.id));
+
+            this.setState({
+                selected: ids,
+                allSelected: true,
+            })
+        }
+    }
+
+    clearSelected(){
+        this.setState({
+            selected: [],
+            allSelected: false,
+        })
     }
 
     render(){
@@ -272,8 +312,14 @@ class App extends Component {
                             />
                             <div className="table-filters">
                                 <div className="table-filters_tabs">
-                                    <button className="table-tab">Weekly</button>
-                                    <button className="table-tab">Monthly</button>
+                                    <button
+                                        className="table-tab active"
+                                        onClick={(e) => e.preventDefault()}
+                                    >Weekly</button>
+                                    <button
+                                        className="table-tab"
+                                        onClick={(e) => e.preventDefault()}
+                                    >Monthly</button>
                                 </div>
                                 <form className="table-filters_form">
                                     <DateFilter
@@ -304,6 +350,8 @@ class App extends Component {
                             </div>
                             <Table
                                 handleHeaderClick={this.changeSortBy}
+                                handleSelectAll={() => this.handleSelectAll()}
+                                allSelected={this.state.allSelected}
                             >
                                 {sortedJobs.map((job, index) => 
                                     <JobRow

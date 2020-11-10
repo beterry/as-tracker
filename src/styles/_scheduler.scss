@@ -82,6 +82,11 @@
     }
 }
 
+.scheduler-scheduled_actions{
+    display: flex;
+    justify-content: space-between;
+}
+
 .scheduler-buttons{
     display: flex;
     flex-direction: column;

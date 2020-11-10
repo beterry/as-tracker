@@ -10,11 +10,11 @@ export default function Header() {
                 <img src={logo} alt='Mail Shark' />
             </div>
             <div className='links'>
-                <button>Home</button>
-                <button>Clients</button>
-                <button>Reports</button>
-                <button>Admin</button>
-                <button>Log out</button>
+                <button onClick={(e) => e.preventDefault()}>Home</button>
+                <button onClick={(e) => e.preventDefault()}>Clients</button>
+                <button onClick={(e) => e.preventDefault()}>Reports</button>
+                <button onClick={(e) => e.preventDefault()}>Admin</button>
+                <button onClick={(e) => e.preventDefault()}>Log out</button>
             </div>
         </header>
     )

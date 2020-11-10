@@ -2,12 +2,24 @@ import React, { Component } from 'react';
 
 import ProgressBar from './ProgressBar';
 
+import noteImg from '../images/books.gif';
+
 const TaskCell = ({task}) => {
     const taskName = `${task.action} ${task.who}: ${task.what}`;
     const time = task.date.format('M-D-YY h:mma');
     return (
         <div><strong>{taskName}</strong><br />{time}</div>
     )
+}
+
+const displayNote = (e, note) => {
+    e.preventDefault();
+    alert(`Note: ${note}`);
+}
+
+const openAlert = (e, message) => {
+    e.preventDefault();
+    alert(message);
 }
 
 export default class JobRow extends Component {
@@ -31,6 +43,7 @@ export default class JobRow extends Component {
             status,
             proofs,
             prints,
+            note,
         } = this.props.job
         return (
             <tr className={this.props.selected ? "row-selected" : ""}>
@@ -45,8 +58,18 @@ export default class JobRow extends Component {
                 <td>{group}</td>
                 <td>{timezone}</td>
                 <td>{code}</td>
-                <td>{company}</td>
-                <td>{product}</td>
+                <td
+                    className="col-link"
+                    onClick={(e) => openAlert(e, `Open order line in new tab, jump to contact info: ${company}`)}
+                >
+                    {company}
+                </td>
+                <td
+                    className="col-link"
+                    onClick={(e) => openAlert(e, `Open order line in new tab: ${company}`)}
+                >
+                    {product}
+                </td>
                 <td>
                     {scheduledTasks.map((task, index) => <TaskCell task={task} key={`${id} scheduled ${index}`}/>)}
                 </td>
@@ -58,7 +81,11 @@ export default class JobRow extends Component {
                 <td>{quantity}</td>
                 <td>{mailWeeks}</td>
                 <td>{acctSpecialist}</td>
-                <td>Note</td>
+                <td
+                    onClick={(e) => displayNote(e, note)}
+                >
+                    <img src={noteImg} alt="Note"/>
+                </td>
                 <td className="col-pbar"><ProgressBar status={status} lastActions={lastActions} proofs={proofs} prints={prints}/></td>
             </tr>
         )

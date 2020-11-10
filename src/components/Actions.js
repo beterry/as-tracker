@@ -199,7 +199,7 @@ export default class Actions extends Component {
                             >
                                 <option value="" disabled>Account Specialist</option>
                                 <option value="LucasT">Lucas Templin</option>
-                                <option value="TarrynG">Tarryn Hendel</option>
+                                <option value="TarrynH">Tarryn Hendel</option>
                                 <option value="SaraP">Sara Putt</option>
                             </select>
                             <button

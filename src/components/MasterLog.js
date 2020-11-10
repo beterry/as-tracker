@@ -10,9 +10,14 @@ const LogRow = ({task}) => {
             <td>{task.who}</td>
             <td>{task.what}</td>
             <td>{task.actionTaken}</td>
-            <td></td>
+            <td className="log-col_note">{task.note}</td>
         </tr>
     )
+}
+
+const handleLogButton = (e, message) => {
+    e.preventDefault();
+    alert(message);
 }
 
 const MasterLog = ({jobs}) => {
@@ -32,9 +37,9 @@ const MasterLog = ({jobs}) => {
                         <p>{code}</p>
                     </div>
                     <div className="log-controls_buttons">
-                        <button className="action-button">Order Line</button>
-                        <button className="action-button">Email</button>
-                        <button className="action-button">Print</button>
+                        <button className="action-button" onClick={(e) => handleLogButton(e, "Open order line")}>Order Line</button>
+                        <button className="action-button" onClick={(e) => handleLogButton(e, "Outlook pop-up")}>Email</button>
+                        <button className="action-button" onClick={(e) => handleLogButton(e, "Open print version")}>Print</button>
                     </div>
                 </div>
             </div>

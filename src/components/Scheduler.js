@@ -109,14 +109,18 @@ class ScheduledTask extends Component {
                     placeholder="Comments"
                     onChange={this.props.handleChangeNote}
                 />
-                <select
-                    value={actionTaken}
-                    onChange={this.props.handleActionTaken}
-                    style={{color: actionTaken === "" ? "red" : "green"}}
-                >
-                    <option value="">Incomplete</option>
-                    <ActionOptions task={this.props.task} />
-                </select>
+                <div className="scheduler-scheduled_actions">
+                    <select
+                        value={actionTaken}
+                        onChange={this.props.handleActionTaken}
+                        style={{color: actionTaken === "" ? "red" : "green"}}
+                    >
+                        <option value="">Incomplete</option>
+                        <ActionOptions task={this.props.task} />
+                    </select>
+                    {action && who ? <button onClick={(e) => e.preventDefault()}>{`${action} ${who}`}</button> : null}
+                </div>
+                
             </form>
         )
     }

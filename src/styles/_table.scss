@@ -32,6 +32,20 @@ th{
     align-self: flex-end;
 }
 
+.table-tab{
+    border-bottom: 2px solid white;
+    border-right: 1px solid rgb(118, 118, 118);
+    border-left: 1px solid rgb(118, 118, 118);
+    border-top: 1px solid rgb(118, 118, 118);
+    border-radius: 1px 1px 0 0;
+    color: blue;
+}
+
+.table-tab.active{
+    border-top: 2px solid orange;
+    background: white;
+}
+
 .table-filters_form{
     display: flex;
     align-items: center;
@@ -48,4 +62,9 @@ th{
 .col-pbar_header{
     display: flex;
     justify-content: space-around;
+}
+
+.col-link{
+    color: blue;
+    text-decoration: underline;
 }
