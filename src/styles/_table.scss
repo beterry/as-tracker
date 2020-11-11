@@ -1,6 +1,7 @@
 .table-container{
     padding: .5rem;
     background: white;
+    margin-bottom: 1rem;
 }
 
 table{
@@ -10,6 +11,7 @@ table{
     width: 100%;
     
     border-collapse: collapse;
+    
 }
 
 th{
@@ -67,4 +69,11 @@ th{
 .col-link{
     color: blue;
     text-decoration: underline;
+}
+
+.task-cell{
+    strong{
+        color: blue;
+        text-decoration: underline;
+    }
 }

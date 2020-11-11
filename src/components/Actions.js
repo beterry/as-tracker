@@ -144,27 +144,31 @@ export default class Actions extends Component {
                             >
                                 <option value="" disabled>Quick Action</option>
                                 <optgroup label="Art">
+                                    <option value="Project Details">Project Details</option>
                                     <option value="Changes to Artist">Changes to Artist</option>
                                     <option value="Changes Requested">Changes Requested</option>
-                                    <option value="Art Uploaded">Art Uploaded</option>
                                     <option value="Art to Client">Art to Client</option>
                                     <option value="Brief to Artist">Brief to Artist</option>
                                     <option value="Art Approved">Art Approved</option>
                                     <option value="Art Unapproved">Art Unapproved</option>
                                 </optgroup>
                                 <optgroup label="Print">
-                                    <option value="Print Uploaded">Print Uploaded</option>
                                     <option value="Print Approved">Print Approved</option>
-                                    <option value="Printing">Printing</option>
                                     <option value="Print Unapproved">Print Unapproved</option>
                                 </optgroup>
                                 <optgroup label="Map">
                                     <option value="Map Approved">Map Approved</option>
-                                    <option value="Map Uploaded">Map Uploaded</option>
+                                    <option value="Map Attached">Map Attached</option>
                                     <option value="Map Unapproved">Map Unapproved</option>
                                 </optgroup>
                                 <optgroup label="System">
                                     <option value="Job Completed">Job Completed</option>
+                                    <option value="Job Accepted">Job Accepted</option>
+                                    <option value="Job Declined">Job Declined</option>
+                                </optgroup>
+                                <optgroup label="Artist Actions">
+                                    <option value="Proof Uploaded">Proof Uploaded</option>
+                                    <option value="Print Posted">Print Posted</option>
                                 </optgroup>
                             </select>
                             <button
@@ -201,6 +205,7 @@ export default class Actions extends Component {
                                 <option value="LucasT">Lucas Templin</option>
                                 <option value="TarrynH">Tarryn Hendel</option>
                                 <option value="SaraP">Sara Putt</option>
+                                <option value="NikieC">Nikie Rathman</option>
                             </select>
                             <button
                                 disabled={numberSelected === 0}

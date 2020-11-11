@@ -8,7 +8,7 @@ const TaskCell = ({task}) => {
     const taskName = `${task.action} ${task.who}: ${task.what}`;
     const time = task.date.format('M-D-YY h:mma');
     return (
-        <div><strong>{taskName}</strong><br />{time}</div>
+        <div className="task-cell"><strong>{taskName}</strong><br />{time}</div>
     )
 }
 
@@ -70,7 +70,9 @@ export default class JobRow extends Component {
                 >
                     {product}
                 </td>
-                <td>
+                <td
+                    onClick={this.props.openSchedulerFromLine}
+                >
                     {scheduledTasks.map((task, index) => <TaskCell task={task} key={`${id} scheduled ${index}`}/>)}
                 </td>
                 <td>

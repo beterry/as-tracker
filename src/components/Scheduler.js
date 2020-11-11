@@ -5,10 +5,11 @@ const ActionOptions = ({task}) => {
     if (task.what === "Art"){
         return (
             <>
+                <option value="Project Details">Project Details</option>
                 <option value="Changes to Artist">Changes to Artist</option>
                 <option value="Changes Requested">Changes Requested</option>
-                <option value="Art Uploaded">Art Uploaded</option>
                 <option value="Art to Client">Art to Client</option>
+                <option value="Brief to Artist">Brief to Artist</option>
                 <option value="Art Approved">Art Approved</option>
                 <option value="Art Unapproved">Art Unapproved</option>
             </>
@@ -16,33 +17,29 @@ const ActionOptions = ({task}) => {
     }else{
         return(
             <>
-            <optgroup label="General">
-                <option value="Complete">Complete</option>
-                <option value="Skip">Skip</option>
-            </optgroup>
-            <optgroup label="Art">
-                <option value="Changes to Artist">Changes to Artist</option>
-                <option value="Changes Requested">Changes Requested</option>
-                <option value="Art Uploaded">Art Uploaded</option>
-                <option value="Art to Client">Art to Client</option>
-                <option value="Brief to Artist">Brief to Artist</option>
-                <option value="Art Approved">Art Approved</option>
-                <option value="Art Unapproved">Art Unapproved</option>
-            </optgroup>
-            <optgroup label="Print">
-                <option value="Print Uploaded">Print Uploaded</option>
-                <option value="Print Approved">Print Approved</option>
-                <option value="Printing">Printing</option>
-                <option value="Print Unapproved">Print Unapproved</option>
-            </optgroup>
-            <optgroup label="Map">
-                <option value="Map Approved">Map Approved</option>
-                <option value="Map Uploaded">Map Uploaded</option>
-                <option value="Map Unapproved">Map Unapproved</option>
-            </optgroup>
-            <optgroup label="System">
-                <option value="Job Completed">Job Completed</option>
-            </optgroup>
+                <optgroup label="Art">
+                    <option value="Project Details">Project Details</option>
+                    <option value="Changes to Artist">Changes to Artist</option>
+                    <option value="Changes Requested">Changes Requested</option>
+                    <option value="Art to Client">Art to Client</option>
+                    <option value="Brief to Artist">Brief to Artist</option>
+                    <option value="Art Approved">Art Approved</option>
+                    <option value="Art Unapproved">Art Unapproved</option>
+                </optgroup>
+                <optgroup label="Print">
+                    <option value="Print Approved">Print Approved</option>
+                    <option value="Print Unapproved">Print Unapproved</option>
+                </optgroup>
+                <optgroup label="Map">
+                    <option value="Map Approved">Map Approved</option>
+                    <option value="Map Attached">Map Attached</option>
+                    <option value="Map Unapproved">Map Unapproved</option>
+                </optgroup>
+                <optgroup label="System">
+                    <option value="Job Completed">Job Completed</option>
+                    <option value="Job Accepted">Job Accepted</option>
+                    <option value="Job Declined">Job Declined</option>
+                </optgroup>
             </>
         )
     }
@@ -73,9 +70,9 @@ class ScheduledTask extends Component {
                         className="mr-s"
                     >
                         <option value="" disabled>Action</option>
-                        <option value="Call">Call</option>
-                        <option value="Email">Email</option>
-                        <option value="System">System</option>
+                            <option value="Call">Call</option>
+                            <option value="Email">Email</option>
+                            <option value="System">System</option>
                     </select>
                     <select
                         value={who}
@@ -83,25 +80,24 @@ class ScheduledTask extends Component {
                         className="mr-s"
                     >
                         <option value="" disabled>Who</option>
-                        <option value="Client">Client</option>
-                        <option value="Artist">Artist</option>
-                        <option value="Artque">ArtQue</option>
-                        <option value="Finalize">Finalize</option>
+                            <option value="Client">Client</option>
+                            <option value="Artist">Artist</option>
+                            <option value="Artque">ArtQue</option>
+                            <option value="Approve">Approve</option>
+                            <option value="Attach">Attach</option>
+                            <option value="Finalize">Finalize</option>
                     </select>
                     <select
                         value={what}
                         onChange={this.props.handleChangeWhat}
                     >
                         <option value="" disabled>What</option>
-
-                        <option value="General">General</option>
-                        <option value="Artwork">Artwork</option>
-                        <option value="Change">Change</option>
-                        <option value="Mapping">Mapping</option>
-                        <option value="New Order">New Order</option>
-                        <option value="Brief">Brief</option>
-                        <option value="New Order">New Order</option>
-
+                            <option value="General">General</option>
+                            <option value="Artwork">Artwork</option>
+                            <option value="Change">Change</option>
+                            <option value="Mapping">Mapping</option>
+                            <option value="Brief">Brief</option>
+                            <option value="Order">Order</option>
                     </select>
                 </div>
                 <textarea
@@ -113,12 +109,19 @@ class ScheduledTask extends Component {
                     <select
                         value={actionTaken}
                         onChange={this.props.handleActionTaken}
-                        style={{color: actionTaken === "" ? "red" : "green"}}
+                        style={{
+                            color: actionTaken === "" ? "red" : "green",
+                            borderColor: actionTaken === "" ? "red" : "green"
+                        }}
                     >
                         <option value="">Incomplete</option>
                         <ActionOptions task={this.props.task} />
                     </select>
-                    {action && who ? <button onClick={(e) => e.preventDefault()}>{`${action} ${who}`}</button> : null}
+                    {(action === "Call" || action === "Email") && who
+                    ?
+                    <button onClick={(e) => e.preventDefault()}>{`${action} ${who}`}</button>
+                    :
+                    null}
                 </div>
                 
             </form>
@@ -187,6 +190,13 @@ export default class Scheduler extends Component {
         const {action, who, what, actionTaken, date, note} = this.props.job.lastActions[0];
 
         const scheduledTasks = this.state.scheduledTasks.filter((task) => task.actionTaken === "");
+        const completedTasks = this.state.scheduledTasks.filter((task) => task.actionTaken !== "");
+
+        let jobCompleted = false;
+        if (completedTasks.length > 0) {
+            // was the job completed with the last scheduled task
+            jobCompleted = completedTasks.pop().actionTaken === "Job Completed";
+        }
 
         const scheduledTasksNotFilledOut = scheduledTasks.filter((task) => (
             (task.action === "") || (task.who === "") || (task.what === ""))
@@ -240,7 +250,13 @@ export default class Scheduler extends Component {
                             + Add Scheduled Task
                         </button>
                         <button
-                            disabled={!(this.state.taskEdited && scheduledTasks.length > 0 && scheduledTasksNotFilledOut.length === 0)}
+                            disabled={
+                                !(
+                                    this.state.taskEdited &&
+                                    (scheduledTasks.length > 0 || jobCompleted) &&
+                                    scheduledTasksNotFilledOut.length === 0
+                                )
+                            }
                             onClick={(e) => this.handleSaveAndClose(e)}
                             className="scheduler-button_save"
                         >Save & Close</button>

@@ -17,7 +17,7 @@ export default function ProgressBar({status, lastActions, proofs, prints}) {
     if (status < 4){
         switch (status){
             case 1:
-                task = lastActions.find(task => task.actionTaken === "Changes to Artist");
+                task = lastActions.find(task => task.actionTaken === "Changes to Artist" || task.actionTaken === "Brief to Artist");
                 if (task){
                     artText = task.date.format("MM/DD");
                 }
@@ -54,7 +54,7 @@ export default function ProgressBar({status, lastActions, proofs, prints}) {
                 printColor = "skyblue";
                 break;
             default:
-                printText = "PRN";
+                printText = "APR";
                 printColor = "skyblue";
         }
     }

@@ -18,28 +18,55 @@ const database = [
         label: undefined,
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
-        status: 1,
-        proofs: 1,
+        status: 10,
+        proofs: 2,
         prints: 1,
         lineNumber: 2,
-        scheduledTasks: [
+        scheduledTasks: [],
+        lastActions: [
+            {
+                action: "System",
+                who: "Finalize",
+                what: "Order",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Job Completed",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Attach",
+                what: "Mapping",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Map Attached",
+                completedBy: "LucasT",
+                note: ""
+            },
             {
                 action: "Email",
                 who: "Client",
-                what: "Artwork",
+                what: "Mapping",
                 date: moment('2020-11-08 14:30'),
-                actionTaken: "",
+                actionTaken: "Map Approved",
+                completedBy: "LucasT",
                 note: ""
             },
-        ],
-        lastActions: [
-            
+            {
+                action: "System",
+                who: "Approve",
+                what: "Artwork",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Print Approved",
+                completedBy: "LucasT",
+                note: ""
+            },
             {
                 action: "Email",
                 who: "Artist",
-                what: "Change",
+                what: "Artwork",
                 date: moment('2020-11-08 14:30'),
-                actionTaken: "Changes to Artist",
+                actionTaken: "Upload Requested",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -47,7 +74,8 @@ const database = [
                 who: "Client",
                 what: "Artwork",
                 date: moment('2020-11-08 14:30'),
-                actionTaken: "Changes Requested",
+                actionTaken: "Art Approved",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -56,6 +84,34 @@ const database = [
                 what: "Artwork",
                 date: moment('2020-11-08 14:30'),
                 actionTaken: "Art to Client",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "Email",
+                who: "Artist",
+                what: "Change",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Changes to Artist",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "Call",
+                who: "Client",
+                what: "Artwork",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Changes Requested",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "Email",
+                who: "Client",
+                what: "Artwork",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Art to Client",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -64,40 +120,51 @@ const database = [
                 what: "Brief",
                 date: moment('2020-11-08 14:30'),
                 actionTaken: "Brief to Artist",
+                completedBy: "LucasT",
                 note: ""
             },
             {
-                action: "Email",
+                action: "Call",
                 who: "Client",
-                what: "New Order",
+                what: "Artwork",
                 date: moment('2020-11-08 14:30'),
-                actionTaken: "Complete",
+                actionTaken: "Project Details",
+                completedBy: "LucasT",
                 note: ""
             },
             {
                 action: "System",
-                who: "",
-                what: "Accept Order",
+                who: "Accept",
+                what: "Order",
                 date: moment('2020-11-08 14:30'),
-                //what should this action be when completed
-                actionTaken: "Complete",
+                actionTaken: "Job Accepted",
+                completedBy: "LucasT",
                 note: ""
             },
             {
                 action: "System",
-                who: "",
-                what: "New Order",
+                who: "Assign",
+                what: "Order",
                 date: moment('2020-11-08 14:30'),
-                //what should this action be
-                actionTaken: "Complete",
+                actionTaken: "Assigned Order",
+                completedBy: "TarrynH",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Created",
+                what: "Order",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Order Created",
+                completedBy: "System",
                 note: ""
             },
         ],
     },
     {
         id: 101,
-        push: 2,
-        group: "G",
+        push: 0,
+        group: "J",
         code: 28062,
         timezone: -2,
         company: "Client B",
@@ -105,35 +172,152 @@ const database = [
         address: "19622 Middlebelt Rd, Livonia, MI 48152",
         version: undefined,
         options: [],
-        quantity: 10000,
+        quantity: 5000,
         mailWeeks: 2,
-        acctSpecialist: "TarrynH",
+        acctSpecialist: "LucasT",
         label: undefined,
         artDue: moment().add(10, 'days'),
-        note: '',
-        status: 0,
-        proofs: 1,
+        note: 'Do NOT call client on Mondays, he will shoot you!',
+        status: 9,
+        proofs: 2,
         prints: 1,
-        lineNumber: 1,
+        lineNumber: 2,
         scheduledTasks: [
             {
                 action: "System",
-                who: "",
-                what: "Accept Order",
+                who: "Finalize",
+                what: "Order",
                 date: moment('2020-11-08 14:30'),
-                //what should this action be when completed
                 actionTaken: "",
+                completedBy: "",
                 note: ""
             },
         ],
         lastActions: [
             {
                 action: "System",
-                who: "",
-                what: "New Order",
+                who: "Attach",
+                what: "Mapping",
                 date: moment('2020-11-08 14:30'),
-                //what should this action be when completed
+                actionTaken: "Map Attached",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "Email",
+                who: "Client",
+                what: "Mapping",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Map Approved",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Approve",
+                what: "Artwork",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Print Approved",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "Email",
+                who: "Artist",
+                what: "Artwork",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Upload Requested",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "Call",
+                who: "Client",
+                what: "Artwork",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Art Approved",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "Email",
+                who: "Client",
+                what: "Artwork",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Art to Client",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "Email",
+                who: "Artist",
+                what: "Change",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Changes to Artist",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "Call",
+                who: "Client",
+                what: "Artwork",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Changes Requested",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "Email",
+                who: "Client",
+                what: "Artwork",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Art to Client",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "Email",
+                who: "Artist",
+                what: "Brief",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Brief to Artist",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "Call",
+                who: "Client",
+                what: "Artwork",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Project Details",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Accept",
+                what: "Order",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Job Accepted",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Assign",
+                what: "Order",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Assigned Order",
+                completedBy: "TarrynH",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Created",
+                what: "Order",
+                date: moment('2020-11-08 14:30'),
                 actionTaken: "Order Created",
+                completedBy: "System",
                 note: ""
             },
         ],

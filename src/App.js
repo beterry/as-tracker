@@ -282,6 +282,13 @@ class App extends Component {
         })
     }
 
+    openSchedulerFromLine(id){
+        this.setState({
+            selected: [id],
+            showScheduler: true,
+        })
+    }
+
     render(){
         const firstSelectedJob = this.state.jobs.find(job => job.id === this.state.selected[0]);
         
@@ -358,11 +365,12 @@ class App extends Component {
                                         job={job}
                                         selected={this.state.selected.includes(job.id)}
                                         handleCheckbox={(e) => this.editSelected(job.id, e)}
-                                        
+                                        openSchedulerFromLine={() => this.openSchedulerFromLine(job.id)}
                                         key={job.id}
                                     />)
                                 }
                             </Table>
+                            <button onClick={(e) => e.preventDefault()}>Print Report</button>
                         </>
                     </Route>
                 </Switch>
