@@ -10,6 +10,7 @@ const LogRow = ({task}) => {
             <td>{task.who}</td>
             <td>{task.what}</td>
             <td>{task.actionTaken}</td>
+            <td>{task.completedBy}</td>
             <td className="log-col_note">{task.note}</td>
         </tr>
     )
@@ -53,6 +54,7 @@ const MasterLog = ({jobs}) => {
                             <th>Who</th>
                             <th>What</th>
                             <th>Action Taken</th>
+                            <th>Completed By</th>
                             <th>Note</th>
                         </tr>
                     </thead>

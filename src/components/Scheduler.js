@@ -149,6 +149,7 @@ export default class Scheduler extends Component {
             newScheduledTasks.splice(index, 1, task);
         }else if (detail === "actionTaken"){
             task.actionTaken = e.target.value;
+            task.completedBy = this.props.completedBy
             newCompletedTasks.push(task);
         }else {
             task[detail] = e.target.value;
@@ -170,6 +171,7 @@ export default class Scheduler extends Component {
             what: "",
             date: moment().add(1, "days"),
             actionTaken: "",
+            completedBy: "",
             note: ""
         }
         newScheduledTasks.push(newTask);

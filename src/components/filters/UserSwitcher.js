@@ -1,14 +1,12 @@
 import React from 'react'
 
-export default function SpecialistFilter({specialist, changeSpecialist, isAdmin}) {
+export default function SpecialistFilter({specialist, changeSpecialist}) {
     return (
-        <div>
+        <div className="user-switcher">
             <select
                 value={specialist}
-                onChange={(e) => changeSpecialist(e)}
-                disabled={!isAdmin}
+                onChange={(e) => changeSpecialist(e.target.value)}
             >
-                <option value="all">All Specialists</option>
                 <option value="LucasT">Lucas Templin</option>
                 <option value="TarrynH">Tarryn Hendel</option>
                 <option value="SaraP">Sara Putt</option>

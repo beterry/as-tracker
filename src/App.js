@@ -20,6 +20,8 @@ import ClientTypeFilter from './components/filters/ClientTypeFilter';
 import CheckboxFilter from './components/filters/CheckboxFilter';
 import SearchFilter from './components/filters/SearchFilter';
 
+import UserSwitcher from './components/filters/UserSwitcher';
+
 //import data
 import data from './data/database';
 import jobStatus from './data/jobStatus';
@@ -36,8 +38,6 @@ class App extends Component {
         this.state = {
             jobs: data,
             selected: [],
-            specialist: "LucusT",
-            isAdmin: false,
             showScheduler: false,
             sortBy: "scheduledTasks",
             sortDirection: true,
@@ -48,6 +48,8 @@ class App extends Component {
             hideCompleted: true,
             filterSearchWord: "",
             allSelected: false,
+            user: "TarrynH",
+            isAdmin: true,
         };
         this.editSelected = this.editSelected.bind(this);
         this.addType = this.addType.bind(this);
@@ -63,6 +65,35 @@ class App extends Component {
         this.changeFilterSearchWord = this.changeFilterSearchWord.bind(this);
         this.addLastAction = this.addLastAction.bind(this);
         this.clearSelected = this.clearSelected.bind(this);
+        this.changeUser = this.changeUser.bind(this);
+    }
+
+    componentDidMount(){
+        if(!this.state.isAdmin){
+            this.setState({
+                filterSpecialist: this.state.user,
+            })
+        } else {
+            this.setState({
+                filterSpecialist: "all",
+            })
+        }
+    }
+
+    changeUser(user){
+        if (user === "TarrynH"){
+            this.setState({
+                user,
+                isAdmin: true,
+                filterSpecialist: "all",
+            })
+        } else {
+            this.setState({
+                user,
+                isAdmin: false,
+                filterSpecialist: user
+            })
+        }
     }
 
     editSelected(id, e){
@@ -132,6 +163,7 @@ class App extends Component {
             date: moment(),
             acctSpecialist: this.state.specialist,
             actionTaken,
+            completedBy: this.state.user,
             note: []
         }
 
@@ -143,9 +175,20 @@ class App extends Component {
 
             job.lastActions.unshift(tempAction);
 
+            //update job status
             if (jobStatus[actionTaken]){
                 job.status = jobStatus[actionTaken];
                 console.log("Quick action status change:", jobStatus[actionTaken]);
+            }
+
+            //increment proof number
+            if (actionTaken === "Proof Uploaded"){
+                job.proofs += 1;
+            }
+
+            //increment proof number
+            if (actionTaken === "Print Posted"){
+                job.prints += 1;
             }
 
             jobs.splice(index, 1, job);
@@ -338,6 +381,7 @@ class App extends Component {
                                     <SpecialistFilter
                                         specialist={this.state.filterSpecialist}
                                         changeSpecialist={this.changeFilterSpecialist}
+                                        isAdmin={this.state.isAdmin}
                                     />
                                     <ClientTypeFilter
                                         clientType={this.state.filterClientType}
@@ -372,18 +416,23 @@ class App extends Component {
                             </Table>
                             <button onClick={(e) => e.preventDefault()}>Print Report</button>
                         </>
-                    </Route>
-                </Switch>
-              </main>
-              {this.state.showScheduler ?
-                <Scheduler
-                    close={() => this.closeScheduler()}
-                    job={firstSelectedJob}
-                    saveScheduledTasks={this.handleSaveAndCloseScheduler}
-                />:
-                null
-              }
-          </Router>
+                        </Route>
+                    </Switch>
+                </main>
+                <UserSwitcher
+                    specialist={this.state.user}
+                    changeSpecialist={this.changeUser}
+                />
+                {this.state.showScheduler ?
+                    <Scheduler
+                        close={() => this.closeScheduler()}
+                        job={firstSelectedJob}
+                        saveScheduledTasks={this.handleSaveAndCloseScheduler}
+                        completedBy={this.state.user}
+                    />:
+                    null
+                }
+            </Router>
         );
     }
 }
