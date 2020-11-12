@@ -21,6 +21,10 @@ th{
     text-decoration: underline;
 }
 
+td{
+    padding: .25rem;
+}
+
 .row-selected{
     background: #65FFFF;
 }
@@ -71,7 +75,7 @@ th{
     text-decoration: underline;
 }
 
-.task-cell{
+.col-scheduled{
     strong{
         color: blue;
         text-decoration: underline;

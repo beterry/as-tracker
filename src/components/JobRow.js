@@ -5,8 +5,15 @@ import ProgressBar from './ProgressBar';
 import noteImg from '../images/books.gif';
 
 const TaskCell = ({task}) => {
-    const taskName = `${task.action} ${task.who}: ${task.what}`;
+    let taskName = "";
+    if (task.actionTaken === ""){
+        taskName = `${task.action} ${task.who}: ${task.what}`;
+    } else {
+        taskName = task.actionTaken
+    }
+    
     const time = task.date.format('M-D-YY h:mma');
+    
     return (
         <div className="task-cell"><strong>{taskName}</strong><br />{time}</div>
     )
@@ -76,6 +83,7 @@ export default class JobRow extends Component {
                 </td>
                 <td
                     onClick={this.props.openSchedulerFromLine}
+                    className="col-scheduled"
                 >
                     {scheduledTasks.map((task, index) => <TaskCell task={task} key={`${id} scheduled ${index}`}/>)}
                 </td>
