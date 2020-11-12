@@ -14,7 +14,7 @@ const filterJobs = ({
             job.artDue.isBefore(filterDateEnd) &&
             job.artDue.isAfter(filterDateStart) &&
             (job.acctSpecialist === filterSpecialist || filterSpecialist === "all") &&
-            (job.clientLabel === filterClientType || filterClientType === "all") &&
+            (job.label === filterClientType || filterClientType === "all") &&
             companyName.includes(word)
         )
     })

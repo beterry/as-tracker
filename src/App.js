@@ -335,8 +335,17 @@ class App extends Component {
     render(){
         const firstSelectedJob = this.state.jobs.find(job => job.id === this.state.selected[0]);
         
+        // filter and sort jobs
         const filteredJobs = filterJobs(this.state)
         const sortedJobs = sortJobs(this.state.sortBy, filteredJobs, this.state.sortDirection);
+
+        // find client types
+        let clientTypes = new Set();
+        this.state.jobs.forEach((job) => {
+            if (job.label !== "" && !clientTypes.has(job.label)){
+                clientTypes.add(job.label);
+            }
+        })
 
         return (
             <Router>
@@ -385,7 +394,7 @@ class App extends Component {
                                     />
                                     <ClientTypeFilter
                                         clientType={this.state.filterClientType}
-                                        options={["marcos", "fox"]}
+                                        options={[...clientTypes]}
                                         changeClientType={this.changeFilterClientType}
                                     />
                                     <CheckboxFilter
