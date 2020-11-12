@@ -77,3 +77,38 @@ th{
         text-decoration: underline;
     }
 }
+
+
+// tooltip styles
+.tooltip{
+    position: relative;
+}
+
+/* Tooltip text */
+.tooltip-text {
+    visibility: hidden;
+    display: inline-block;
+    background-color: rgb(239, 239, 239);
+    border: 1px solid black;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: .25rem;
+    color: black;
+    width: 250px;
+  
+    /* Position the tooltip text */
+    position: absolute;
+    z-index: 1;
+    top: 85%;
+    left: 25%;
+  
+    /* Fade in tooltip */
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+  }

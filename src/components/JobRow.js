@@ -33,6 +33,7 @@ export default class JobRow extends Component {
             code,
             company,
             product,
+            address,
             version,
             options,
             quantity,
@@ -62,7 +63,10 @@ export default class JobRow extends Component {
                     className="col-link"
                     onClick={(e) => openAlert(e, `Open order line in new tab, jump to contact info: ${company}`)}
                 >
-                    {company}
+                    <div className="tooltip">
+                        {company}
+                        <span className="tooltip-text">{address}</span>
+                    </div>
                 </td>
                 <td
                     className="col-link"
