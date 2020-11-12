@@ -148,6 +148,11 @@ class App extends Component {
             jobs.splice(index, 1, job);
         })
 
+        // clear selected if not Admin
+        if (!this.state.isAdmin){
+            this.clearSelected();
+        }
+
         this.setState({jobs})
         console.log(jobs);
     }

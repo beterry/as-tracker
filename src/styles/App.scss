@@ -53,8 +53,29 @@ textarea, select, input{
     margin-right: .5rem;
 }
 
+.ml-s{
+    margin-left: .5rem;
+}
+
 .mx-s{
     margin: 0 .5rem;
+}
+
+//color utility
+.underline-red{
+    align-self: flex-start;
+    background: none;
+    border: none;
+    color: red;
+    text-decoration: underline;
+}
+
+.underline-blue{
+    align-self: flex-start;
+    background: none;
+    border: none;
+    color: blue;
+    text-decoration: underline;
 }
 
 // misc

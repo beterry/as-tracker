@@ -153,6 +153,7 @@ export default class Actions extends Component {
                                     <option value="Art Unapproved">Art Unapproved</option>
                                 </optgroup>
                                 <optgroup label="Print">
+                                    <option value="Print Posted">Print Posted</option>
                                     <option value="Print Approved">Print Approved</option>
                                     <option value="Print Unapproved">Print Unapproved</option>
                                 </optgroup>
@@ -168,7 +169,6 @@ export default class Actions extends Component {
                                 </optgroup>
                                 <optgroup label="Artist Actions">
                                     <option value="Proof Uploaded">Proof Uploaded</option>
-                                    <option value="Print Posted">Print Posted</option>
                                 </optgroup>
                             </select>
                             <button

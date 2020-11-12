@@ -65,7 +65,7 @@ const database = [
                 who: "Artist",
                 what: "Artwork",
                 date: moment('2020-11-08 14:30'),
-                actionTaken: "Upload Requested",
+                actionTaken: "Print Posted",
                 completedBy: "LucasT",
                 note: ""
             },
@@ -226,7 +226,7 @@ const database = [
                 who: "Artist",
                 what: "Artwork",
                 date: moment('2020-11-08 14:30'),
-                actionTaken: "Upload Requested",
+                actionTaken: "Print Posted",
                 completedBy: "LucasT",
                 note: ""
             },
@@ -350,7 +350,7 @@ const database = [
                 what: "Mapping",
                 date: moment('2020-11-08 14:30'),
                 actionTaken: "",
-                completedBy: "NikieC",
+                completedBy: "",
                 note: ""
             },
         ],
@@ -378,7 +378,7 @@ const database = [
                 who: "Artist",
                 what: "Artwork",
                 date: moment('2020-11-08 14:30'),
-                actionTaken: "Upload Requested",
+                actionTaken: "Print Posted",
                 completedBy: "NikieC",
                 note: ""
             },
@@ -502,7 +502,7 @@ const database = [
                 what: "Mapping",
                 date: moment('2020-11-08 14:30'),
                 actionTaken: "",
-                completedBy: "NikieC",
+                completedBy: "",
                 note: ""
             },
         ],
@@ -521,7 +521,7 @@ const database = [
                 who: "Artist",
                 what: "Artwork",
                 date: moment('2020-11-08 14:30'),
-                actionTaken: "Upload Requested",
+                actionTaken: "Print Posted",
                 completedBy: "NikieC",
                 note: ""
             },
@@ -642,10 +642,10 @@ const database = [
             {
                 action: "System",
                 who: "Approve",
-                what: "Artwork",
+                what: "Print",
                 date: moment('2020-11-08 14:30'),
                 actionTaken: "",
-                completedBy: "SaraP",
+                completedBy: "",
                 note: ""
             },
         ],
@@ -655,7 +655,7 @@ const database = [
                 who: "Artist",
                 what: "Artwork",
                 date: moment('2020-11-08 14:30'),
-                actionTaken: "Upload Requested",
+                actionTaken: "Print Posted",
                 completedBy: "SaraP",
                 note: ""
             },
@@ -768,40 +768,22 @@ const database = [
         label: "",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
-        status: 5,
+        status: 4,
         proofs: 2,
         prints: 1,
         lineNumber: 2,
         scheduledTasks: [
             {
-                action: "System",
-                who: "Approve",
-                what: "Artwork",
-                date: moment('2020-11-08 14:30'),
-                actionTaken: "Print Posted",
-                completedBy: "NikieC",
-                note: ""
-            },
-        ],
-        lastActions: [
-            {
-                action: "Quick Action",
-                who: "",
-                what: "Print Posted",
-                date: moment('2020-11-08 14:30'),
-                actionTaken: "Print Posted",
-                completedBy: "NikieC",
-                note: ""
-            },
-            {
                 action: "Email",
                 who: "Artist",
                 what: "Artwork",
                 date: moment('2020-11-08 14:30'),
-                actionTaken: "Upload Requested",
-                completedBy: "NikieC",
+                actionTaken: "",
+                completedBy: "",
                 note: ""
             },
+        ],
+        lastActions: [
             {
                 action: "Call",
                 who: "Client",
@@ -922,7 +904,7 @@ const database = [
                 what: "Mapping",
                 date: moment('2020-11-08 14:30'),
                 actionTaken: "",
-                completedBy: "NikieC",
+                completedBy: "",
                 note: ""
             },
         ],
@@ -941,7 +923,7 @@ const database = [
                 who: "Artist",
                 what: "Artwork",
                 date: moment('2020-11-08 14:30'),
-                actionTaken: "Upload Requested",
+                actionTaken: "Print Posted",
                 completedBy: "NikieC",
                 note: ""
             },
@@ -1065,7 +1047,7 @@ const database = [
                 what: "Artwork",
                 date: moment('2020-11-08 14:30'),
                 actionTaken: "",
-                completedBy: "SaraP",
+                completedBy: "",
                 note: ""
             },
         ],

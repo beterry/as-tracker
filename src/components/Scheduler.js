@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 
+const displayAlert = (e, message) => {
+    e.preventDefault();
+    alert(message);
+}
+
 const ActionOptions = ({task}) => {
-    if (task.what === "Art"){
+    if (task.what === "Artwork"){
         return (
             <>
                 <option value="Project Details">Project Details</option>
@@ -27,6 +32,7 @@ const ActionOptions = ({task}) => {
                     <option value="Art Unapproved">Art Unapproved</option>
                 </optgroup>
                 <optgroup label="Print">
+                    <option value="Print Posted">Print Posted</option>
                     <option value="Print Approved">Print Approved</option>
                     <option value="Print Unapproved">Print Unapproved</option>
                 </optgroup>
@@ -52,7 +58,7 @@ class ScheduledTask extends Component {
         return (
             <form className='scheduler-scheduled'>      
                 <div className="scheduler-scheduled_title">
-                    <h3>Scheduled Task</h3>
+                    <h3>{actionTaken ? actionTaken : "Scheduled Task"}</h3>
                     <div className="scheduler-scheduled_date">
                         <label className="mr-s" htmlFor="due">Due</label>
                         <input
@@ -95,6 +101,7 @@ class ScheduledTask extends Component {
                             <option value="General">General</option>
                             <option value="Artwork">Artwork</option>
                             <option value="Change">Change</option>
+                            <option value="Print">Print</option>
                             <option value="Mapping">Mapping</option>
                             <option value="Brief">Brief</option>
                             <option value="Order">Order</option>
@@ -117,11 +124,23 @@ class ScheduledTask extends Component {
                         <option value="">Incomplete</option>
                         <ActionOptions task={this.props.task} />
                     </select>
-                    {(action === "Call" || action === "Email") && who
-                    ?
-                    <button onClick={(e) => e.preventDefault()}>{`${action} ${who}`}</button>
-                    :
-                    null}
+                    <div>
+                        {who === "Client"
+                        ?
+                        <button
+                            onClick={(e) => displayAlert(e, "Open order line in new tab, jump to contact info")}
+                            className="underline-blue"
+                        >Client Contact Info</button>
+                        :
+                        null}
+                        {actionTaken ? null :
+                            <button
+                                className="ml-s underline-red"
+                                onClick={this.props.deleteScheduledTask}
+                            >Delete Task</button>
+                        }
+                    </div>
+                    
                 </div>
                 
             </form>
@@ -134,37 +153,34 @@ export default class Scheduler extends Component {
         super(props)
         this.state = ({
             scheduledTasks: props.job.scheduledTasks,
-            completedTasks: [],
             taskEdited: false
         })
     }
 
     handleTaskEdited(detail, index, e){
         let task = this.state.scheduledTasks[index];
-        let newScheduledTasks = this.state.scheduledTasks;
-        let newCompletedTasks = this.state.completedTasks;
+        let scheduledTasks = this.state.scheduledTasks;
 
         if (detail === "date"){
             task.date = moment(e.target.value);
-            newScheduledTasks.splice(index, 1, task);
+            scheduledTasks.splice(index, 1, task);
         }else if (detail === "actionTaken"){
             task.actionTaken = e.target.value;
             task.completedBy = this.props.completedBy
-            newCompletedTasks.push(task);
+            scheduledTasks.splice(index, 1, task);
         }else {
             task[detail] = e.target.value;
-            newScheduledTasks.splice(index, 1, task);
+            scheduledTasks.splice(index, 1, task);
         }
 
         this.setState({
-            scheduledTasks: newScheduledTasks,
-            completedTasks: newCompletedTasks,
+            scheduledTasks,
             taskEdited: true
         });
     }
 
     handleNewTask(e){
-        const newScheduledTasks = this.state.scheduledTasks;
+        const scheduledTasks = this.state.scheduledTasks;
         const newTask = {
             action: "",
             who: "",
@@ -174,8 +190,8 @@ export default class Scheduler extends Component {
             completedBy: "",
             note: ""
         }
-        newScheduledTasks.push(newTask);
-        this.setState({scheduledTasks: newScheduledTasks});
+        scheduledTasks.push(newTask);
+        this.setState({scheduledTasks});
     }
 
     handleSaveAndClose(e){
@@ -186,6 +202,14 @@ export default class Scheduler extends Component {
     // why is this saving data?
     handleCloseAndDontSave(){
         this.props.close();
+    }
+
+    deleteScheduledTask(e, index){
+        e.preventDefault();
+
+        let scheduledTasks = this.state.scheduledTasks;
+        scheduledTasks.splice(index, 1);
+        this.setState({scheduledTasks});
     }
 
     render() {
@@ -215,8 +239,13 @@ export default class Scheduler extends Component {
                     <div className="scheduler-note">
                         <p>{`Client Note: ${this.props.job.note}`}</p>
                         <div className="scheduler-note_buttons">
-                            <button className="mr-s" >Email Sales</button>
-                            <button>Email Team Leader</button>
+                            <button
+                                className="mr-s"
+                                onClick={(e) => displayAlert(e, "Open Outlook: Sales")}
+                            >Email Sales</button>
+                            <button
+                                onClick={(e) => displayAlert(e, "Open Outlook: Team Leader")}
+                            >Email Team Leader</button>
                         </div>
                     </div>
                     <div className="scheduler-last">
@@ -242,6 +271,7 @@ export default class Scheduler extends Component {
                             handleChangeNote={(e) => this.handleTaskEdited("note", index, e)}
                             handleChangeDate={(e) => this.handleTaskEdited("date", index, e)}
                             handleActionTaken={(e) => this.handleTaskEdited("actionTaken", index, e)}
+                            deleteScheduledTask={(e) => this.deleteScheduledTask(e, index)}
                         />
                     )}
                     <div className="scheduler-buttons">

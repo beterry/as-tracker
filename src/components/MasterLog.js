@@ -1,6 +1,8 @@
 import React from 'react'
 import {useParams} from "react-router-dom";
 
+import noteImg from '../images/books.gif';
+
 const LogRow = ({task}) => {
     return (
         <tr>
@@ -11,7 +13,7 @@ const LogRow = ({task}) => {
             <td>{task.what}</td>
             <td>{task.actionTaken}</td>
             <td>{task.completedBy}</td>
-            <td className="log-col_note">{task.note}</td>
+            <td className="log-col_note"><img src={noteImg} alt="Note"/></td>
         </tr>
     )
 }

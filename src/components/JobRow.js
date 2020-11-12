@@ -3,11 +3,22 @@ import React, { Component } from 'react';
 import ProgressBar from './ProgressBar';
 
 import noteImg from '../images/books.gif';
+import iconSystem from '../images/icon-system.svg'
+import iconEmail from '../images/icon-email.svg'
+import iconCall from '../images/icon-call.svg'
 
 const TaskCell = ({task}) => {
     let taskName = "";
+    let src;
     if (task.actionTaken === ""){
-        taskName = `${task.action} ${task.who}: ${task.what}`;
+        taskName = `${task.who}: ${task.what}`;
+        if (task.action === "Email"){
+            src = iconEmail;
+        } else if (task.action === "Call"){
+            src = iconCall;
+        } else {
+            src = iconSystem;
+        }
     } else {
         taskName = task.actionTaken
     }
@@ -15,7 +26,15 @@ const TaskCell = ({task}) => {
     const time = task.date.format('M-D-YY h:mma');
     
     return (
-        <div className="task-cell"><strong>{taskName}</strong><br />{time}</div>
+        <div className="task-cell">
+            {task.actionTaken ? null : <img src={src} alt={task.action}/>} 
+            <div>
+                <strong>{taskName}</strong>
+                <br />
+                {time}
+            </div>
+            
+        </div>
     )
 }
 
