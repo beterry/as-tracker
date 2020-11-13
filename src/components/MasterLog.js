@@ -28,7 +28,13 @@ const MasterLog = ({jobs}) => {
     let {id} = useParams();
     const job = jobs.find(job => job.id === Number(id));
 
+    if (!job){
+        return <div>No job found</div>;
+    }
+
     const {company, product, lineNumber, code, lastActions} = job
+
+
 
     return (
         <section>

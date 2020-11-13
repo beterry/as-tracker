@@ -55,7 +55,7 @@ class App extends Component {
         this.addType = this.addType.bind(this);
         this.reassignSpecialist = this.reassignSpecialist.bind(this);
         this.takeQuickAction = this.takeQuickAction.bind(this);
-        this.handleSaveAndCloseScheduler = this.handleSaveAndCloseScheduler.bind(this);
+        this.saveSchedulerChanges = this.saveSchedulerChanges.bind(this);
         this.changeSortBy = this.changeSortBy.bind(this);
         this.changeFilterStartDate = this.changeFilterStartDate.bind(this);
         this.changeFilterEndDate = this.changeFilterEndDate.bind(this);
@@ -80,10 +80,6 @@ class App extends Component {
         }
     }
 
-    componentDidUpdate() {
-        console.log("Updated");
-    }
-
     changeUser(user) {
         if (user === "TarrynH") {
             this.setState({
@@ -101,7 +97,7 @@ class App extends Component {
     }
 
     editSelected(id, e) {
-        let selected = this.state.selected;
+        let selected = [...this.state.selected];
         const filteredJobs = filterJobs(this.state);
 
         if (!this.state.selected.includes(id)) {
@@ -122,11 +118,11 @@ class App extends Component {
         e.preventDefault();
         // console.log(label);
 
-        let jobs = this.state.jobs
+        let jobs = [...this.state.jobs]
 
         this.state.selected.forEach(id => {
-            let job = this.state.jobs.find(job => job.id === id);
-            let index = this.state.jobs.findIndex(job => job.id === id);
+            let job = {...jobs.find(job => job.id === id)};
+            let index = jobs.findIndex(job => job.id === id);
 
             job.label = label;
 
@@ -134,18 +130,18 @@ class App extends Component {
         })
 
         this.setState({ jobs })
-        // console.log(jobs);
+        console.log(jobs);
     }
 
     reassignSpecialist(name, e) {
         e.preventDefault();
         // console.log(`running action: ${name}`);
 
-        let jobs = this.state.jobs
+        let jobs = [...this.state.jobs]
 
         this.state.selected.forEach(id => {
-            let job = this.state.jobs.find(job => job.id === id);
-            let index = this.state.jobs.findIndex(job => job.id === id);
+            let job = {...jobs.find(job => job.id === id)};
+            let index = jobs.findIndex(job => job.id === id);
 
             job.acctSpecialist = name;
 
@@ -158,7 +154,7 @@ class App extends Component {
         }
 
         this.setState({ jobs })
-        console.log(jobs);
+        // console.log(jobs);
     }
 
     takeQuickAction(actionTaken, e) {
@@ -176,13 +172,16 @@ class App extends Component {
             note: []
         }
 
-        let jobs = this.state.jobs
+        let jobs = [...this.state.jobs]
 
         this.state.selected.forEach(id => {
-            let job = this.state.jobs.find(job => job.id === id);
-            const index = this.state.jobs.findIndex(job => job.id === id);
+            let job = {...jobs.find(job => job.id === id)};
+            const index = jobs.findIndex(job => job.id === id);
 
-            job.lastActions.unshift(tempAction);
+            //add actions to last actions array
+            let lastActions = [...job.lastActions];
+            lastActions.unshift(tempAction);
+            job.lastActions = lastActions
 
             //update job status
             if (jobStatus[actionTaken]) {
@@ -211,21 +210,19 @@ class App extends Component {
         this.setState(state => ({
             showScheduler: !this.state.showScheduler,
         }))
-        console.log("Scheduler Toggled");
     }
 
-    handleSaveAndCloseScheduler(newScheduledTasks, e) {
-        e.preventDefault();
+    saveSchedulerChanges(newTasks) {
         console.log("Save and close scheduler");
 
         //date from state
-        let jobs = this.state.jobs;
-        let job = this.state.jobs.find(job => job.id === this.state.selected[0]);
-        let index = this.state.jobs.findIndex(job => job.id === this.state.selected[0]);
+        let jobs = [...this.state.jobs];
+        let job = {...jobs.find(job => job.id === this.state.selected[0])};
+        let index = jobs.findIndex(job => job.id === this.state.selected[0]);
 
         //seperate tasks from Scheduler into categories
-        const completedTasks = newScheduledTasks.filter((task) => task.actionTaken !== "");
-        const scheduledTasks = newScheduledTasks.filter((task) => task.actionTaken === "");
+        const completedTasks = [...newTasks.filter((task) => task.actionTaken !== "")];
+        const scheduledTasks = [...newTasks.filter((task) => task.actionTaken === "")];
 
         //add completed actions to log
         if (completedTasks.length > 0) {
@@ -235,9 +232,13 @@ class App extends Component {
                     console.log("Scheduler status change:", jobStatus[task.actionTaken]);
                 }
 
+                //date logged when scheduler is closed
                 task.date = moment();
-                job.lastActions.unshift(task);
 
+                //put completed task into last actions array
+                let lastActions = [...job.lastActions];
+                lastActions.unshift(task);
+                job.lastActions = lastActions;
             });
         }
 
@@ -292,12 +293,14 @@ class App extends Component {
 
     addLastAction(task) {
         //date from state
-        let jobs = this.state.jobs;
-        let job = this.state.jobs.find(job => job.id === this.state.selected[0]);
-        let index = this.state.jobs.findIndex(job => job.id === this.state.selected[0]);
+        let jobs = [...this.state.jobs];
+        let job = {...jobs.find(job => job.id === this.state.selected[0])};
+        let index = jobs.findIndex(job => job.id === this.state.selected[0]);
 
         //add task to last actions array
-        job.lastActions.unshift(task);
+        let lastActions = [...job.lastActions];
+        lastActions.unshift(task);
+        job.lastActions = lastActions;
 
         //replace old info with new data from the Scheduler
         jobs.splice(index, 1, job);
@@ -443,7 +446,7 @@ class App extends Component {
                     <Scheduler
                         close={() => this.toggleScheduler()}
                         job={firstSelectedJob}
-                        saveScheduledTasks={this.handleSaveAndCloseScheduler}
+                        saveChanges={this.saveSchedulerChanges}
                         completedBy={this.state.user}
                     /> :
                     null

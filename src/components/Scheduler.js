@@ -198,37 +198,54 @@ export default class Scheduler extends Component {
     constructor(props){
         super(props);
         this.state = ({
-            scheduledTasks: this.props.job.scheduledTasks,
-            taskEdited: false
+            tasks: [],
+            taskEdited: false,
+            save: false,
         });
+    }
+
+    componentDidMount(){
+        let tasks = []
+        const tasksFromProps = [...this.props.job.scheduledTasks];
+        tasksFromProps.forEach(task => {
+            const spreadTask = {...task};
+            tasks.push(spreadTask);
+        })
+        this.setState({tasks});
+    }
+
+    componentWillUnmount(){
+        if (this.state.save){
+            this.props.saveChanges([...this.state.tasks]);
+        }
     }
 
     handleTaskEdited(detail, index, e){
         e.preventDefault();
 
-        let task = this.state.scheduledTasks[index];
-        let scheduledTasks = this.state.scheduledTasks;
+        let task = {...this.state.tasks[index]};
+        let tasks = [...this.state.tasks];
 
         if (detail === "date"){
             task.date = moment(e.target.value);
-            scheduledTasks.splice(index, 1, task);
+            tasks.splice(index, 1, task);
         }else if (detail === "actionTaken"){
             task.actionTaken = e.target.value;
             task.completedBy = this.props.completedBy
-            scheduledTasks.splice(index, 1, task);
+            tasks.splice(index, 1, task);
         }else {
             task[detail] = e.target.value;
-            scheduledTasks.splice(index, 1, task);
+            tasks.splice(index, 1, task);
         }
 
         this.setState({
-            scheduledTasks,
+            tasks,
             taskEdited: true
         });
     }
 
-    handleNewTask(e){
-        const scheduledTasks = this.state.scheduledTasks;
+    newTask(e){
+        const tasks = [...this.state.tasks];
         const newTask = {
             action: "",
             who: "",
@@ -238,28 +255,34 @@ export default class Scheduler extends Component {
             completedBy: "",
             note: ""
         }
-        scheduledTasks.push(newTask);
-        this.setState({scheduledTasks});
+        tasks.push(newTask);
+        this.setState({tasks});
     }
 
-    handleSaveAndClose(e){
+    handleSave(e){
+        e.preventDefault();
+        this.setState({
+            save: true,
+        }, () => this.props.close())
+    }
+
+    handleOverlayClick(){
         this.props.close();
-        this.props.saveScheduledTasks(this.state.scheduledTasks, e);
     }
 
     deleteScheduledTask(e, index){
         e.preventDefault();
 
-        let scheduledTasks = this.state.scheduledTasks;
-        scheduledTasks.splice(index, 1);
-        this.setState({scheduledTasks});
+        let tasks = [...this.state.tasks];
+        tasks.splice(index, 1);
+        this.setState({tasks});
     }
 
     render() {
         const {action, who, what, actionTaken, date, note} = this.props.job.lastActions[0];
 
-        const scheduledTasks = this.state.scheduledTasks.filter((task) => task.actionTaken === "");
-        const completedTasks = this.state.scheduledTasks.filter((task) => task.actionTaken !== "");
+        const scheduledTasks = this.state.tasks.filter((task) => task.actionTaken === "");
+        const completedTasks = this.state.tasks.filter((task) => task.actionTaken !== "");
 
         let jobCompleted = false;
         if (completedTasks.length > 0) {
@@ -275,7 +298,7 @@ export default class Scheduler extends Component {
             <div className="scheduler-container">
 
                 {/* clickable overlay */}
-                <div className="scheduler-overlay" onClick={this.props.close} />
+                <div className="scheduler-overlay" onClick={() => this.handleOverlayClick()} />
                 
                 {/* start of scheduler box */}
                 <div className="scheduler">
@@ -291,6 +314,8 @@ export default class Scheduler extends Component {
                             >Email Team Leader</button>
                         </div>
                     </div>
+
+                    {/* last completed task */}
                     <div className="scheduler-last">
                         <div>
                             <div className="scheduler-last_title">
@@ -303,11 +328,13 @@ export default class Scheduler extends Component {
                         </div>
                         <p>{`Comments: ${note}`}</p>
                     </div>
-                    {this.state.scheduledTasks.map((task, index) => 
+
+                    {/* list of tasks in state */}
+                    {this.state.tasks.map((task, index) => 
                         <ScheduledTask
                             task={task}
                             index={index}
-                            key={`scheduled ${index}`}
+                            key={`scheduler-${index}`}
                             handleChangeAction={(e) => this.handleTaskEdited("action", index, e)}
                             handleChangeWho={(e) => this.handleTaskEdited("who", index, e)}
                             handleChangeWhat={(e) => this.handleTaskEdited("what", index, e)}
@@ -318,9 +345,11 @@ export default class Scheduler extends Component {
                             status={this.props.job.status}
                         />
                     )}
+
+                    {/* button group */}
                     <div className="scheduler-buttons">
                         <button
-                            onClick={(e) => this.handleNewTask(e)}
+                            onClick={(e) => this.newTask(e)}
                             className="scheduler-button_add"
                         >
                             + Add Scheduled Task
@@ -333,7 +362,7 @@ export default class Scheduler extends Component {
                                     scheduledTasksNotFilledOut.length === 0
                                 )
                             }
-                            onClick={(e) => this.handleSaveAndClose(e)}
+                            onClick={(e) => this.handleSave(e)}
                             className="scheduler-button_save"
                         >Save & Close</button>
                     </div>
