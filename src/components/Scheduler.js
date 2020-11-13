@@ -7,19 +7,59 @@ const displayAlert = (e, message) => {
 }
 
 const ActionOptions = ({task}) => {
-    if (task.what === "Artwork"){
+    const {who, what} = task;
+    if (what === "Artwork" && who === "Client"){
         return (
             <>
                 <option value="Project Details">Project Details</option>
-                <option value="Changes to Artist">Changes to Artist</option>
                 <option value="Changes Requested">Changes Requested</option>
                 <option value="Art to Client">Art to Client</option>
-                <option value="Brief to Artist">Brief to Artist</option>
                 <option value="Art Approved">Art Approved</option>
                 <option value="Art Unapproved">Art Unapproved</option>
             </>
         )
-    }else{
+    } else if (what === "Print" && who === "Artist"){
+        return (
+            <>
+                <option value="Print Posted">Print Posted</option>
+            </>
+        )
+    } else if (who === "Artist"){
+        return (
+            <>
+                <option value="Changes to Artist">Changes to Artist</option>
+                <option value="Brief to Artist">Brief to Artist</option>
+            </>
+        )
+    } else if (what === "Print"){
+        return (
+            <>
+                <option value="Print Approved">Print Approved</option>
+                <option value="Print Unapproved">Print Unapproved</option>
+            </>
+        )
+    } else if (what === "Mapping" && who === "Client"){
+        return (
+            <>
+                <option value="Map To Client">Map To Client</option>
+                <option value="Map Approved">Map Approved</option>
+                <option value="Map Unapproved">Map Unapproved</option>
+            </>
+        )
+    } else if (what === "Mapping"){
+        return (
+            <>
+                <option value="Map Attached">Map Attached</option>
+            </>
+        )
+    } 
+    else if (what === "Order"){
+        return (
+            <>
+                <option value="Map Attached">Map Attached</option>
+            </>
+        )
+    } else {
         return(
             <>
                 <optgroup label="Art">
@@ -37,6 +77,7 @@ const ActionOptions = ({task}) => {
                     <option value="Print Unapproved">Print Unapproved</option>
                 </optgroup>
                 <optgroup label="Map">
+                    <option value="Map To Client">Map To Client</option>
                     <option value="Map Approved">Map Approved</option>
                     <option value="Map Attached">Map Attached</option>
                     <option value="Map Unapproved">Map Unapproved</option>
@@ -84,27 +125,31 @@ class ScheduledTask extends Component {
                         value={who}
                         onChange={this.props.handleChangeWho}
                         className="mr-s"
+                        disabled={!action}
                     >
                         <option value="" disabled>Who</option>
-                            <option value="Client">Client</option>
-                            <option value="Artist">Artist</option>
-                            <option value="Artque">ArtQue</option>
-                            <option value="Approve">Approve</option>
-                            <option value="Attach">Attach</option>
-                            <option value="Finalize">Finalize</option>
+                            <option value="Client" disabled={action === "System"}>Client</option>
+                            <option value="Artist" disabled={action === "System"}>Artist</option>
+                            <option value="Artque" disabled={!(action === "System")}>ArtQue</option>
+                            <option value="Approve" disabled={!(action === "System")}>Approve</option>
+                            <option value="Attach" disabled={!(action === "System")}>Attach</option>
+                            <option value="Accept" disabled={!(action === "System")}>Accept</option>
+                            <option value="Assign" disabled={!(action === "System")}>Assign</option>
+                            <option value="Finalize" disabled={!(action === "System")}>Finalize</option>
                     </select>
                     <select
                         value={what}
                         onChange={this.props.handleChangeWhat}
+                        disabled={!(who && action)}
                     >
                         <option value="" disabled>What</option>
                             <option value="General">General</option>
                             <option value="Artwork">Artwork</option>
                             <option value="Change">Change</option>
                             <option value="Print">Print</option>
-                            <option value="Mapping">Mapping</option>
+                            <option value="Mapping" disabled={who === "Artist"}>Mapping</option>
                             <option value="Brief">Brief</option>
-                            <option value="Order">Order</option>
+                            <option value="Order" disabled={!(who === "Accept" || who === "Assign" || who === "Finalize")}>Order</option>
                     </select>
                 </div>
                 <textarea
@@ -120,6 +165,7 @@ class ScheduledTask extends Component {
                             color: actionTaken === "" ? "red" : "green",
                             borderColor: actionTaken === "" ? "red" : "green"
                         }}
+                        disabled={!(action && who && what)}
                     >
                         <option value="">Incomplete</option>
                         <ActionOptions task={this.props.task} />
@@ -150,14 +196,16 @@ class ScheduledTask extends Component {
 
 export default class Scheduler extends Component {
     constructor(props){
-        super(props)
+        super(props);
         this.state = ({
-            scheduledTasks: props.job.scheduledTasks,
+            scheduledTasks: this.props.job.scheduledTasks,
             taskEdited: false
-        })
+        });
     }
 
     handleTaskEdited(detail, index, e){
+        e.preventDefault();
+
         let task = this.state.scheduledTasks[index];
         let scheduledTasks = this.state.scheduledTasks;
 
@@ -199,11 +247,6 @@ export default class Scheduler extends Component {
         this.props.saveScheduledTasks(this.state.scheduledTasks, e);
     }
 
-    // why is this saving data?
-    handleCloseAndDontSave(){
-        this.props.close();
-    }
-
     deleteScheduledTask(e, index){
         e.preventDefault();
 
@@ -232,7 +275,7 @@ export default class Scheduler extends Component {
             <div className="scheduler-container">
 
                 {/* clickable overlay */}
-                <div className="scheduler-overlay" onClick={() => this.handleCloseAndDontSave()} />
+                <div className="scheduler-overlay" onClick={this.props.close} />
                 
                 {/* start of scheduler box */}
                 <div className="scheduler">
@@ -272,6 +315,7 @@ export default class Scheduler extends Component {
                             handleChangeDate={(e) => this.handleTaskEdited("date", index, e)}
                             handleActionTaken={(e) => this.handleTaskEdited("actionTaken", index, e)}
                             deleteScheduledTask={(e) => this.deleteScheduledTask(e, index)}
+                            status={this.props.job.status}
                         />
                     )}
                     <div className="scheduler-buttons">
