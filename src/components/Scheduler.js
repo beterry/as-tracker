@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import moment from 'moment';
 
+import iconPrevious from '../images/icon-previous.svg';
+import iconScheduled from '../images/icon-scheduled.svg';
+import iconCompleted from '../images/icon-complete.svg';
+
 const displayAlert = (e, message) => {
     e.preventDefault();
     alert(message);
@@ -101,7 +105,11 @@ class ScheduledTask extends Component {
         return (
             <form className='scheduler-scheduled'>      
                 <div className="scheduler-scheduled_title">
-                    <h3>{actionTaken ? actionTaken : "Scheduled Task"}</h3>
+                    <div className="flex align-center">
+                        <img src={actionTaken ? iconCompleted : iconScheduled} alt="Scheduled" style={{width: "24px", height: "24px"}} className="mr-s"/>
+                        <h3>{actionTaken ? actionTaken : "Scheduled Task"}</h3>
+                    </div>
+                    
                     <div className="scheduler-scheduled_date">
                         <label className="mr-s" htmlFor="due">Due</label>
                         <input
@@ -160,18 +168,23 @@ class ScheduledTask extends Component {
                     onChange={this.props.handleChangeNote}
                 />
                 <div className="scheduler-scheduled_actions">
-                    <select
-                        value={actionTaken}
-                        onChange={this.props.handleActionTaken}
-                        style={{
-                            color: actionTaken === "" ? "red" : "green",
-                            borderColor: actionTaken === "" ? "red" : "green"
-                        }}
-                        disabled={!(action && who && what)}
-                    >
-                        <option value="">Incomplete</option>
-                        <ActionOptions task={this.props.task} />
-                    </select>
+                    <div>
+                        <label htmlFor="complete task" className="mr-s">Complete Task:</label>
+                        <select
+                            value={actionTaken}
+                            onChange={this.props.handleActionTaken}
+                            style={{
+                                color: actionTaken === "" ? "blue" : "green",
+                                borderColor: actionTaken === "" ? "blue" : "green"
+                            }}
+                            disabled={!(action && who && what)}
+                            name="complete task"
+                        >
+                            <option value="">Incomplete</option>
+                            <ActionOptions task={this.props.task} />
+                        </select>
+                    </div>
+                    
                     <div>
                         {who === "Client"
                         ?
@@ -322,7 +335,10 @@ export default class Scheduler extends Component {
                     <div className="scheduler-last">
                         <div>
                             <div className="scheduler-last_title">
-                                <h3>{actionTaken}</h3>
+                                <div className="flex align-center">
+                                    <img src={iconPrevious} alt="Previous" style={{width: "24px", height: "24px"}} className="mr-s"/>
+                                    <h3>{actionTaken}</h3>
+                                </div>
                                 <p>{`COMPLETED ${date.format("MM-DD-YY h:mma")}`}</p>
                             </div>
                         </div>

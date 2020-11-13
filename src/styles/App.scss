@@ -84,6 +84,15 @@ textarea, select, input{
     text-decoration: underline;
 }
 
+// flex utility
+.flex{
+    display: flex;
+}
+
+.align-center{
+    align-items: center;
+}
+
 // misc
 
 .user-switcher{
