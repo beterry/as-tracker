@@ -25,9 +25,7 @@ td{
     padding: .25rem;
 }
 
-.row-selected{
-    background: #65FFFF;
-}
+tr:nth-child(even) {background: #E4E4E4;}
 
 .table-filters{
     display: flex;

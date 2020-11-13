@@ -73,7 +73,9 @@ export default class JobRow extends Component {
             note,
         } = this.props.job
         return (
-            <tr className={this.props.selected ? "row-selected" : ""}>
+            <tr
+                style={{background: this.props.selected && "#65FFFF"}}
+            >
                 <td>
                     <input
                         type="checkbox"
