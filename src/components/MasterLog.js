@@ -63,7 +63,7 @@ const MasterLog = ({jobs}) => {
                             <th>What</th>
                             <th>Action Taken</th>
                             <th>Completed By</th>
-                            <th>Note</th>
+                            <th>Comments</th>
                         </tr>
                     </thead>
                     <tbody>

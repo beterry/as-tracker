@@ -304,6 +304,7 @@ export default class Scheduler extends Component {
                 
                 {/* start of scheduler box */}
                 <div className="scheduler">
+                    <h2>{this.props.job.company}</h2>
                     <div className="scheduler-note">
                         <p>{`Client Note: ${this.props.job.note}`}</p>
                         <div className="scheduler-note_buttons">
