@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/as-tracker/static/css/main.a16acbc6.chunk.css",
-    "main.js": "/as-tracker/static/js/main.99882dce.chunk.js",
-    "main.js.map": "/as-tracker/static/js/main.99882dce.chunk.js.map",
+    "main.css": "/as-tracker/static/css/main.bc337d12.chunk.css",
+    "main.js": "/as-tracker/static/js/main.a133238f.chunk.js",
+    "main.js.map": "/as-tracker/static/js/main.a133238f.chunk.js.map",
     "runtime-main.js": "/as-tracker/static/js/runtime-main.9266f251.js",
     "runtime-main.js.map": "/as-tracker/static/js/runtime-main.9266f251.js.map",
     "static/js/2.be7f35f0.chunk.js": "/as-tracker/static/js/2.be7f35f0.chunk.js",
     "static/js/2.be7f35f0.chunk.js.map": "/as-tracker/static/js/2.be7f35f0.chunk.js.map",
     "index.html": "/as-tracker/index.html",
-    "static/css/main.a16acbc6.chunk.css.map": "/as-tracker/static/css/main.a16acbc6.chunk.css.map",
+    "static/css/main.bc337d12.chunk.css.map": "/as-tracker/static/css/main.bc337d12.chunk.css.map",
     "static/js/2.be7f35f0.chunk.js.LICENSE.txt": "/as-tracker/static/js/2.be7f35f0.chunk.js.LICENSE.txt",
     "static/media/icon-call.e859dd4b.svg": "/as-tracker/static/media/icon-call.e859dd4b.svg",
     "static/media/icon-email.db3b96ed.svg": "/as-tracker/static/media/icon-email.db3b96ed.svg",
@@ -18,7 +18,7 @@
   "entrypoints": [
     "static/js/runtime-main.9266f251.js",
     "static/js/2.be7f35f0.chunk.js",
-    "static/css/main.a16acbc6.chunk.css",
-    "static/js/main.99882dce.chunk.js"
+    "static/css/main.bc337d12.chunk.css",
+    "static/js/main.a133238f.chunk.js"
   ]
 }
