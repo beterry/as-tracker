@@ -56,7 +56,9 @@ const ActionOptions = ({task}) => {
     else if (what === "Order"){
         return (
             <>
-                <option value="Map Attached">Map Attached</option>
+                <option value="Job Completed">Job Completed</option>
+                <option value="Job Accepted">Job Accepted</option>
+                <option value="Job Declined">Job Declined</option>
             </>
         )
     } else {

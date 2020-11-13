@@ -21,9 +21,11 @@
 .scheduler{
     background: white;
     border: 1px solid black;
+    max-height: 80vh;
     width: 768px;
     padding: 1rem 1rem;
     box-sizing: border-box;
+    overflow-y: scroll;
     z-index: 1;
     &>*{
         margin: .5rem 0;
@@ -71,12 +73,12 @@
 .scheduler-scheduled{
     textarea{
         width: 100%;
-        margin: .5rem 0;
+        margin: .25rem 0;
     }
 }
 
 .scheduler-scheduled_dropdowns{
-    margin: .5rem 0;
+    margin: .5rem 0 0 0;
     select{
         width: 120px;
     }
@@ -85,6 +87,10 @@
 .scheduler-scheduled_actions{
     display: flex;
     justify-content: space-between;
+    select{
+        width: 120px;
+    }
+    
 }
 
 .scheduler-buttons{
