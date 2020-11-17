@@ -446,7 +446,7 @@ class App extends Component {
                                         />
                                         <ProductFilter
                                             product={this.state.filterProduct}
-                                            options={[...productOptions]}
+                                            tab={this.state.tab}
                                             changeProduct={this.changeFilterProduct}
                                         />
                                         <CheckboxFilter

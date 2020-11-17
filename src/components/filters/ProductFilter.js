@@ -1,6 +1,26 @@
 import React from 'react'
 
-export default function ProductFilter({product, options, changeProduct}) {
+const WeeklyOptions = () => (
+    <>
+        <option value="Brochure 10.5x17">Brochure 10.5x17</option>
+        <option value="POSTCARD">POSTCARD</option>
+        <option value="SCRATCHOFF">SCRATCHOFF</option>
+        <option value="MENU">MENU</option>
+        <option value="Folded Magnet">Folded Magnet</option>
+        <option value="Plastic PC Sm - S">Plastic PC Sm - S</option>
+    </>
+)
+
+const MonthlyOptions = () => (
+    <>
+        <option value="NEW MOVERS POSTCARD">NEW MOVERS POSTCARD</option>
+        <option value="BirthdayPC">BirthdayPC</option>
+        <option value="NEW MOVERS PLASTIC">NEW MOVERS PLASTIC</option>
+    </>
+)
+
+export default function ProductFilter({product, changeProduct, tab}) {
+
     return (
         <div>
             <select
@@ -10,11 +30,9 @@ export default function ProductFilter({product, options, changeProduct}) {
             >
                 <option value="all">All Products</option>
                 {
-                    options.length >= 1 ?
-                    options.map((option, index) => 
-                        <option key={`product option ${index}`} value={option}>{option}</option>
-                    ) :
-                    <option value="" disabled>Undefined</option>
+                    tab === "Weekly" ?
+                    <WeeklyOptions /> :
+                    <MonthlyOptions />
                 }
             </select>
         </div>
