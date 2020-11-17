@@ -52,6 +52,7 @@ class App extends Component {
             allSelected: false,
             user: "TarrynH",
             isAdmin: true,
+            tab: "Weekly",
         };
         this.editSelected = this.editSelected.bind(this);
         this.addType = this.addType.bind(this);
@@ -68,6 +69,7 @@ class App extends Component {
         this.changeFilterSearchWord = this.changeFilterSearchWord.bind(this);
         this.addLastAction = this.addLastAction.bind(this);
         this.clearSelected = this.clearSelected.bind(this);
+        this.restoreDefaultFilters = this.restoreDefaultFilters.bind(this);
         this.changeUser = this.changeUser.bind(this);
     }
 
@@ -299,6 +301,12 @@ class App extends Component {
         this.setState({ filterSearchWord: word });
     }
 
+    changeTab(tabName, e){
+        e.preventDefault()
+        this.restoreDefaultFilters();
+        this.setState({tab: tabName});
+    }
+
     addLastAction(task) {
         //date from state
         let jobs = [...this.state.jobs];
@@ -343,6 +351,19 @@ class App extends Component {
         })
     }
 
+    restoreDefaultFilters(){
+        this.clearSelected();
+        this.setState({
+            filterDateStart: moment().subtract(7, "days"),
+            filterDateEnd: moment().add(21, "days"),
+            filterSpecialist: "all",
+            filterClientType: "all",
+            filterProduct: "all",
+            hideCompleted: true,
+            filterSearchWord: "",
+        })
+    }
+
     openSchedulerFromLine(id) {
         this.setState({
             selected: [id],
@@ -367,7 +388,7 @@ class App extends Component {
 
         // find products
         let productOptions = new Set();
-        this.state.jobs.forEach((job) => {
+        filteredJobs.forEach((job) => {
             if (!productOptions.has(job.product)) {
                 productOptions.add(job.product);
             }
@@ -398,12 +419,12 @@ class App extends Component {
                                 <div className="table-filters">
                                     <div className="table-filters_tabs">
                                         <button
-                                            className="table-tab active"
-                                            onClick={(e) => e.preventDefault()}
+                                            className={`table-tab ${this.state.tab === "Weekly" && "active"}`}
+                                            onClick={(e) => this.changeTab("Weekly", e)}
                                         >Weekly</button>
                                         <button
-                                            className="table-tab"
-                                            onClick={(e) => e.preventDefault()}
+                                            className={`table-tab ${this.state.tab === "Monthly" && "active"}`}
+                                            onClick={(e) => this.changeTab("Monthly", e)}
                                         >Monthly</button>
                                     </div>
                                     <form className="table-filters_form">

@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function DateFilter({start, end, changeStartDate, changeEndDate}) {
     return (
-        <div>
+        <div className="mr-s">
             <label className="mr-s" htmlFor="start">Art Due Start Date</label>
             <input
                 type="date"

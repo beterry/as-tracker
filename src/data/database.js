@@ -752,7 +752,7 @@ const database = [
         ],
     },
     {
-        id: 106,
+        id: 105,
         push: 0,
         group: "J",
         code: 28062,
@@ -877,7 +877,7 @@ const database = [
         ],
     },
     {
-        id: 107,
+        id: 106,
         push: 0,
         group: "J",
         code: 28062,
@@ -1020,7 +1020,7 @@ const database = [
         ],
     },
     {
-        id: 108,
+        id: 107,
         push: 0,
         group: "J",
         code: 28062,
@@ -1136,7 +1136,7 @@ const database = [
         ],
     },
     {
-        id: 109,
+        id: 108,
         push: 0,
         group: "J",
         code: 28062,
@@ -1252,7 +1252,7 @@ const database = [
         ],
     },
     {
-        id: 110,
+        id: 109,
         push: 0,
         group: "J",
         code: 28062,
@@ -1359,7 +1359,7 @@ const database = [
         ],
     },
     {
-        id: 114,
+        id: 110,
         push: 0,
         group: "J",
         code: 28062,
@@ -1598,6 +1598,250 @@ const database = [
             },
         ],
     },
+
+    // --------------- MONTHLY ---------------
+
+    {
+        id: 114,
+        push: 0,
+        group: "J",
+        code: 28062,
+        timezone: -2,
+        company: "Client O",
+        product: "NEW MOVERS POSTCARD",
+        address: "19622 Middlebelt Rd, Livonia, MI 48152",
+        version: undefined,
+        options: [],
+        quantity: 5000,
+        mailWeeks: 2,
+        acctSpecialist: "SaraP",
+        label: "",
+        artDue: moment().add(10, 'days'),
+        note: 'Do NOT call client on Mondays, he will shoot you!',
+        status: 1,
+        proofs: 0,
+        prints: 0,
+        lineNumber: 2,
+        scheduledTasks: [
+            {
+                action: "Email",
+                who: "Client",
+                what: "Artwork",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "",
+                completedBy: "",
+                note: ""
+            },
+        ],
+        lastActions: [
+            {
+                action: "Email",
+                who: "Artist",
+                what: "Brief",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Brief to Artist",
+                completedBy: "SaraP",
+                note: ""
+            },
+            {
+                action: "Call",
+                who: "Client",
+                what: "Artwork",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Project Details",
+                completedBy: "SaraP",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Accept",
+                what: "Order",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Job Accepted",
+                completedBy: "SaraP",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Assign",
+                what: "Order",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Assigned Order",
+                completedBy: "TarrynH",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Created",
+                what: "Order",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Order Created",
+                completedBy: "System",
+                note: ""
+            },
+        ],
+    },
+    {
+        id: 115,
+        push: 0,
+        group: "J",
+        code: 28062,
+        timezone: -2,
+        company: "Client P",
+        product: "BirthdayPC",
+        address: "19622 Middlebelt Rd, Livonia, MI 48152",
+        version: undefined,
+        options: [],
+        quantity: 5000,
+        mailWeeks: 2,
+        acctSpecialist: "SaraP",
+        label: "",
+        artDue: moment().add(10, 'days'),
+        note: 'Do NOT call client on Mondays, he will shoot you!',
+        status: 0,
+        proofs: 0,
+        prints: 0,
+        lineNumber: 2,
+        scheduledTasks: [
+            {
+                action: "Call",
+                who: "Client",
+                what: "Artwork",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "",
+                completedBy: "SaraP",
+                note: ""
+            },
+        ],
+        lastActions: [
+                       
+            {
+                action: "System",
+                who: "Accept",
+                what: "Order",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Job Accepted",
+                completedBy: "SaraP",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Assign",
+                what: "Order",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Assigned Order",
+                completedBy: "TarrynH",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Created",
+                what: "Order",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Order Created",
+                completedBy: "System",
+                note: ""
+            },
+        ],
+    },
+    {
+        id: 116,
+        push: 0,
+        group: "J",
+        code: 28062,
+        timezone: -2,
+        company: "Client Q",
+        product: "NEW MOVERS PLASTIC",
+        address: "19622 Middlebelt Rd, Livonia, MI 48152",
+        version: undefined,
+        options: [],
+        quantity: 5000,
+        mailWeeks: 2,
+        acctSpecialist: "LucasT",
+        label: "",
+        artDue: moment().add(10, 'days'),
+        note: 'Do NOT call client on Mondays, he will shoot you!',
+        status: 0,
+        proofs: 0,
+        prints: 0,
+        lineNumber: 2,
+        scheduledTasks: [
+            {
+                action: "System",
+                who: "Accept",
+                what: "Order",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "",
+                completedBy: "",
+                note: ""
+            },
+        ],
+        lastActions: [                      
+            {
+                action: "System",
+                who: "Assign",
+                what: "Order",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Assigned Order",
+                completedBy: "TarrynH",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Created",
+                what: "Order",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Order Created",
+                completedBy: "System",
+                note: ""
+            },
+        ],
+    },
+    {
+        id: 117,
+        push: 0,
+        group: "J",
+        code: 28062,
+        timezone: -2,
+        company: "Client R",
+        product: "NEW MOVERS POSTCARD",
+        address: "19622 Middlebelt Rd, Livonia, MI 48152",
+        version: undefined,
+        options: [],
+        quantity: 5000,
+        mailWeeks: 2,
+        acctSpecialist: "TarrynH",
+        label: "",
+        artDue: moment().add(10, 'days'),
+        note: 'Do NOT call client on Mondays, he will shoot you!',
+        status: 0,
+        proofs: 0,
+        prints: 0,
+        lineNumber: 2,
+        scheduledTasks: [
+            {
+                action: "System",
+                who: "Assign",
+                what: "Order",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "",
+                completedBy: "TarrynH",
+                note: ""
+            },
+        ],
+        lastActions: [                      
+            {
+                action: "System",
+                who: "Created",
+                what: "Order",
+                date: moment('2020-11-08 14:30'),
+                actionTaken: "Order Created",
+                completedBy: "System",
+                note: ""
+            },
+        ],
+    },
+
 ];
 
 export default database;
