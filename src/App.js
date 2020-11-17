@@ -19,6 +19,7 @@ import SpecialistFilter from './components/filters/SpecialistFilter';
 import ClientTypeFilter from './components/filters/ClientTypeFilter';
 import CheckboxFilter from './components/filters/CheckboxFilter';
 import SearchFilter from './components/filters/SearchFilter';
+import ProductFilter from './components/filters/ProductFilter';
 
 import UserSwitcher from './components/filters/UserSwitcher';
 
@@ -45,6 +46,7 @@ class App extends Component {
             filterDateEnd: moment().add(21, "days"),
             filterSpecialist: "all",
             filterClientType: "all",
+            filterProduct: "all",
             hideCompleted: true,
             filterSearchWord: "",
             allSelected: false,
@@ -61,6 +63,7 @@ class App extends Component {
         this.changeFilterEndDate = this.changeFilterEndDate.bind(this);
         this.changeFilterSpecialist = this.changeFilterSpecialist.bind(this);
         this.changeFilterClientType = this.changeFilterClientType.bind(this);
+        this.changeFilterProduct = this.changeFilterProduct.bind(this);
         this.toggleHideCompleted = this.toggleHideCompleted.bind(this);
         this.changeFilterSearchWord = this.changeFilterSearchWord.bind(this);
         this.addLastAction = this.addLastAction.bind(this);
@@ -280,6 +283,11 @@ class App extends Component {
         this.setState({ filterClientType: e.target.value });
     }
 
+    changeFilterProduct(e) {
+        this.clearSelected();
+        this.setState({ filterProduct: e.target.value });
+    }
+
     toggleHideCompleted() {
         this.clearSelected();
         this.setState(state => ({ hideCompleted: !state.hideCompleted }));
@@ -357,6 +365,14 @@ class App extends Component {
             }
         })
 
+        // find products
+        let productOptions = new Set();
+        this.state.jobs.forEach((job) => {
+            if (!productOptions.has(job.product)) {
+                productOptions.add(job.product);
+            }
+        })
+
         return (
             <Router>
                 <Header />
@@ -406,6 +422,11 @@ class App extends Component {
                                             clientType={this.state.filterClientType}
                                             options={[...clientTypes]}
                                             changeClientType={this.changeFilterClientType}
+                                        />
+                                        <ProductFilter
+                                            product={this.state.filterProduct}
+                                            options={[...productOptions]}
+                                            changeProduct={this.changeFilterProduct}
                                         />
                                         <CheckboxFilter
                                             checked={this.state.hideCompleted}

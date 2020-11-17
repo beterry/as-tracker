@@ -4,6 +4,7 @@ const filterJobs = ({
     filterDateEnd,
     filterSpecialist,
     filterClientType,
+    filterProduct,
     hideCompleted,
     filterSearchWord
 }) => {
@@ -15,6 +16,7 @@ const filterJobs = ({
             job.artDue.isAfter(filterDateStart) &&
             (job.acctSpecialist === filterSpecialist || filterSpecialist === "all") &&
             (job.label === filterClientType || filterClientType === "all") &&
+            (job.product === filterProduct || filterProduct === "all") &&
             companyName.includes(word)
         )
     })

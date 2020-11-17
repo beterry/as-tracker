@@ -18,6 +18,7 @@ export default class SearchFilter extends Component {
                     value={this.state.filterSearchWord}
                     onChange={(e) => this.handleChangeInput(e)}
                     type="search"
+                    className="w-120"
                 />
                 <button onClick={(e) => this.props.changeFilterSearchWord(this.state.searchWord, e)}>Search</button>
             </div>
