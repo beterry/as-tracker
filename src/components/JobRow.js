@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import moment from 'moment'
 
 import ProgressBar from './ProgressBar';
 
@@ -31,7 +32,11 @@ const TaskCell = ({task}) => {
             <div>
                 <strong>{taskName}</strong>
                 <br />
-                {time}
+                <span
+                    style={{color: task.actionTaken === "" && moment().isAfter(task.date) ? "red" : "black"}}
+                >
+                    {time}
+                </span>
             </div>
             
         </div>

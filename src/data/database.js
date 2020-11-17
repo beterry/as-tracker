@@ -187,7 +187,7 @@ const database = [
                 action: "System",
                 who: "Finalize",
                 what: "Order",
-                date: moment('2020-11-08 14:30'),
+                date: moment().add(1, 'day').startOf('day').add(9, 'hours'),
                 actionTaken: "",
                 completedBy: "",
                 note: ""
@@ -348,7 +348,7 @@ const database = [
                 action: "System",
                 who: "Attach",
                 what: "Mapping",
-                date: moment('2020-11-08 14:30'),
+                date: moment().add(1, 'day').startOf('day').add(11, 'hours'),
                 actionTaken: "",
                 completedBy: "",
                 note: ""
@@ -500,7 +500,7 @@ const database = [
                 action: "Email",
                 who: "Client",
                 what: "Mapping",
-                date: moment('2020-11-08 14:30'),
+                date: moment().add(1, 'day').startOf('day').add(10, 'hours'),
                 actionTaken: "",
                 completedBy: "",
                 note: ""
@@ -643,7 +643,7 @@ const database = [
                 action: "System",
                 who: "Approve",
                 what: "Print",
-                date: moment('2020-11-08 14:30'),
+                date: moment().add(1, 'day').startOf('day').add(14, 'hours'),
                 actionTaken: "",
                 completedBy: "",
                 note: ""
@@ -776,8 +776,8 @@ const database = [
             {
                 action: "Email",
                 who: "Artist",
-                what: "Artwork",
-                date: moment('2020-11-08 14:30'),
+                what: "Print",
+                date: moment().subtract(2, 'hours'),
                 actionTaken: "",
                 completedBy: "",
                 note: ""
@@ -902,7 +902,7 @@ const database = [
                 action: "Email",
                 who: "Client",
                 what: "Mapping",
-                date: moment('2020-11-08 14:30'),
+                date: moment().add(1, 'hour'),
                 actionTaken: "",
                 completedBy: "",
                 note: ""
@@ -1045,7 +1045,7 @@ const database = [
                 action: "Call",
                 who: "Client",
                 what: "Artwork",
-                date: moment('2020-11-08 14:30'),
+                date: moment().add(1, 'day').startOf('day').add(8, 'hours'),
                 actionTaken: "",
                 completedBy: "",
                 note: ""
@@ -1161,7 +1161,7 @@ const database = [
                 action: "Email",
                 who: "Client",
                 what: "Artwork",
-                date: moment('2020-11-08 14:30'),
+                date: moment().add(1, 'day').startOf('day').add(15, 'hours'),
                 actionTaken: "",
                 completedBy: "",
                 note: ""
@@ -1277,7 +1277,7 @@ const database = [
                 action: "Email",
                 who: "Client",
                 what: "Artwork",
-                date: moment('2020-11-08 14:30'),
+                date: moment().add(1, 'day').startOf('day').add(11, 'hours'),
                 actionTaken: "",
                 completedBy: "",
                 note: ""
@@ -1384,7 +1384,7 @@ const database = [
                 action: "Email",
                 who: "Client",
                 what: "Artwork",
-                date: moment('2020-11-08 14:30'),
+                date: moment().add(1, 'day').startOf('day').add(7, 'hours'),
                 actionTaken: "",
                 completedBy: "",
                 note: ""
@@ -1464,7 +1464,7 @@ const database = [
                 action: "Call",
                 who: "Client",
                 what: "Artwork",
-                date: moment('2020-11-08 14:30'),
+                date: moment().add(1, 'day').startOf('day').add(13, 'hours'),
                 actionTaken: "",
                 completedBy: "SaraP",
                 note: ""
@@ -1527,7 +1527,7 @@ const database = [
                 action: "System",
                 who: "Accept",
                 what: "Order",
-                date: moment('2020-11-08 14:30'),
+                date: moment().add(1, 'day').startOf('day').add(10, 'hours'),
                 actionTaken: "",
                 completedBy: "",
                 note: ""
@@ -1580,7 +1580,7 @@ const database = [
                 action: "System",
                 who: "Assign",
                 what: "Order",
-                date: moment('2020-11-08 14:30'),
+                date: moment().add(1, 'day').startOf('day').add(8, 'hours'),
                 actionTaken: "",
                 completedBy: "TarrynH",
                 note: ""
@@ -1627,7 +1627,7 @@ const database = [
                 action: "Email",
                 who: "Client",
                 what: "Artwork",
-                date: moment('2020-11-08 14:30'),
+                date: moment().subtract(1, "hours"),
                 actionTaken: "",
                 completedBy: "",
                 note: ""
@@ -1707,7 +1707,7 @@ const database = [
                 action: "Call",
                 who: "Client",
                 what: "Artwork",
-                date: moment('2020-11-08 14:30'),
+                date: moment().add(1, 'day').startOf('day').add(9, 'hours'),
                 actionTaken: "",
                 completedBy: "SaraP",
                 note: ""
@@ -1770,7 +1770,7 @@ const database = [
                 action: "System",
                 who: "Accept",
                 what: "Order",
-                date: moment('2020-11-08 14:30'),
+                date: moment().add(1, 'day').startOf('day').add(11, 'hours'),
                 actionTaken: "",
                 completedBy: "",
                 note: ""
@@ -1823,7 +1823,7 @@ const database = [
                 action: "System",
                 who: "Assign",
                 what: "Order",
-                date: moment('2020-11-08 14:30'),
+                date: moment().add(1, 'day').startOf('day').add(10, 'hours'),
                 actionTaken: "",
                 completedBy: "TarrynH",
                 note: ""
