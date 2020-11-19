@@ -275,7 +275,10 @@ export default class Scheduler extends Component {
             note: ""
         }
         tasks.push(newTask);
-        this.setState({tasks});
+        this.setState({
+            tasks,
+            taskEdited: true
+        });
     }
 
     handleSave(e){
@@ -295,20 +298,17 @@ export default class Scheduler extends Component {
 
         let tasks = [...this.state.tasks];
         tasks.splice(index, 1);
-        this.setState({tasks});
+        this.setState({
+            tasks,
+            taskEdited: true
+        });
     }
 
     render() {
         const {action, who, what, actionTaken, date, note} = this.props.job.lastActions[0];
 
         const scheduledTasks = this.state.tasks.filter((task) => task.actionTaken === "");
-        const completedTasks = this.state.tasks.filter((task) => task.actionTaken !== "");
-
-        let jobCompleted = false;
-        if (completedTasks.length > 0) {
-            // was the job completed with the last scheduled task
-            jobCompleted = completedTasks.pop().actionTaken === "Job Completed";
-        }
+        // const completedTasks = this.state.tasks.filter((task) => task.actionTaken !== "");
 
         const scheduledTasksNotFilledOut = scheduledTasks.filter((task) => (
             (task.action === "") || (task.who === "") || (task.what === ""))
@@ -388,7 +388,6 @@ export default class Scheduler extends Component {
                             disabled={
                                 !(
                                     this.state.taskEdited &&
-                                    (scheduledTasks.length > 0 || jobCompleted) &&
                                     scheduledTasksNotFilledOut.length === 0
                                 )
                             }
