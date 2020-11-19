@@ -16,7 +16,7 @@ import MasterLog from './components/MasterLog';
 
 import DateFilter from './components/filters/DateFilter';
 import SpecialistFilter from './components/filters/SpecialistFilter';
-import ClientTypeFilter from './components/filters/ClientTypeFilter';
+import ClientLabelFilter from './components/filters/ClientLabelFilter';
 import CheckboxFilter from './components/filters/CheckboxFilter';
 import SearchFilter from './components/filters/SearchFilter';
 import ProductFilter from './components/filters/ProductFilter';
@@ -45,7 +45,7 @@ class App extends Component {
             filterDateStart: moment().subtract(7, "days"),
             filterDateEnd: moment().add(21, "days"),
             filterSpecialist: "all",
-            filterClientType: "all",
+            filterClientLabel: "all",
             filterProduct: "all",
             hideCompleted: true,
             filterSearchWord: "",
@@ -55,7 +55,7 @@ class App extends Component {
             tab: "Weekly",
         };
         this.editSelected = this.editSelected.bind(this);
-        this.addType = this.addType.bind(this);
+        this.addLabel = this.addLabel.bind(this);
         this.reassignSpecialist = this.reassignSpecialist.bind(this);
         this.takeQuickAction = this.takeQuickAction.bind(this);
         this.saveSchedulerChanges = this.saveSchedulerChanges.bind(this);
@@ -63,7 +63,7 @@ class App extends Component {
         this.changeFilterStartDate = this.changeFilterStartDate.bind(this);
         this.changeFilterEndDate = this.changeFilterEndDate.bind(this);
         this.changeFilterSpecialist = this.changeFilterSpecialist.bind(this);
-        this.changeFilterClientType = this.changeFilterClientType.bind(this);
+        this.changeFilterClientLabel = this.changeFilterClientLabel.bind(this);
         this.changeFilterProduct = this.changeFilterProduct.bind(this);
         this.toggleHideCompleted = this.toggleHideCompleted.bind(this);
         this.changeFilterSearchWord = this.changeFilterSearchWord.bind(this);
@@ -119,7 +119,7 @@ class App extends Component {
         // console.log(selected);
     }
 
-    addType(label, e) {
+    addLabel(label, e) {
         e.preventDefault();
         // console.log(label);
 
@@ -280,9 +280,9 @@ class App extends Component {
         this.setState({ filterSpecialist: e.target.value });
     }
 
-    changeFilterClientType(e) {
+    changeFilterClientLabel(e) {
         this.clearSelected();
-        this.setState({ filterClientType: e.target.value });
+        this.setState({ filterClientLabel: e.target.value });
     }
 
     changeFilterProduct(e) {
@@ -357,7 +357,7 @@ class App extends Component {
             filterDateStart: moment().subtract(7, "days"),
             filterDateEnd: moment().add(21, "days"),
             filterSpecialist: "all",
-            filterClientType: "all",
+            filterClientLabel: "all",
             filterProduct: "all",
             hideCompleted: true,
             filterSearchWord: "",
@@ -378,11 +378,11 @@ class App extends Component {
         const filteredJobs = filterJobs(this.state)
         const sortedJobs = sortJobs(this.state.sortBy, filteredJobs, this.state.sortDirection);
 
-        // find client types
-        let clientTypes = new Set();
+        // find client labels
+        let clientLabelOptions = new Set();
         this.state.jobs.forEach((job) => {
-            if (job.label !== "" && !clientTypes.has(job.label)) {
-                clientTypes.add(job.label);
+            if (job.label !== "Default" && !clientLabelOptions.has(job.label)) {
+                clientLabelOptions.add(job.label);
             }
         })
 
@@ -410,7 +410,8 @@ class App extends Component {
                                 <h1>Account Specialist Tracking Report</h1>
                                 <Actions
                                     selected={this.state.selected}
-                                    handleAddType={this.addType}
+                                    handleAddLabel={this.addLabel}
+                                    labelOptions={[...clientLabelOptions]}
                                     handleReassign={this.reassignSpecialist}
                                     handleQuickAction={this.takeQuickAction}
                                     openScheduler={() => this.toggleScheduler()}
@@ -439,10 +440,10 @@ class App extends Component {
                                             changeSpecialist={this.changeFilterSpecialist}
                                             isAdmin={this.state.isAdmin}
                                         />
-                                        <ClientTypeFilter
-                                            clientType={this.state.filterClientType}
-                                            options={[...clientTypes]}
-                                            changeClientType={this.changeFilterClientType}
+                                        <ClientLabelFilter
+                                            clientLabel={this.state.filterClientLabel}
+                                            options={[...clientLabelOptions]}
+                                            changeClientLabel={this.changeFilterClientLabel}
                                         />
                                         <ProductFilter
                                             product={this.state.filterProduct}

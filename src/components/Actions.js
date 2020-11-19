@@ -24,14 +24,19 @@ export default class Actions extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            clientType: "",
+            newClientLabel: "",
+            existingClientLabel: "",
             specialist: "",
             action: ""
         }
     }
 
-    handleTypeChange(e) {
-        this.setState({ clientType: e.target.value });
+    handleNewLabelChange(e) {
+        this.setState({ newClientLabel: e.target.value });
+    }
+
+    handleExistingLabelChange(e) {
+        this.setState({ existingClientLabel: e.target.value });
     }
 
     handleChangeSpecialist(e) {
@@ -42,9 +47,14 @@ export default class Actions extends Component {
         this.setState({action: e.target.value});
     }
 
-    handleTypeButton(e) {
-        this.props.handleAddType(this.state.clientType, e);
-        this.setState({clientType: ""});
+    handleNewLabelButton(e) {
+        this.props.handleAddLabel(this.state.newClientLabel, e);
+        this.setState({newClientLabel: ""});
+    }
+
+    handleExistingLabelButton(e) {
+        this.props.handleAddLabel(this.state.existingClientLabel, e);
+        this.setState({existingClientLabel: ""});
     }
 
     handleReassign(e){
@@ -138,57 +148,34 @@ export default class Actions extends Component {
                     <div>
                         <div>
                             <select
-                                value={this.state.action}
+                                value={this.state.existingClientLabel}
                                 disabled={numberSelected === 0}
-                                onChange={(e) => this.handleActionChange(e)}
+                                onChange={(e) => this.handleExistingLabelChange(e)}
                             >
-                                <option value="" disabled>Quick Action</option>
-                                <optgroup label="Art">
-                                    <option value="Project Details">Project Details</option>
-                                    <option value="Changes to Artist">Changes to Artist</option>
-                                    <option value="Changes Requested">Changes Requested</option>
-                                    <option value="Art to Client">Art to Client</option>
-                                    <option value="Brief to Artist">Brief to Artist</option>
-                                    <option value="Art Approved">Art Approved</option>
-                                    <option value="Art Unapproved">Art Unapproved</option>
-                                </optgroup>
-                                <optgroup label="Print">
-                                    <option value="Print Posted">Print Posted</option>
-                                    <option value="Print Approved">Print Approved</option>
-                                    <option value="Print Unapproved">Print Unapproved</option>
-                                </optgroup>
-                                <optgroup label="Map">
-                                    <option value="Map Approved">Map Approved</option>
-                                    <option value="Map Attached">Map Attached</option>
-                                    <option value="Map Unapproved">Map Unapproved</option>
-                                </optgroup>
-                                <optgroup label="System">
-                                    <option value="Job Completed">Job Completed</option>
-                                    <option value="Job Accepted">Job Accepted</option>
-                                    <option value="Job Declined">Job Declined</option>
-                                </optgroup>
-                                <optgroup label="Artist Actions">
-                                    <option value="Proof Uploaded">Proof Uploaded</option>
-                                </optgroup>
+                                <option value="" disabled>Existing Client Label</option>
+                                <option value="Default">Default</option>
+                                {this.props.labelOptions.map((option, index) => 
+                                    <option value={option} key={`ex.label-${index}`}>{option}</option>
+                                )}
                             </select>
                             <button
                                 disabled={numberSelected === 0}
-                                onClick={(e) => this.handleActionButton(e)}
+                                onClick={(e) => this.handleExistingLabelButton(e)}
                             >
-                                Apply
+                                Add
                             </button>
                         </div>
                         <div>
                             <input
-                                placeholder="Client Type"
+                                placeholder="New Client Label"
                                 type="text"
-                                value={this.state.clientType}
+                                value={this.state.newClientLabel}
                                 disabled={numberSelected === 0}
-                                onChange={(e) => this.handleTypeChange(e)}
+                                onChange={(e) => this.handleNewLabelChange(e)}
                             />
                             <button
                                 disabled={numberSelected === 0}
-                                onClick={(e) => this.handleTypeButton(e)}
+                                onClick={(e) => this.handleNewLabelButton(e)}
                             >
                                 Add
                             </button>
