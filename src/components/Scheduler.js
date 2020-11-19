@@ -18,6 +18,7 @@ const ActionOptions = ({task}) => {
             <>
                 <option value="Project Details">Project Details</option>
                 <option value="Changes Requested">Changes Requested</option>
+                <option value="Left Voicemail">Left Voicemail</option>
                 <option value="Art to Client">Art to Client</option>
                 <option value="Art Approved">Art Approved</option>
                 <option value="Art Unapproved">Art Unapproved</option>
@@ -73,6 +74,7 @@ const ActionOptions = ({task}) => {
                     <option value="Project Details">Project Details</option>
                     <option value="Changes to Artist">Changes to Artist</option>
                     <option value="Changes Requested">Changes Requested</option>
+                    <option value="Left Voicemail">Left Voicemail</option>
                     <option value="Art to Client">Art to Client</option>
                     <option value="Brief to Artist">Brief to Artist</option>
                     <option value="Art Approved">Art Approved</option>
@@ -141,6 +143,7 @@ class ScheduledTask extends Component {
                         <option value="" disabled>Who</option>
                             <option value="Client" disabled={action === "System"}>Client</option>
                             <option value="Artist" disabled={action === "System"}>Artist</option>
+                            <option value="Review" disabled={!(action === "System")}>Review</option>
                             <option value="Artque" disabled={!(action === "System")}>ArtQue</option>
                             <option value="Approve" disabled={!(action === "System")}>Approve</option>
                             <option value="Attach" disabled={!(action === "System")}>Attach</option>
