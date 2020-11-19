@@ -4,6 +4,7 @@ import moment from 'moment';
 import iconPrevious from '../images/icon-previous.svg';
 import iconScheduled from '../images/icon-scheduled.svg';
 import iconCompleted from '../images/icon-complete.svg';
+import iconClose from '../images/icon-close.svg';
 
 const displayAlert = (e, message) => {
     e.preventDefault();
@@ -281,7 +282,8 @@ export default class Scheduler extends Component {
         }, () => this.props.close())
     }
 
-    handleOverlayClick(){
+    handleOverlayClick(e){
+        e.preventDefault();
         this.props.close();
     }
 
@@ -313,7 +315,7 @@ export default class Scheduler extends Component {
             <div className="scheduler-container">
 
                 {/* clickable overlay */}
-                <div className="scheduler-overlay" onClick={() => this.handleOverlayClick()} />
+                <div className="scheduler-overlay" onClick={(e) => this.handleOverlayClick(e)} />
                 
                 {/* start of scheduler box */}
                 <div className="scheduler">
@@ -329,6 +331,12 @@ export default class Scheduler extends Component {
                                 onClick={(e) => displayAlert(e, "Open Outlook: Team Leader")}
                             >Email Team Leader</button>
                         </div>
+                        <button
+                            onClick={(e) => this.handleOverlayClick(e)}
+                            className="scheduler-close"
+                        >
+                                <img src={iconClose} alt="Close"/>
+                        </button>
                     </div>
 
                     {/* last completed task */}

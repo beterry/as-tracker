@@ -19,6 +19,7 @@
 }
 
 .scheduler{
+    position: relative;
     background: white;
     border: 1px solid black;
     max-height: 80vh;
@@ -39,6 +40,19 @@
     p{
         color: gray;
     }
+}
+
+.scheduler-close{
+    position: absolute;
+    top: .5rem;
+    right: .5rem;
+    background: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 24px;
+    width: 24px;
 }
 
 .scheduler-note_buttons{
