@@ -221,6 +221,9 @@ export default class Scheduler extends Component {
             taskEdited: false,
             save: false,
         });
+        this.openOutlook = this.openOutlook.bind(this);
+        this.handleNewTaskButton = this.handleNewTaskButton.bind(this);
+        this.handleActionTaken = this.handleActionTaken.bind(this);
     }
 
     componentDidMount(){
@@ -237,6 +240,10 @@ export default class Scheduler extends Component {
         if (this.state.save){
             this.props.saveChanges([...this.state.tasks]);
         }
+    }
+
+    openOutlook(who){
+        alert(`Open Outlook: ${who}`);
     }
 
     handleTaskEdited(detail, index, e){
@@ -260,15 +267,29 @@ export default class Scheduler extends Component {
         this.setState({
             tasks,
             taskEdited: true
+        }, () => {
+            if (detail === "actionTaken"){
+                this.handleActionTaken(e.target.value);
+            }
         });
     }
 
-    newTask(e){
+    handleActionTaken(actionTaken){
+        if (actionTaken === "Art to Client"){
+            console.log("Running handleActionTaken");
+            this.newTask("Call", "Client", "Artwork");
+            this.openOutlook("Client");
+        }
+        //TODO: add more conditions for actions taken
+    }
+
+    newTask(action, who, what){
+        console.log("New task");
         const tasks = [...this.state.tasks];
         const newTask = {
-            action: "",
-            who: "",
-            what: "",
+            action,
+            who,
+            what,
             date: moment().add(1, "days"),
             actionTaken: "",
             completedBy: "",
@@ -279,6 +300,11 @@ export default class Scheduler extends Component {
             tasks,
             taskEdited: true
         });
+    }
+
+    handleNewTaskButton(e){
+        e.preventDefault();
+        this.newTask("", "", "");
     }
 
     handleSave(e){
@@ -379,7 +405,7 @@ export default class Scheduler extends Component {
                     {/* button group */}
                     <div className="scheduler-buttons">
                         <button
-                            onClick={(e) => this.newTask(e)}
+                            onClick={(e) => this.handleNewTaskButton(e)}
                             className="scheduler-button_add"
                         >
                             + Add Scheduled Task
