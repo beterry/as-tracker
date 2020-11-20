@@ -45,7 +45,7 @@ class App extends Component {
             filterDateStart: moment().subtract(7, "days"),
             filterDateEnd: moment().add(21, "days"),
             filterSpecialist: "all",
-            filterClientLabel: "all",
+            filterClientLabel: ["Default"],
             filterProduct: "all",
             hideCompleted: true,
             filterSearchWord: "",
@@ -124,6 +124,11 @@ class App extends Component {
         // console.log(label);
 
         let jobs = [...this.state.jobs]
+        let filterClientLabel = [...this.state.filterClientLabel];
+
+        if (!filterClientLabel.includes(label)){
+            filterClientLabel.push(label);
+        }
 
         this.state.selected.forEach(id => {
             let job = {...jobs.find(job => job.id === id)};
@@ -134,8 +139,7 @@ class App extends Component {
             jobs.splice(index, 1, job);
         })
 
-        this.setState({ jobs })
-        console.log(jobs);
+        this.setState({ jobs, filterClientLabel })
     }
 
     reassignSpecialist(name, e) {
@@ -280,9 +284,18 @@ class App extends Component {
         this.setState({ filterSpecialist: e.target.value });
     }
 
-    changeFilterClientLabel(e) {
+    changeFilterClientLabel(label) {
         this.clearSelected();
-        this.setState({ filterClientLabel: e.target.value });
+        let filterClientLabel = [...this.state.filterClientLabel];
+
+        if (!filterClientLabel.includes(label)) {
+            filterClientLabel.push(label)
+        } else {
+            const index = filterClientLabel.indexOf(label);
+            filterClientLabel.splice(index, 1);
+        }
+
+        this.setState({ filterClientLabel });
     }
 
     changeFilterProduct(e) {
@@ -441,7 +454,7 @@ class App extends Component {
                                             isAdmin={this.state.isAdmin}
                                         />
                                         <ClientLabelFilter
-                                            clientLabel={this.state.filterClientLabel}
+                                            labels={this.state.filterClientLabel}
                                             options={[...clientLabelOptions]}
                                             changeClientLabel={this.changeFilterClientLabel}
                                         />

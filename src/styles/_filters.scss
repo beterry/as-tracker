@@ -1,0 +1,31 @@
+.filter-labels_wrapper{
+    position: relative;
+}
+
+.filter-labels_drop{
+    position: absolute;
+    width: 140px;
+    top: -2px;
+    left: -10px;
+
+    background: white;
+    border: 1px solid black;
+    border-radius: 2px;
+}
+
+.fake-dropdown{
+    height: 19px;
+    width: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    border: 1px solid rgb(118, 118, 118);
+    border-radius: 2px;
+    padding-right: 0;
+
+    img{
+        width: 20px;
+        height: 20px;
+    }
+}
