@@ -104,7 +104,10 @@
     select{
         width: 120px;
     }
-    
+    div:last-child{
+        display: flex;
+
+    }
 }
 
 .scheduler-buttons{
@@ -123,3 +126,25 @@
     color: blue;
     text-decoration: underline;
 }
+
+// Client Contact Table
+.client-contact{
+    position: relative;
+    z-index: 3;
+
+    table{
+        display: none;
+        width: 400px;
+        top: 90%;
+        right: 10%;
+        position: absolute;
+        border: 1px solid black;
+    }
+
+    &:hover{
+        table{
+            display: table;
+        }
+    }
+}
+

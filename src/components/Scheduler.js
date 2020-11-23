@@ -11,6 +11,39 @@ const displayAlert = (e, message) => {
     alert(message);
 }
 
+const ClientContact = ({contacts}) => {
+    return (
+        <div className="client-contact">
+            <button
+                onClick={(e) => displayAlert(e, "Open order line in new tab, jump to contact info")}
+                className="underline-blue"
+            >Client Contact Info</button>
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {contacts.map((contact, index) => 
+                        <tr key={`contact ${index}`}>
+                            <td>{contact.name}</td>
+                            <td>{contact.phone}</td>
+                            <td
+                                className="txt-ul-blue"
+                                onClick={(e) => displayAlert(e, `Open Outlook: ${contact.email}`)}
+                            >{contact.email}</td>
+                        </tr>
+                    )}
+                </tbody>
+            </table>
+        </div>
+        
+    )
+}
+
 const ActionOptions = ({task}) => {
     const {who, what} = task;
     if (what === "Artwork" && who === "Client"){
@@ -192,10 +225,9 @@ class ScheduledTask extends Component {
                     <div>
                         {who === "Client"
                         ?
-                        <button
-                            onClick={(e) => displayAlert(e, "Open order line in new tab, jump to contact info")}
-                            className="underline-blue"
-                        >Client Contact Info</button>
+                        <ClientContact
+                            contacts={this.props.contacts}
+                        />
                         :
                         null}
                         {actionTaken ? null :
@@ -397,6 +429,7 @@ export default class Scheduler extends Component {
                             handleActionTaken={(e) => this.handleTaskEdited("actionTaken", index, e)}
                             deleteScheduledTask={(e) => this.deleteScheduledTask(e, index)}
                             status={this.props.job.status}
+                            contacts={this.props.job.contacts}
                         />
                     )}
 

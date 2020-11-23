@@ -22,7 +22,7 @@ const database = [
         proofs: 2,
         prints: 1,
         lineNumber: 2,
-        contact: [
+        contactss: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
@@ -189,7 +189,7 @@ const database = [
         proofs: 2,
         prints: 1,
         lineNumber: 2,
-        contact: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
@@ -357,7 +357,7 @@ const database = [
         proofs: 2,
         prints: 1,
         lineNumber: 2,
-        contact: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
@@ -516,7 +516,7 @@ const database = [
         proofs: 2,
         prints: 1,
         lineNumber: 2,
-        contact: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
@@ -666,7 +666,7 @@ const database = [
         proofs: 2,
         prints: 1,
         lineNumber: 2,
-        contact: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
@@ -807,7 +807,7 @@ const database = [
         proofs: 2,
         prints: 1,
         lineNumber: 2,
-        contact: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
@@ -939,7 +939,7 @@ const database = [
         proofs: 2,
         prints: 1,
         lineNumber: 2,
-        contact: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
@@ -1089,7 +1089,7 @@ const database = [
         proofs: 2,
         prints: 0,
         lineNumber: 2,
-        contact: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
@@ -1212,7 +1212,7 @@ const database = [
         proofs: 2,
         prints: 0,
         lineNumber: 2,
-        contact: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
@@ -1335,12 +1335,18 @@ const database = [
         proofs: 2,
         prints: 0,
         lineNumber: 2,
-        contact: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
                 email: "jdoe@companyname.com"
-            }
+            },
+            {
+                name: "Jane Doe",
+                phone: "+1 (888)888-8888",
+                email: "janedoe@companyname.com"
+            },
+
         ],
         scheduledTasks: [
             {
@@ -1449,7 +1455,7 @@ const database = [
         proofs: 0,
         prints: 0,
         lineNumber: 2,
-        contact: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
@@ -1536,7 +1542,7 @@ const database = [
         proofs: 0,
         prints: 0,
         lineNumber: 2,
-        contact: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
@@ -1606,7 +1612,7 @@ const database = [
         proofs: 0,
         prints: 0,
         lineNumber: 2,
-        contact: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
@@ -1666,7 +1672,7 @@ const database = [
         proofs: 0,
         prints: 0,
         lineNumber: 2,
-        contact: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
@@ -1720,7 +1726,7 @@ const database = [
         proofs: 0,
         prints: 0,
         lineNumber: 2,
-        contact: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
@@ -1807,7 +1813,7 @@ const database = [
         proofs: 0,
         prints: 0,
         lineNumber: 2,
-        contact: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
@@ -1877,7 +1883,7 @@ const database = [
         proofs: 0,
         prints: 0,
         lineNumber: 2,
-        contact: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
@@ -1937,7 +1943,7 @@ const database = [
         proofs: 0,
         prints: 0,
         lineNumber: 2,
-        contact: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",
