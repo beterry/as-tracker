@@ -45,90 +45,138 @@ const ClientContact = ({contacts}) => {
 }
 
 const ActionOptions = ({task}) => {
-    const {who, what} = task;
-    if (what === "Artwork" && who === "Client"){
+    const {action, who, what} = task;
+    if (action === "Call" && who === "Client"){
         return (
             <>
-                <option value="Project Details">Project Details</option>
-                <option value="Changes Requested">Changes Requested</option>
+                <option value="Task Complete">Task Complete</option>
                 <option value="Left Voicemail">Left Voicemail</option>
-                <option value="Art to Client">Art to Client</option>
-                <option value="Art Approved">Art Approved</option>
-                <option value="Art Unapproved">Art Unapproved</option>
+                <option value="Proof Approved">Proof Approved</option>
+                <option value="Proof Unapproved">Proof Unapproved</option>
+                <option value="Map Approved">Map Approved</option>
+                <option value="Map Unapproved">Map Unapproved</option>
             </>
         )
-    } else if (what === "Print" && who === "Artist"){
+    } else if (action === "Email" && who === "Client"){
         return (
             <>
-                <option value="Print Posted">Print Posted</option>
+                <option value="Email Client">Email Client</option>
+                <option value="Proof to Client">Proof to Client</option>
+                <option value="Proof Approved">Proof Approved</option>
+                <option value="Proof Unapproved">Proof Unapproved</option>
+                <option value="Map to Client">Map to Client</option>
+                <option value="Map Approved">Map Approved</option>
+                <option value="Map Unapproved">Map Unapproved</option>
+
             </>
         )
-    } else if (who === "Artist"){
+    } else if (action === "Text" && who === "Client"){
         return (
             <>
+                <option value="Task Complete">Task Complete</option>
+            </>
+        )
+    } else if (action === "Call" && who === "Artist"){
+        return (
+            <>
+                <option value="Left Voicemail">Left Voicemail</option>
+                <option value="Task Complete">Task Complete</option>
+                <option value="Proof Approved">Proof Approved</option>
+                <option value="Proof Unapproved">Proof Unapproved</option>
+            </>
+        )
+    } else if (action === "Email" && who === "Artist"){
+        return (
+            <>
+                <option value="Email Artist">Email Artist</option>
                 <option value="Changes to Artist">Changes to Artist</option>
                 <option value="Brief to Artist">Brief to Artist</option>
+                <option value="Proof Approved">Proof Approved</option>
+                <option value="Proof Unapproved">Proof Unapproved</option>
             </>
         )
-    } else if (what === "Print"){
+    } else if (what === "Proof Pending"){
+        return (
+            <>
+                <option value="-" disabled>Waiting for proof upload...</option>
+            </>
+        )
+    } else if (what === "Proof Review"){
+        return (
+            <>
+                <option value="Task Complete">Task Complete</option>
+            </>
+        )
+    } else if (what === "Print Pending"){
+        return (
+            <>
+                <option value="-" disabled>Waiting for print upload...</option>
+            </>
+        )
+    } else if (what === "Print Review"){
         return (
             <>
                 <option value="Print Approved">Print Approved</option>
                 <option value="Print Unapproved">Print Unapproved</option>
             </>
         )
-    } else if (what === "Mapping" && who === "Client"){
+    } else if (who === "Attach" && what === "Mapping"){
         return (
             <>
-                <option value="Map To Client">Map To Client</option>
+                <option value="-" disabled>Waiting for map upload...</option>
+            </>
+        )
+    } else if (what === "Reminder"){
+        return (
+            <>
+                <option value="Task Complete">Task Complete</option>
+            </>
+        )
+    } else if (who === "Approve" && what === "Order"){
+        return (
+            <>
+                <option value="Proof Approved">Proof Approved</option>
+                <option value="Proof Unapproved">Proof Unapproved</option>
                 <option value="Map Approved">Map Approved</option>
                 <option value="Map Unapproved">Map Unapproved</option>
+                <option value="Print Approved">Print Approved</option>
+                <option value="Print Unapproved">Print Unapproved</option>
             </>
         )
-    } else if (what === "Mapping"){
+    } else if (who === "Accept" && what === "Order"){
         return (
             <>
-                <option value="Map Attached">Map Attached</option>
+                <option value="Order Accepted">Order Accepted</option>
+                <option value="Order Decline">Order Decline</option>
             </>
         )
-    } 
-    else if (what === "Order"){
+    } else if (who === "Finalize" && what === "Order"){
         return (
             <>
-                <option value="Job Completed">Job Completed</option>
-                <option value="Job Accepted">Job Accepted</option>
-                <option value="Job Declined">Job Declined</option>
+                <option value="Order Completed">Order Completed</option>
             </>
         )
     } else {
         return(
             <>
-                <optgroup label="Art">
-                    <option value="Project Details">Project Details</option>
-                    <option value="Changes to Artist">Changes to Artist</option>
-                    <option value="Changes Requested">Changes Requested</option>
-                    <option value="Left Voicemail">Left Voicemail</option>
-                    <option value="Art to Client">Art to Client</option>
-                    <option value="Brief to Artist">Brief to Artist</option>
-                    <option value="Art Approved">Art Approved</option>
-                    <option value="Art Unapproved">Art Unapproved</option>
-                </optgroup>
-                <optgroup label="Print">
-                    <option value="Print Posted">Print Posted</option>
-                    <option value="Print Approved">Print Approved</option>
-                    <option value="Print Unapproved">Print Unapproved</option>
-                </optgroup>
-                <optgroup label="Map">
-                    <option value="Map To Client">Map To Client</option>
-                    <option value="Map Approved">Map Approved</option>
-                    <option value="Map Attached">Map Attached</option>
-                    <option value="Map Unapproved">Map Unapproved</option>
-                </optgroup>
-                <optgroup label="System">
-                    <option value="Job Completed">Job Completed</option>
-                    <option value="Job Accepted">Job Accepted</option>
-                    <option value="Job Declined">Job Declined</option>
-                </optgroup>
+                <option value="Email Artist">Email Artist</option>
+                <option value="Changes to Artist">Changes to Artist</option>
+                <option value="Brief to Artist">Brief to Artist</option>
+                <option value="Proof to Client">Proof to Client</option>
+                <option value="Map to Client">Map to Client</option>
+                <option value="Proof Approved">Proof Approved</option>
+                <option value="Proof Unapproved">Proof Unapproved</option>
+                <option value="Print Approved">Print Approved</option>
+                <option value="Print Unapproved">Print Unapproved</option>
+                <option value="Map Approved">Map Approved</option>
+                <option value="Map Unapproved">Map Unapproved</option>
+                <option value="Order Completed">Order Completed</option>
+                <option value="Order Accepted">Order Accepted</option>
+                <option value="Order Decline">Order Decline</option>
+                <option value="Order Assigned">Order Assigned</option>
+                <option value="Email Client">Email Client</option>
+                <option value="Task Complete">Task Complete</option>
+                <option value="Left Voicemail">Left Voicemail</option>
             </>
         )
     }
@@ -162,9 +210,10 @@ class ScheduledTask extends Component {
                         onChange={this.props.handleChangeAction}
                         className="mr-s"
                     >
-                        <option value="" disabled>Action</option>
+                        <option value="" disabled>Type</option>
                             <option value="Call">Call</option>
                             <option value="Email">Email</option>
+                            <option value="Text">Text</option>
                             <option value="System">System</option>
                     </select>
                     <select
@@ -174,15 +223,14 @@ class ScheduledTask extends Component {
                         disabled={!action}
                     >
                         <option value="" disabled>Who</option>
-                            <option value="Client" disabled={action === "System"}>Client</option>
-                            <option value="Artist" disabled={action === "System"}>Artist</option>
-                            <option value="Review" disabled={!(action === "System")}>Review</option>
-                            <option value="Artque" disabled={!(action === "System")}>ArtQue</option>
-                            <option value="Approve" disabled={!(action === "System")}>Approve</option>
-                            <option value="Attach" disabled={!(action === "System")}>Attach</option>
-                            <option value="Accept" disabled={!(action === "System")}>Accept</option>
-                            <option value="Assign" disabled={!(action === "System")}>Assign</option>
-                            <option value="Finalize" disabled={!(action === "System")}>Finalize</option>
+                            <option value="Client">Client</option>
+                            <option value="Artist">Artist</option>
+                            <option value="Note" disabled={action !== "System"}>Note</option>
+                            <option value="Approve" disabled={action !== "System"}>Approve</option>
+                            <option value="Attach" disabled={action !== "System"}>Attach</option>
+                            <option value="Accept" disabled={action !== "System"}>Accept</option>
+                            <option value="Pending" disabled={action !== "System"}>Pending</option>
+                            <option value="Finalize" disabled={action !== "System"}>Finalize</option>
                     </select>
                     <select
                         value={what}
@@ -190,13 +238,13 @@ class ScheduledTask extends Component {
                         disabled={!(who && action)}
                     >
                         <option value="" disabled>What</option>
-                            <option value="General">General</option>
-                            <option value="Artwork">Artwork</option>
-                            <option value="Change">Change</option>
-                            <option value="Print">Print</option>
-                            <option value="Mapping" disabled={who === "Artist"}>Mapping</option>
-                            <option value="Brief">Brief</option>
-                            <option value="Order" disabled={!(who === "Accept" || who === "Assign" || who === "Finalize")}>Order</option>
+                            <option value="Order">Order</option>
+                            <option value="Proof Pending" disabled={!(action === "System" && who === "Artist")}>Proof Pending</option>
+                            <option value="Proof Review" disabled={!(action === "System" && who === "Artist")}>Proof Review</option>
+                            <option value="Print Pending" disabled={!(action === "System" && who === "Artist")}>Print Pending</option>
+                            <option value="Print Review" disabled={!(action === "System" && who === "Artist")}>Print Review</option>
+                            <option value="Mapping" disabled={!(action === "System" && who === "Attach")}>Mapping</option>
+                            <option value="Reminder" disabled={!(action === "System" && who === "Note")}>Reminder</option>
                     </select>
                 </div>
                 <textarea
@@ -306,15 +354,14 @@ export default class Scheduler extends Component {
         });
     }
 
-    async handleActionTaken(actionTaken){
+    handleActionTaken(actionTaken){
         if (actionTaken === "Art to Client"){
-            await this.newTask("Call", "Client", "Artwork");
-            this.openOutlook("Client");
+            this.newTask("Call", "Client", "Artwork", () => this.openOutlook("Client"));
         }
         //TODO: add more conditions for actions taken
     }
 
-    newTask(action, who, what){
+    newTask(action, who, what, callback){
         const tasks = [...this.state.tasks];
         const newTask = {
             action,
@@ -329,12 +376,14 @@ export default class Scheduler extends Component {
         this.setState({
             tasks,
             taskEdited: true
-        });
+        },
+            callback()
+        );
     }
 
     handleNewTaskButton(e){
         e.preventDefault();
-        this.newTask("", "", "");
+        this.newTask("", "", "", () => {});
     }
 
     handleSave(e){
