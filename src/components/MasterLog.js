@@ -1,5 +1,7 @@
-import React from 'react'
+import React, {useState} from 'react';
 import {useParams} from "react-router-dom";
+
+import sortTasks from '../util/sortTasks'
 
 import noteImg from '../images/books.gif';
 
@@ -24,6 +26,8 @@ const handleLogButton = (e, message) => {
 }
 
 const MasterLog = ({jobs}) => {
+    const [sortBy, setSortBy] = useState("date");
+    const [sortDirection, setSortDirection] = useState(true);
 
     let {id} = useParams();
     const job = jobs.find(job => job.id === Number(id));
@@ -33,8 +37,16 @@ const MasterLog = ({jobs}) => {
     }
 
     const {company, product, lineNumber, code, lastActions} = job
+    const sortedLastActions = sortTasks(sortBy, lastActions, sortDirection);
 
-
+    const handleSortChange = (newSortBy) => {
+        if (sortBy === newSortBy){
+            setSortDirection(!sortDirection);
+        } else {
+            setSortBy(newSortBy);
+            setSortDirection(true);
+        }
+    }
 
     return (
         <section>
@@ -56,18 +68,18 @@ const MasterLog = ({jobs}) => {
                 <table border="1">
                     <thead>
                         <tr>
-                            <th>Date</th>
-                            <th>Time</th>
-                            <th>Action</th>
-                            <th>Who</th>
-                            <th>What</th>
-                            <th>Action Taken</th>
-                            <th>Completed By</th>
+                            <th onClick={() => handleSortChange("date")}>Date</th>
+                            <th onClick={() => handleSortChange("date")}>Time</th>
+                            <th onClick={() => handleSortChange("action")}>Action</th>
+                            <th onClick={() => handleSortChange("who")}>Who</th>
+                            <th onClick={() => handleSortChange("what")}>What</th>
+                            <th onClick={() => handleSortChange("actionTaken")}>Action Taken</th>
+                            <th onClick={() => handleSortChange("completedBy")}>Completed By</th>
                             <th>Comments</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {lastActions.map((task, index) => 
+                        {sortedLastActions.map((task, index) => 
                             <LogRow key={`log action ${index}`} task={task} />
                         )}
                     </tbody>

@@ -205,7 +205,7 @@ export default class Actions extends Component {
                 </form>
                 <div className="info-box">
                     <h3>This Week's Group: C</h3>
-                    <p>Lock Date: 9/20/20</p>
+                    <p>Art Due Date: 9/20/20</p>
                     <p>In Home Date: 10/01/2020</p>
                 </div>
             </section>
