@@ -22,6 +22,13 @@ const database = [
         proofs: 2,
         prints: 1,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [],
         lastActions: [
             {
@@ -182,6 +189,13 @@ const database = [
         proofs: 2,
         prints: 1,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [
             {
                 action: "System",
@@ -343,6 +357,13 @@ const database = [
         proofs: 2,
         prints: 1,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [
             {
                 action: "System",
@@ -495,6 +516,13 @@ const database = [
         proofs: 2,
         prints: 1,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [
             {
                 action: "Email",
@@ -638,6 +666,13 @@ const database = [
         proofs: 2,
         prints: 1,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [
             {
                 action: "System",
@@ -772,6 +807,13 @@ const database = [
         proofs: 2,
         prints: 1,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [
             {
                 action: "Email",
@@ -897,6 +939,13 @@ const database = [
         proofs: 2,
         prints: 1,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [
             {
                 action: "Email",
@@ -1040,6 +1089,13 @@ const database = [
         proofs: 2,
         prints: 0,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [
             {
                 action: "Call",
@@ -1156,6 +1212,13 @@ const database = [
         proofs: 2,
         prints: 0,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [
             {
                 action: "Email",
@@ -1272,6 +1335,13 @@ const database = [
         proofs: 2,
         prints: 0,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [
             {
                 action: "Email",
@@ -1379,6 +1449,13 @@ const database = [
         proofs: 0,
         prints: 0,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [
             {
                 action: "Email",
@@ -1459,6 +1536,13 @@ const database = [
         proofs: 0,
         prints: 0,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [
             {
                 action: "Call",
@@ -1522,6 +1606,13 @@ const database = [
         proofs: 0,
         prints: 0,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [
             {
                 action: "System",
@@ -1575,6 +1666,13 @@ const database = [
         proofs: 0,
         prints: 0,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [
             {
                 action: "System",
@@ -1622,6 +1720,13 @@ const database = [
         proofs: 0,
         prints: 0,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [
             {
                 action: "Email",
@@ -1702,6 +1807,13 @@ const database = [
         proofs: 0,
         prints: 0,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [
             {
                 action: "Call",
@@ -1765,6 +1877,13 @@ const database = [
         proofs: 0,
         prints: 0,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [
             {
                 action: "System",
@@ -1818,6 +1937,13 @@ const database = [
         proofs: 0,
         prints: 0,
         lineNumber: 2,
+        contact: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
         scheduledTasks: [
             {
                 action: "System",
