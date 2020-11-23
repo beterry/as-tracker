@@ -274,17 +274,15 @@ export default class Scheduler extends Component {
         });
     }
 
-    handleActionTaken(actionTaken){
+    async handleActionTaken(actionTaken){
         if (actionTaken === "Art to Client"){
-            console.log("Running handleActionTaken");
-            this.newTask("Call", "Client", "Artwork");
+            await this.newTask("Call", "Client", "Artwork");
             this.openOutlook("Client");
         }
         //TODO: add more conditions for actions taken
     }
 
     newTask(action, who, what){
-        console.log("New task");
         const tasks = [...this.state.tasks];
         const newTask = {
             action,
