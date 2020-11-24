@@ -333,7 +333,8 @@ export default class Scheduler extends Component {
         let tasks = [...this.state.tasks];
 
         if (detail === "date"){
-            task.date = moment(e.target.value);
+            console.log(e.target.value);
+            task.date = moment(e.target.value, "YYYY-MM-DDTkk:mm");
             tasks.splice(index, 1, task);
         }else if (detail === "actionTaken"){
             task.actionTaken = e.target.value;
@@ -349,19 +350,85 @@ export default class Scheduler extends Component {
             taskEdited: true
         }, () => {
             if (detail === "actionTaken"){
-                this.handleActionTaken(e.target.value);
+                this.handleActionTaken(task);
             }
         });
     }
 
-    handleActionTaken(actionTaken){
-        if (actionTaken === "Art to Client"){
-            this.newTask("Call", "Client", "Artwork", () => this.openOutlook("Client"));
+    handleActionTaken({actionTaken, action, who, what}){
+
+        if (actionTaken === "Task Complete"){
+            if(action === "Call"){
+                this.newTask("", "", "");
+            }
+            if(action === "Text" && who === "Client"){
+                this.newTask("Email", "Client", "Order");
+            }
+            if(action === "System" && who === "Artist"){
+                this.newTask("Email", "Client", "Order");
+            }
         }
-        //TODO: add more conditions for actions taken
+
+        if (actionTaken === "Left Voicemail"){
+            if(who === "Client"){
+                this.newTask("Email", "Client", "Order");
+            }
+            if(who === "Artist"){
+                this.newTask("Email", "Artist", "Order");
+            }
+        }
+
+        if (actionTaken === "Proof Approved"){
+            this.newTask("System", "Artist", "Print Pending");
+        }
+
+        if (actionTaken === "Proof Unapproved"){
+            if (who === "Artist"){
+                this.newTask("Email", "Client", "Order");
+            } else {
+                this.newTask("Email", "Artist", "Order");
+            }
+        }
+
+        if (actionTaken === "Print Approved"){
+            this.newTask("Email", "Client", "Order");
+        }
+
+        if (actionTaken === "Print Unapproved"){
+            this.newTask("Email", "Artist", "Order");
+        }
+
+        if (actionTaken === "Map Approved"){
+            this.newTask("System", "Attach", "Mapping");
+        }
+
+        if (actionTaken === "Map Unapproved"){
+            this.newTask("Call", "Client", "Order");
+        }
+
+        // Call, Client, Order
+        if (actionTaken === "Email Client" || actionTaken === "Proof to Client"|| actionTaken === "Map to Client"){
+            this.newTask("Call", "Client", "Order");
+            this.openOutlook("Client");
+        }
+
+        if (actionTaken === "Email Artist"){
+            this.newTask("", "", "");
+            this.openOutlook("Artist");
+        }
+
+        if (actionTaken === "Brief to Artist" || actionTaken === "Changes to Artist"){
+            this.newTask("System", "Artist", "Proof Pending");
+            this.openOutlook("Artist");
+        }
+
+        if (actionTaken === "Order Accepted"){
+            this.newTask("Email", "Client", "Order");
+        }
+
     }
 
-    newTask(action, who, what, callback){
+    newTask(action, who, what){
         const tasks = [...this.state.tasks];
         const newTask = {
             action,
@@ -376,14 +443,12 @@ export default class Scheduler extends Component {
         this.setState({
             tasks,
             taskEdited: true
-        },
-            callback()
-        );
+        });
     }
 
     handleNewTaskButton(e){
         e.preventDefault();
-        this.newTask("", "", "", () => {});
+        this.newTask("", "", "");
     }
 
     handleSave(e){

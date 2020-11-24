@@ -22,7 +22,7 @@ const database = [
         proofs: 2,
         prints: 1,
         lineNumber: 2,
-        contactss: [
+        contacts: [
             {
                 name: "John Doe",
                 phone: "+1 (999)999-9999",

@@ -24,7 +24,8 @@ import ProductFilter from './components/filters/ProductFilter';
 import UserSwitcher from './components/filters/UserSwitcher';
 
 //import data
-import data from './data/database';
+// import data from './data/database';
+import data from './data/db-2';
 import jobStatus from './data/jobStatus';
 
 //utility libraries
