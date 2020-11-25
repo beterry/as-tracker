@@ -20,7 +20,7 @@ export default function ProgressBar({status}) {
         artColor = 'skyblue';
     }
     if (status.artAtClient){
-        artText = status.changesAtArtist.format("MM/DD");
+        artText = status.artAtClient.format("MM/DD");
         artColor = 'skyblue';
     }
     if (status.proofApproved){

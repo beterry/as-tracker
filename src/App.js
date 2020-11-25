@@ -21,7 +21,7 @@ import CheckboxFilter from './components/filters/CheckboxFilter';
 import SearchFilter from './components/filters/SearchFilter';
 import ProductFilter from './components/filters/ProductFilter';
 
-import UserSwitcher from './components/filters/UserSwitcher';
+import SystemActions from './components/filters/SystemActions';
 
 //import data
 // import data from './data/database';
@@ -70,6 +70,7 @@ class App extends Component {
         this.clearSelected = this.clearSelected.bind(this);
         this.restoreDefaultFilters = this.restoreDefaultFilters.bind(this);
         this.changeUser = this.changeUser.bind(this);
+        this.handleSystemAction = this.handleSystemAction.bind(this);
     }
 
     componentDidMount() {
@@ -98,6 +99,73 @@ class App extends Component {
                 filterSpecialist: user
             })
         }
+    }
+
+    handleSystemAction(action){
+        let jobs = [...this.state.jobs];
+        let job = {...jobs.find(job => job.id === this.state.selected[0])};
+        let index = jobs.findIndex(job => job.id === this.state.selected[0]);
+
+        let newCompletedTask = {
+            action: "",
+            who: "",
+            what: "",
+            date: moment(),
+            actionTaken: "Task Complete",
+            completedBy: "System",
+            note: "",
+        };
+
+        let newScheduledTask = {
+            action: "",
+            who: "",
+            what: "",
+            date: moment().add(1, "days"),
+            actionTaken: "",
+            completedBy: "",
+            note: "",
+        }
+
+        if (action === "Upload Proof"){
+            //add new lastAction
+            newCompletedTask = {...newCompletedTask, action: "System", who: "Artist", what: "Proof Pending"};
+            job.lastActions = [newCompletedTask, ...job.lastActions];
+
+            //delete scheduled task
+            const taskIndex = job.scheduledTasks.findIndex(task => task.what === "Proof Pending");
+            newScheduledTask = {...newScheduledTask, action: "System", who: "Artist", what: "Proof Review"};
+            job.scheduledTasks.splice(taskIndex, 1, newScheduledTask);
+        } else if (action === "Upload Print"){
+            //add new lastAction
+            newCompletedTask = {...newCompletedTask, action: "System", who: "Artist", what: "Print Pending"};
+            job.lastActions = [newCompletedTask, ...job.lastActions];
+
+            //delete scheduled task
+            const taskIndex = job.scheduledTasks.findIndex(task => task.what === "Print Pending");
+            newScheduledTask = {...newScheduledTask, action: "System", who: "Artist", what: "Print Review"};
+            job.scheduledTasks.splice(taskIndex, 1, newScheduledTask);
+        } else {
+            //add new lastAction
+            newCompletedTask = {...newCompletedTask, action: "System", who: "Attach", what: "Mapping"};
+            job.lastActions = [newCompletedTask, ...job.lastActions];
+
+            //delete scheduled task
+            const taskIndex = job.scheduledTasks.findIndex(task => task.what === "Mapping" && task.who === "Attach");
+
+            if (job.status.printUploaded){
+                newScheduledTask = {...newScheduledTask, action: "System", who: "Finalize", what: "Order"};
+                job.scheduledTasks.splice(taskIndex, 1, newScheduledTask);
+            } else {
+                job.scheduledTasks.splice(taskIndex, 1);
+            }
+            
+        }
+
+        //replace old info with new data from the Scheduler
+        jobs.splice(index, 1, job);
+
+        //update state
+        this.setState({ jobs });
     }
 
     editSelected(id, e) {
@@ -172,12 +240,12 @@ class App extends Component {
     }
 
     saveSchedulerChanges(newTasks) {
-        console.log("Save and close scheduler");
 
         //date from state
         let jobs = [...this.state.jobs];
         let job = {...jobs.find(job => job.id === this.state.selected[0])};
         let index = jobs.findIndex(job => job.id === this.state.selected[0]);
+        let status = {...job.status}
 
         //seperate tasks from Scheduler into categories
         const completedTasks = [...newTasks.filter((task) => task.actionTaken !== "")];
@@ -193,34 +261,37 @@ class App extends Component {
                 // Update status based on actions taken
                 switch(task.actionTaken){
                     case "Changes to Artist":
-                        job.status = {...job.status, changesAtArtist: task.date, artAtClient: null};
+                        status = {...status, changesAtArtist: moment(), artAtClient: undefined};
                         console.log("Changes At Artist");
                         break;
                     case "Proof to Client":
-                        job.status = {...job.status, artAtClient: task.date};
+                        status = {...status, artAtClient: moment()};
                         break;
                     case "Proof Approved":
-                        job.status = {...job.status, proofApproved: true};
+                        status = {...status, proofApproved: true};
                         break;
                     case "Proof Unapproved":
-                        job.status = {...job.status, proofApproved: false, changesAtArtist: null, artAtClient: null,};
+                        status = {...status, proofApproved: false, changesAtArtist: undefined, artAtClient: undefined,};
                         break;
                     case "Map Approved":
-                        job.status = {...job.status, mapApproved: true};
+                        status = {...status, mapApproved: true};
                         break;
                     case "Map Unapproved":
-                        job.status = {...job.status, mapApproved: false};
+                        status = {...status, mapApproved: false};
                         break;
                     case "Print Approved":
-                        job.status = {...job.status, printApproved: true};
+                        status = {...status, printApproved: true};
                         break;
                     case "Print Unapproved":
-                        job.status = {...job.status, printApproved: false};
+                        status = {...status, printApproved: false};
+                        break;
+                    case "Order Completed":
+                        status = {...status, complete: true};
                         break;
                     default:
                         break;
                 }
-                console.log(job.status);
+                job.status = status;
 
                 //put completed task into last actions array
                 let lastActions = [...job.lastActions];
@@ -472,9 +543,12 @@ class App extends Component {
                         </Route>
                     </Switch>
                 </main>
-                <UserSwitcher
+                <SystemActions
                     specialist={this.state.user}
                     changeSpecialist={this.changeUser}
+                    handleSystemAction={this.handleSystemAction}
+                    disabled={this.state.selected.length !== 1}
+                    job={firstSelectedJob}
                 />
                 {this.state.showScheduler ?
                     <Scheduler
