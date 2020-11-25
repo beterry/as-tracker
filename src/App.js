@@ -131,6 +131,9 @@ class App extends Component {
             newCompletedTask = {...newCompletedTask, action: "System", who: "Artist", what: "Proof Pending"};
             job.lastActions = [newCompletedTask, ...job.lastActions];
 
+            //increment status
+            job.status.proofUploaded += 1;
+
             //delete scheduled task
             const taskIndex = job.scheduledTasks.findIndex(task => task.what === "Proof Pending");
             newScheduledTask = {...newScheduledTask, action: "System", who: "Artist", what: "Proof Review"};
@@ -139,6 +142,9 @@ class App extends Component {
             //add new lastAction
             newCompletedTask = {...newCompletedTask, action: "System", who: "Artist", what: "Print Pending"};
             job.lastActions = [newCompletedTask, ...job.lastActions];
+
+            //increment status
+            job.status.printUploaded += 1;
 
             //delete scheduled task
             const taskIndex = job.scheduledTasks.findIndex(task => task.what === "Print Pending");
@@ -261,6 +267,10 @@ class App extends Component {
                 // Update status based on actions taken
                 switch(task.actionTaken){
                     case "Changes to Artist":
+                        status = {...status, changesAtArtist: moment(), artAtClient: undefined};
+                        console.log("Changes At Artist");
+                        break;
+                    case "Brief to Artist":
                         status = {...status, changesAtArtist: moment(), artAtClient: undefined};
                         console.log("Changes At Artist");
                         break;
