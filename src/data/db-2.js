@@ -18,9 +18,17 @@ const database = [
         label: "Default",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
-        status: 0,
-        proofs: 0,
-        prints: 0,
+        status: {
+            changesAtArtist: null,
+            proofUploaded: 0,
+            artAtClient: null,
+            proofApproved: false,
+            mapApproved: false,
+            mapAttached: false,
+            printApproved: false,
+            printUploaded: 0,
+            complete: false,
+        },
         lineNumber: 2,
         contacts: [
             {

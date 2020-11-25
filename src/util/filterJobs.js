@@ -37,7 +37,7 @@ const filterJobs = ({
     }
 
     if (hideCompleted){
-        return filteredJobs.filter(job => job.status < 10);
+        return filteredJobs.filter(job => !job.status.complete);
     } else {
         return filteredJobs;
     }

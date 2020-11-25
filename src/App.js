@@ -26,7 +26,6 @@ import UserSwitcher from './components/filters/UserSwitcher';
 //import data
 // import data from './data/database';
 import data from './data/db-2';
-import jobStatus from './data/jobStatus';
 
 //utility libraries
 import moment from 'moment';
@@ -58,7 +57,6 @@ class App extends Component {
         this.editSelected = this.editSelected.bind(this);
         this.addLabel = this.addLabel.bind(this);
         this.reassignSpecialist = this.reassignSpecialist.bind(this);
-        this.takeQuickAction = this.takeQuickAction.bind(this);
         this.saveSchedulerChanges = this.saveSchedulerChanges.bind(this);
         this.changeSortBy = this.changeSortBy.bind(this);
         this.changeFilterStartDate = this.changeFilterStartDate.bind(this);
@@ -167,55 +165,6 @@ class App extends Component {
         // console.log(jobs);
     }
 
-    takeQuickAction(actionTaken, e) {
-        e.preventDefault();
-        let what = actionTaken
-
-        let tempAction = {
-            action: "Quick Action",
-            who: "",
-            what,
-            date: moment(),
-            acctSpecialist: this.state.specialist,
-            actionTaken,
-            completedBy: this.state.user,
-            note: []
-        }
-
-        let jobs = [...this.state.jobs]
-
-        this.state.selected.forEach(id => {
-            let job = {...jobs.find(job => job.id === id)};
-            const index = jobs.findIndex(job => job.id === id);
-
-            //add actions to last actions array
-            let lastActions = [...job.lastActions];
-            lastActions.unshift(tempAction);
-            job.lastActions = lastActions
-
-            //update job status
-            if (jobStatus[actionTaken]) {
-                job.status = jobStatus[actionTaken];
-                console.log("Quick action status change:", jobStatus[actionTaken]);
-            }
-
-            //increment proof number
-            if (actionTaken === "Proof Uploaded") {
-                job.proofs += 1;
-            }
-
-            //increment proof number
-            if (actionTaken === "Print Posted") {
-                job.prints += 1;
-            }
-
-            jobs.splice(index, 1, job);
-            // console.log(job);
-        })
-
-        this.setState({ jobs })
-    }
-
     toggleScheduler() {
         this.setState(state => ({
             showScheduler: !this.state.showScheduler,
@@ -237,13 +186,41 @@ class App extends Component {
         //add completed actions to log
         if (completedTasks.length > 0) {
             completedTasks.forEach(task => {
-                if (jobStatus[task.actionTaken]) {
-                    job.status = jobStatus[task.actionTaken];
-                    console.log("Scheduler status change:", jobStatus[task.actionTaken]);
-                }
 
                 //date logged when scheduler is closed
                 task.date = moment();
+
+                // Update status based on actions taken
+                switch(task.actionTaken){
+                    case "Changes to Artist":
+                        job.status = {...job.status, changesAtArtist: task.date, artAtClient: null};
+                        console.log("Changes At Artist");
+                        break;
+                    case "Proof to Client":
+                        job.status = {...job.status, artAtClient: task.date};
+                        break;
+                    case "Proof Approved":
+                        job.status = {...job.status, proofApproved: true};
+                        break;
+                    case "Proof Unapproved":
+                        job.status = {...job.status, proofApproved: false, changesAtArtist: null, artAtClient: null,};
+                        break;
+                    case "Map Approved":
+                        job.status = {...job.status, mapApproved: true};
+                        break;
+                    case "Map Unapproved":
+                        job.status = {...job.status, mapApproved: false};
+                        break;
+                    case "Print Approved":
+                        job.status = {...job.status, printApproved: true};
+                        break;
+                    case "Print Unapproved":
+                        job.status = {...job.status, printApproved: false};
+                        break;
+                    default:
+                        break;
+                }
+                console.log(job.status);
 
                 //put completed task into last actions array
                 let lastActions = [...job.lastActions];

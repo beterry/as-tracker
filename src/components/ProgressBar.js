@@ -1,7 +1,6 @@
 import React from 'react'
-// import jobStatus from '../data/jobStatus';
 
-export default function ProgressBar({status, lastActions, proofs, prints}) {
+export default function ProgressBar({status}) {
     let artText = "--";
     let artColor = "lightgray";
 
@@ -11,69 +10,46 @@ export default function ProgressBar({status, lastActions, proofs, prints}) {
     let mapText = "--";
     let mapColor = "lightgray";
 
-    let task = undefined;
-
     //Art
-    if (status < 4){
-        switch (status){
-            case 1:
-                task = lastActions.find(task => task.actionTaken === "Changes to Artist" || task.actionTaken === "Brief to Artist");
-                if (task){
-                    artText = task.date.format("MM/DD");
-                }
-                artColor = "lightpink";
-                break;
-            case 2:
-                artText = `#${proofs}`;
-                artColor = "skyblue";
-                break;
-            case 3:
-                task = lastActions.find(task => task.actionTaken === "Art to Client");
-                if (task){
-                    artText = task.date.format("MM/DD");
-                }
-                artColor = "skyblue";
-                break;
-            default:
-                artText = "--";
-        }
-    } else {
-        artText = "APR";
-        artColor = "skyblue";
+    if (status.changesAtArtist){
+        artText = status.changesAtArtist.format("MM/DD");
+        artColor = 'salmon';
+    }
+    if (status.proofUploaded){
+        artText = `#${status.proofUploaded}`;
+        artColor = 'skyblue';
+    }
+    if (status.artAtClient){
+        artText = status.changesAtArtist.format("MM/DD");
+        artColor = 'skyblue';
+    }
+    if (status.proofApproved){
+        artText = 'APR';
+        artColor = 'skyblue';
     }
 
     //Print
-    if (status > 4){
-        switch (status){
-            case 5:
-                printText = `#${prints}`;
-                printColor = "skyblue";
-                break;
-            case 6:
-                printText = "APR";
-                printColor = "skyblue";
-                break;
-            default:
-                printText = "APR";
-                printColor = "skyblue";
-        }
+    if (status.printUploaded){
+        printText = `#${status.printUploaded}`;
+        printColor = 'skyblue';
+    }
+    if (status.printApproved){
+        printText = 'APR';
+        printColor = 'skyblue';
     }
 
     //Map
-    if (status > 7){
-        switch (status){
-            case 8:
-                mapText = "APR";
-                mapColor = "lightyellow";
-                break;
-            default:
-                mapText = "ATT";
-                mapColor = "skyblue";
-        }
+    if (status.mapApproved){
+        mapText = 'APR';
+        mapColor = 'yellow';
+    }
+    if (status.mapAttached){
+        mapText = 'ATT';
+        mapColor = 'skyblue';
     }
 
     //Complete
-    if (status === 10){
+    if (status.complete){
         artColor = "lightgreen";
         printColor = "lightgreen";
         mapColor = "lightgreen";
