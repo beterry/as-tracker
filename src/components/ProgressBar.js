@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function ProgressBar({status}) {
+export default function ProgressBar({status, printOnly}) {
     let artText = "--";
     let artColor = "lightgray";
 
@@ -47,12 +47,18 @@ export default function ProgressBar({status}) {
         mapText = 'ATT';
         mapColor = 'skyblue';
     }
+    if(printOnly){
+        mapText = 'PO';
+        mapColor = 'none';
+    }
 
     //Complete
     if (status.complete){
         artColor = "lightgreen";
         printColor = "lightgreen";
-        mapColor = "lightgreen";
+        if (!printOnly){
+            mapColor = "lightgreen";
+        }
     }
 
 

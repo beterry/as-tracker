@@ -73,9 +73,8 @@ export default class JobRow extends Component {
             scheduledTasks,
             lastActions,
             status,
-            proofs,
-            prints,
             note,
+            printOnly,
         } = this.props.job
         return (
             <tr
@@ -126,7 +125,7 @@ export default class JobRow extends Component {
                 >
                     <img src={noteImg} alt="Note"/>
                 </td>
-                <td className="col-pbar"><ProgressBar status={status} lastActions={lastActions} proofs={proofs} prints={prints}/></td>
+                <td className="col-pbar"><ProgressBar status={status} lastActions={lastActions} printOnly={printOnly}/></td>
             </tr>
         )
     }

@@ -44,7 +44,7 @@ const ClientContact = ({contacts}) => {
     )
 }
 
-const ActionOptions = ({task}) => {
+const ActionOptions = ({task, printOnly}) => {
     const {action, who, what} = task;
     if (action === "Call" && who === "Client"){
         return (
@@ -53,8 +53,8 @@ const ActionOptions = ({task}) => {
                 <option value="Left Voicemail">Left Voicemail</option>
                 <option value="Proof Approved">Proof Approved</option>
                 <option value="Proof Unapproved">Proof Unapproved</option>
-                <option value="Map Approved">Map Approved</option>
-                <option value="Map Unapproved">Map Unapproved</option>
+                <option value="Map Approved" disabled={printOnly}>Map Approved</option>
+                <option value="Map Unapproved" disabled={printOnly}>Map Unapproved</option>
             </>
         )
     } else if (action === "Email" && who === "Client"){
@@ -64,9 +64,9 @@ const ActionOptions = ({task}) => {
                 <option value="Proof to Client">Proof to Client</option>
                 <option value="Proof Approved">Proof Approved</option>
                 <option value="Proof Unapproved">Proof Unapproved</option>
-                <option value="Map to Client">Map to Client</option>
-                <option value="Map Approved">Map Approved</option>
-                <option value="Map Unapproved">Map Unapproved</option>
+                <option value="Map to Client" disabled={printOnly}>Map to Client</option>
+                <option value="Map Approved" disabled={printOnly}>Map Approved</option>
+                <option value="Map Unapproved" disabled={printOnly}>Map Unapproved</option>
 
             </>
         )
@@ -137,8 +137,8 @@ const ActionOptions = ({task}) => {
             <>
                 <option value="Proof Approved">Proof Approved</option>
                 <option value="Proof Unapproved">Proof Unapproved</option>
-                <option value="Map Approved">Map Approved</option>
-                <option value="Map Unapproved">Map Unapproved</option>
+                <option value="Map Approved" disabled={printOnly}>Map Approved</option>
+                <option value="Map Unapproved" disabled={printOnly}>Map Unapproved</option>
                 <option value="Print Approved">Print Approved</option>
                 <option value="Print Unapproved">Print Unapproved</option>
             </>
@@ -186,6 +186,7 @@ class ScheduledTask extends Component {
    
     render() {
         const {action, who, what, date, actionTaken, note} = this.props.task;
+        
         return (
             <form className='scheduler-scheduled'>      
                 <div className="scheduler-scheduled_title">
@@ -230,7 +231,7 @@ class ScheduledTask extends Component {
                             <option value="Attach" disabled={action !== "System"}>Attach</option>
                             <option value="Accept" disabled={action !== "System"}>Accept</option>
                             <option value="Pending" disabled={action !== "System"}>Pending</option>
-                            <option value="Finalize" disabled={action !== "System" || !this.props.status.mapAttached || !this.props.status.printApproved}>Finalize</option>
+                            <option value="Finalize" disabled={action !== "System" || (!this.props.mapAttached && !this.props.printOnly) || !this.props.printApproved}>Finalize</option>
                     </select>
                     <select
                         value={what}
@@ -243,7 +244,7 @@ class ScheduledTask extends Component {
                             <option value="Proof Review" disabled={!(action === "System" && who === "Artist")}>Proof Review</option>
                             <option value="Print Pending" disabled={!(action === "System" && who === "Artist")}>Print Pending</option>
                             <option value="Print Review" disabled={!(action === "System" && who === "Artist")}>Print Review</option>
-                            <option value="Mapping" disabled={!(action === "System" && who === "Attach")}>Mapping</option>
+                            <option value="Mapping" disabled={!(action === "System" && who === "Attach") || this.props.printOnly}>Mapping</option>
                             <option value="Reminder" disabled={!(action === "System" && who === "Note")}>Reminder</option>
                     </select>
                 </div>
@@ -266,7 +267,7 @@ class ScheduledTask extends Component {
                             name="complete task"
                         >
                             <option value="">Incomplete</option>
-                            <ActionOptions task={this.props.task} />
+                            <ActionOptions task={this.props.task} printOnly={this.props.printOnly}/>
                         </select>
                     </div>
                     
@@ -383,18 +384,22 @@ export default class Scheduler extends Component {
         }
 
         if (actionTaken === "Proof Approved"){
-            if (this.state.mapAttached){
-                this.newTask("System", "Artist", "Print Pending");
-            } else if (this.state.mapApproved){
-                this.newTasks([
-                    {action: "System", who: "Artist", what: "Print Pending"},
-                    {action: "System", who: "Attach", what: "Mapping"},
-                ]);
+            if (!this.props.job.printOnly){
+                if (this.state.mapAttached){
+                    this.newTask("System", "Artist", "Print Pending");
+                } else if (this.state.mapApproved){
+                    this.newTasks([
+                        {action: "System", who: "Artist", what: "Print Pending"},
+                        {action: "System", who: "Attach", what: "Mapping"},
+                    ]);
+                } else {
+                    this.newTasks([
+                        {action: "System", who: "Artist", what: "Print Pending"},
+                        {action: "Email", who: "Client", what: "Order", note: "About map approval"},
+                    ]);
+                }
             } else {
-                this.newTasks([
-                    {action: "System", who: "Artist", what: "Print Pending"},
-                    {action: "Email", who: "Client", what: "Order", note: "About map approval"},
-                ]);
+                this.newTask("System", "Artist", "Print Pending");
             }
             this.setState({proofApproved: true});
         }
@@ -414,11 +419,15 @@ export default class Scheduler extends Component {
         }
 
         if (actionTaken === "Print Approved"){
-            if (this.state.mapAttached){
+            if (!this.props.job.printOnly){
+                if (this.state.mapAttached){
+                    this.newTask("System", "Finalize", "Order");
+                } else if (this.state.mapApproved){
+                        this.newTask("System", "Attach", "Mapping");
+                };
+            } else {
                 this.newTask("System", "Finalize", "Order");
-            } else if (this.state.mapApproved){
-                    this.newTask("System", "Attach", "Mapping");
-            };
+            }
             this.setState({printApproved: true});
         }
 
@@ -602,7 +611,9 @@ export default class Scheduler extends Component {
                             handleChangeDate={(e) => this.handleTaskEdited("date", index, e)}
                             handleActionTaken={(e) => this.handleTaskEdited("actionTaken", index, e)}
                             deleteScheduledTask={(e) => this.deleteScheduledTask(e, index)}
-                            status={this.state.status}
+                            printApproved={this.state.printApproved}
+                            mapAttached={this.state.mapAttached}
+                            printOnly={this.props.job.printOnly}
                             contacts={this.props.job.contacts}
                         />
                     )}
