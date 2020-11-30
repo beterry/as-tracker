@@ -272,11 +272,9 @@ class App extends Component {
                 switch(task.actionTaken){
                     case "Changes to Artist":
                         status = {...status, changesAtArtist: moment(), artAtClient: undefined};
-                        console.log("Changes At Artist");
                         break;
                     case "Brief to Artist":
                         status = {...status, changesAtArtist: moment(), artAtClient: undefined};
-                        console.log("Changes At Artist");
                         break;
                     case "Proof to Client":
                         status = {...status, artAtClient: moment()};

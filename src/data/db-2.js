@@ -137,7 +137,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Changes to Artist",
-                completedBy: "LucusT",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -173,7 +173,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Brief to Artist",
-                completedBy: "LucusT",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -182,7 +182,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Task Complete",
-                completedBy: "LucusT",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -191,7 +191,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Email Client",
-                completedBy: "LucusT",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -200,7 +200,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Order Accepted",
-                completedBy: "LucusT",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -227,7 +227,7 @@ const database = [
         options: [],
         quantity: 5000,
         mailWeeks: 2,
-        acctSpecialist: "LucasT",
+        acctSpecialist: "Sara P",
         label: "Default",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
@@ -279,7 +279,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Map Approved",
-                completedBy: "LucasT",
+                completedBy: "SaraP",
                 note: ""
             },
             {
@@ -288,7 +288,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Email Client",
-                completedBy: "LucasT",
+                completedBy: "SaraP",
                 note: "About mapping approval"
             },
             {
@@ -315,7 +315,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Proof Approved",
-                completedBy: "LucasT",
+                completedBy: "SaraP",
                 note: ""
             },
             {
@@ -324,7 +324,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Task Complete",
-                completedBy: "LucasT",
+                completedBy: "SaraP",
                 note: ""
             },
             {
@@ -333,7 +333,7 @@ const database = [
                 what: "Proof Review",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Task Complete",
-                completedBy: "LucasT",
+                completedBy: "SaraP",
                 note: ""
             },
             {
@@ -351,7 +351,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Brief to Artist",
-                completedBy: "LucusT",
+                completedBy: "SaraP",
                 note: ""
             },
             {
@@ -360,7 +360,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Task Complete",
-                completedBy: "LucusT",
+                completedBy: "SaraP",
                 note: ""
             },
             {
@@ -369,7 +369,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Email Client",
-                completedBy: "LucusT",
+                completedBy: "SaraP",
                 note: ""
             },
             {
@@ -378,7 +378,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Order Accepted",
-                completedBy: "LucusT",
+                completedBy: "SaraP",
                 note: ""
             },
             {
@@ -405,7 +405,7 @@ const database = [
         options: [],
         quantity: 24000,
         mailWeeks: 11,
-        acctSpecialist: "LucasT",
+        acctSpecialist: "NikieC",
         label: "Default",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
@@ -448,7 +448,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Map Approved",
-                completedBy: "LucasT",
+                completedBy: "NikieC",
                 note: ""
             },
             {
@@ -457,7 +457,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Email Client",
-                completedBy: "LucasT",
+                completedBy: "NikieC",
                 note: "About mapping approval"
             },
             {
@@ -484,7 +484,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Proof Approved",
-                completedBy: "LucasT",
+                completedBy: "NikieC",
                 note: ""
             },
             {
@@ -493,7 +493,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Task Complete",
-                completedBy: "LucasT",
+                completedBy: "NikieC",
                 note: ""
             },
             {
@@ -502,7 +502,7 @@ const database = [
                 what: "Proof Review",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Task Complete",
-                completedBy: "LucasT",
+                completedBy: "NikieC",
                 note: ""
             },
             {
@@ -520,7 +520,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Brief to Artist",
-                completedBy: "LucusT",
+                completedBy: "NikieC",
                 note: ""
             },
             {
@@ -529,7 +529,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Task Complete",
-                completedBy: "LucusT",
+                completedBy: "NikieC",
                 note: ""
             },
             {
@@ -538,7 +538,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Email Client",
-                completedBy: "LucusT",
+                completedBy: "NikieC",
                 note: ""
             },
             {
@@ -547,7 +547,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Order Accepted",
-                completedBy: "LucusT",
+                completedBy: "NikieC",
                 note: ""
             },
             {
@@ -574,7 +574,7 @@ const database = [
         options: [],
         quantity: 10000,
         mailWeeks: 4,
-        acctSpecialist: "LucasT",
+        acctSpecialist: "SaraP",
         label: "Default",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
@@ -617,7 +617,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Email Client",
-                completedBy: "LucasT",
+                completedBy: "SaraP",
                 note: "About mapping approval"
             },
             {
@@ -644,7 +644,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Proof Approved",
-                completedBy: "LucasT",
+                completedBy: "SaraP",
                 note: ""
             },
             {
@@ -653,7 +653,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Task Complete",
-                completedBy: "LucasT",
+                completedBy: "SaraP",
                 note: ""
             },
             {
@@ -662,7 +662,7 @@ const database = [
                 what: "Proof Review",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Task Complete",
-                completedBy: "LucasT",
+                completedBy: "SaraP",
                 note: ""
             },
             {
@@ -680,7 +680,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Brief to Artist",
-                completedBy: "LucusT",
+                completedBy: "SaraP",
                 note: ""
             },
             {
@@ -689,7 +689,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Task Complete",
-                completedBy: "LucusT",
+                completedBy: "SaraP",
                 note: ""
             },
             {
@@ -698,7 +698,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Email Client",
-                completedBy: "LucusT",
+                completedBy: "SaraP",
                 note: ""
             },
             {
@@ -707,7 +707,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Order Accepted",
-                completedBy: "LucusT",
+                completedBy: "SaraP",
                 note: ""
             },
             {
@@ -822,7 +822,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Brief to Artist",
-                completedBy: "LucusT",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -831,7 +831,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Task Complete",
-                completedBy: "LucusT",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -840,7 +840,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Email Client",
-                completedBy: "LucusT",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -849,7 +849,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Order Accepted",
-                completedBy: "LucusT",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -876,7 +876,7 @@ const database = [
         options: [],
         quantity: 15000,
         mailWeeks: 9,
-        acctSpecialist: "LucasT",
+        acctSpecialist: "NikieC",
         label: "Default",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
@@ -919,7 +919,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Task Complete",
-                completedBy: "LucasT",
+                completedBy: "NikieC",
                 note: ""
             },
             {
@@ -928,7 +928,7 @@ const database = [
                 what: "Proof Review",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Task Complete",
-                completedBy: "LucasT",
+                completedBy: "NikieC",
                 note: ""
             },
             {
@@ -946,7 +946,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Brief to Artist",
-                completedBy: "LucusT",
+                completedBy: "NikieC",
                 note: ""
             },
             {
@@ -955,7 +955,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Task Complete",
-                completedBy: "LucusT",
+                completedBy: "NikieC",
                 note: ""
             },
             {
@@ -964,7 +964,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Email Client",
-                completedBy: "LucusT",
+                completedBy: "NikieC",
                 note: ""
             },
             {
@@ -973,7 +973,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Order Accepted",
-                completedBy: "LucusT",
+                completedBy: "NikieC",
                 note: ""
             },
             {
@@ -1062,7 +1062,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Brief to Artist",
-                completedBy: "LucusT",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -1071,7 +1071,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Task Complete",
-                completedBy: "LucusT",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -1080,7 +1080,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Email Client",
-                completedBy: "LucusT",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -1089,7 +1089,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Order Accepted",
-                completedBy: "LucusT",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -1159,7 +1159,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Brief to Artist",
-                completedBy: "LucusT",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -1168,7 +1168,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Task Complete",
-                completedBy: "LucusT",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -1177,7 +1177,7 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Email Client",
-                completedBy: "LucusT",
+                completedBy: "LucasT",
                 note: ""
             },
             {
@@ -1186,9 +1186,522 @@ const database = [
                 what: "Order",
                 date: moment('2020-11-24T08:30'),
                 actionTaken: "Order Accepted",
-                completedBy: "LucusT",
+                completedBy: "LucasT",
                 note: ""
             },
+            {
+                action: "System",
+                who: "Pending",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Order Assigned",
+                completedBy: "TarrynH",
+                note: ""
+            },
+        ],
+    },
+    {
+        id: 108,
+        push: 0,
+        group: "J",
+        code: 28062,
+        timezone: -2,
+        company: "Client I",
+        product: "POSTCARD",
+        address: "19622 Middlebelt Rd, Livonia, MI 48152",
+        version: undefined,
+        options: [],
+        quantity: 10000,
+        mailWeeks: 9,
+        acctSpecialist: "SaraP",
+        label: "Default",
+        artDue: moment().add(10, 'days'),
+        note: 'Do NOT call client on Mondays, he will shoot you!',
+        status: {
+            changesAtArtist: undefined,
+            proofUploaded: false,
+            artAtClient: undefined,
+            proofApproved: false,
+            mapApproved: false,
+            mapAttached: false,
+            printApproved: false,
+            printUploaded: false,
+            complete: false,
+            proofNumber: 2,
+            printNumber: 0,
+        },
+        lineNumber: 2,
+        contacts: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
+        scheduledTasks: [
+            {
+                action: "Email",
+                who: "Artist",
+                what: "Order",
+                date: moment().add(1, 'day').startOf('day').add(13, 'hours'),
+                actionTaken: "",
+                completedBy: "",
+                note: ""
+            },
+        ],
+        lastActions: [
+            {
+                action: "Call",
+                who: "Client",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Task Complete",
+                completedBy: "SaraP",
+                note: ""
+            },
+            {
+                action: "Email",
+                who: "Client",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Email Client",
+                completedBy: "SaraP",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Accept",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Order Accepted",
+                completedBy: "SaraP",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Pending",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Order Assigned",
+                completedBy: "TarrynH",
+                note: ""
+            },
+        ],
+    },
+    {
+        id: 109,
+        push: 0,
+        group: "J",
+        code: 28062,
+        timezone: -2,
+        company: "Client J",
+        product: "SCRATCHOFF",
+        address: "19622 Middlebelt Rd, Livonia, MI 48152",
+        version: undefined,
+        options: [],
+        quantity: 10000,
+        mailWeeks: 9,
+        acctSpecialist: "SaraP",
+        label: "Default",
+        artDue: moment().add(10, 'days'),
+        note: 'Do NOT call client on Mondays, he will shoot you!',
+        status: {
+            changesAtArtist: undefined,
+            proofUploaded: false,
+            artAtClient: undefined,
+            proofApproved: false,
+            mapApproved: false,
+            mapAttached: false,
+            printApproved: false,
+            printUploaded: false,
+            complete: false,
+            proofNumber: 2,
+            printNumber: 0,
+        },
+        lineNumber: 2,
+        contacts: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
+        scheduledTasks: [
+            {
+                action: "Call",
+                who: "Client",
+                what: "Order",
+                date: moment().add(1, 'day').startOf('day').add(14, 'hours'),
+                actionTaken: "",
+                completedBy: "",
+                note: ""
+            },
+        ],
+        lastActions: [
+            
+            {
+                action: "Email",
+                who: "Client",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Email Client",
+                completedBy: "SaraP",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Accept",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Order Accepted",
+                completedBy: "SaraP",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Pending",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Order Assigned",
+                completedBy: "TarrynH",
+                note: ""
+            },
+        ],
+    },
+    {
+        id: 110,
+        push: 0,
+        group: "J",
+        code: 28062,
+        timezone: -2,
+        company: "Client K",
+        product: "POSTCARD",
+        address: "19622 Middlebelt Rd, Livonia, MI 48152",
+        version: undefined,
+        options: [],
+        quantity: 15000,
+        mailWeeks: 11,
+        acctSpecialist: "LucasT",
+        label: "Default",
+        artDue: moment().add(10, 'days'),
+        note: 'Do NOT call client on Mondays, he will shoot you!',
+        status: {
+            changesAtArtist: undefined,
+            proofUploaded: false,
+            artAtClient: undefined,
+            proofApproved: false,
+            mapApproved: false,
+            mapAttached: false,
+            printApproved: false,
+            printUploaded: false,
+            complete: false,
+            proofNumber: 0,
+            printNumber: 0,
+        },
+        lineNumber: 2,
+        contacts: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
+        scheduledTasks: [
+            {
+                action: "Email",
+                who: "Client",
+                what: "Order",
+                date: moment().add(1, 'day').startOf('day').add(14, 'hours'),
+                actionTaken: "",
+                completedBy: "",
+                note: ""
+            },
+        ],
+        lastActions: [
+            {
+                action: "System",
+                who: "Accept",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Order Accepted",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Pending",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Order Assigned",
+                completedBy: "TarrynH",
+                note: ""
+            },
+        ],
+    },
+    {
+        id: 111,
+        push: 0,
+        group: "J",
+        code: 28062,
+        timezone: -2,
+        company: "Client L",
+        product: "Plastic PC Sm - S",
+        address: "19622 Middlebelt Rd, Livonia, MI 48152",
+        version: undefined,
+        options: [],
+        quantity: 5000,
+        mailWeeks: 11,
+        acctSpecialist: "LucasT",
+        label: "Default",
+        artDue: moment().add(10, 'days'),
+        note: 'Do NOT call client on Mondays, he will shoot you!',
+        status: {
+            changesAtArtist: undefined,
+            proofUploaded: false,
+            artAtClient: undefined,
+            proofApproved: false,
+            mapApproved: false,
+            mapAttached: false,
+            printApproved: false,
+            printUploaded: false,
+            complete: false,
+            proofNumber: 0,
+            printNumber: 0,
+        },
+        lineNumber: 2,
+        contacts: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
+        scheduledTasks: [
+            {
+                action: "System",
+                who: "Accept",
+                what: "Order",
+                date: moment().add(1, 'day').startOf('day').add(14, 'hours'),
+                actionTaken: "",
+                completedBy: "",
+                note: ""
+            },
+        ],
+        lastActions: [
+            {
+                action: "System",
+                who: "Pending",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Order Assigned",
+                completedBy: "TarrynH",
+                note: ""
+            },
+        ],
+    },
+
+// ------------------------- MONTHLY -----------------------------
+
+    {
+        id: 112,
+        push: 0,
+        group: "J",
+        code: 28062,
+        timezone: -2,
+        company: "Client M",
+        product: "NEW MOVERS POSTCARD",
+        address: "19622 Middlebelt Rd, Livonia, MI 48152",
+        version: undefined,
+        options: [],
+        quantity: 10000,
+        mailWeeks: 9,
+        acctSpecialist: "NikieC",
+        label: "Default",
+        artDue: moment().add(10, 'days'),
+        note: 'Do NOT call client on Mondays, he will shoot you!',
+        status: {
+            changesAtArtist: undefined,
+            proofUploaded: false,
+            artAtClient: undefined,
+            proofApproved: false,
+            mapApproved: false,
+            mapAttached: false,
+            printApproved: false,
+            printUploaded: false,
+            complete: false,
+            proofNumber: 2,
+            printNumber: 0,
+        },
+        lineNumber: 2,
+        contacts: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
+        scheduledTasks: [
+            {
+                action: "Call",
+                who: "Client",
+                what: "Order",
+                date: moment().add(1, 'day').startOf('day').add(14, 'hours'),
+                actionTaken: "",
+                completedBy: "",
+                note: ""
+            },
+        ],
+        lastActions: [
+            
+            {
+                action: "Email",
+                who: "Client",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Email Client",
+                completedBy: "NikieC",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Accept",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Order Accepted",
+                completedBy: "NikieC",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Pending",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Order Assigned",
+                completedBy: "TarrynH",
+                note: ""
+            },
+        ],
+    },
+    {
+        id: 113,
+        push: 0,
+        group: "J",
+        code: 28062,
+        timezone: -2,
+        company: "Client M",
+        product: "BirthdayPC",
+        address: "19622 Middlebelt Rd, Livonia, MI 48152",
+        version: undefined,
+        options: [],
+        quantity: 5000,
+        mailWeeks: 4,
+        acctSpecialist: "LucasT",
+        label: "Default",
+        artDue: moment().add(10, 'days'),
+        note: 'Do NOT call client on Mondays, he will shoot you!',
+        status: {
+            changesAtArtist: undefined,
+            proofUploaded: false,
+            artAtClient: undefined,
+            proofApproved: false,
+            mapApproved: false,
+            mapAttached: false,
+            printApproved: false,
+            printUploaded: false,
+            complete: false,
+            proofNumber: 0,
+            printNumber: 0,
+        },
+        lineNumber: 2,
+        contacts: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
+        scheduledTasks: [
+            {
+                action: "Email",
+                who: "Client",
+                what: "Order",
+                date: moment().add(1, 'day').startOf('day').add(14, 'hours'),
+                actionTaken: "",
+                completedBy: "",
+                note: ""
+            },
+        ],
+        lastActions: [
+            {
+                action: "System",
+                who: "Accept",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Order Accepted",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Pending",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Order Assigned",
+                completedBy: "TarrynH",
+                note: ""
+            },
+        ],
+    },
+    {
+        id: 114,
+        push: 0,
+        group: "J",
+        code: 28062,
+        timezone: -2,
+        company: "Client N",
+        product: "NEW MOVERS PLASTIC",
+        address: "19622 Middlebelt Rd, Livonia, MI 48152",
+        version: undefined,
+        options: [],
+        quantity: 5000,
+        mailWeeks: 4,
+        acctSpecialist: "LucasT",
+        label: "Default",
+        artDue: moment().add(10, 'days'),
+        note: 'Do NOT call client on Mondays, he will shoot you!',
+        status: {
+            changesAtArtist: undefined,
+            proofUploaded: false,
+            artAtClient: undefined,
+            proofApproved: false,
+            mapApproved: false,
+            mapAttached: false,
+            printApproved: false,
+            printUploaded: false,
+            complete: false,
+            proofNumber: 0,
+            printNumber: 0,
+        },
+        lineNumber: 2,
+        contacts: [
+            {
+                name: "John Doe",
+                phone: "+1 (999)999-9999",
+                email: "jdoe@companyname.com"
+            }
+        ],
+        scheduledTasks: [
+            {
+                action: "System",
+                who: "Accept",
+                what: "Order",
+                date: moment().add(1, 'day').startOf('day').add(14, 'hours'),
+                actionTaken: "",
+                completedBy: "",
+                note: ""
+            },
+        ],
+        lastActions: [
             {
                 action: "System",
                 who: "Pending",

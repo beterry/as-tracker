@@ -405,6 +405,12 @@ export default class Scheduler extends Component {
             } else {
                 this.newTask("Email", "Artist", "Order");
             }
+            this.setState({
+                proofApproved: false,
+                proofUploaded: false,
+                artClient: undefined,
+                changesAtArtist: undefined
+            })
         }
 
         if (actionTaken === "Print Approved"){
@@ -432,6 +438,9 @@ export default class Scheduler extends Component {
             } else{
                 this.newTask("System", "Attach", "Mapping");
             }
+            this.setState({
+                mapApproved: true
+            });
         }
 
         if (actionTaken === "Map Unapproved"){
