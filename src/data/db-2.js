@@ -19,13 +19,13 @@ const database = [
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
         status: {
-            changesAtArtist: undefined,
+            changesAtArtist: moment(),
             proofUploaded: 0,
-            artAtClient: undefined,
+            artAtClient: moment(),
             proofApproved: true,
-            mapApproved: false,
+            mapApproved: true,
             mapAttached: true,
-            printApproved: false,
+            printApproved: true,
             printUploaded: 2,
             complete: true,
         },
@@ -233,11 +233,11 @@ const database = [
             changesAtArtist: moment(),
             proofUploaded: 1,
             artAtClient: moment(),
-            proofApproved: false,
-            mapApproved: false,
-            mapAttached: false,
-            printApproved: false,
-            printUploaded: 0,
+            proofApproved: true,
+            mapApproved: true,
+            mapAttached: true,
+            printApproved: true,
+            printUploaded: 3,
             complete: false,
         },
         lineNumber: 2,
@@ -250,8 +250,8 @@ const database = [
         ],
         scheduledTasks: [
             {
-                action: "Call",
-                who: "Client",
+                action: "System",
+                who: "Finalize",
                 what: "Order",
                 date: moment().add(1, 'day').startOf('day').add(9, 'hours'),
                 actionTaken: "",
@@ -261,10 +261,64 @@ const database = [
         ],
         lastActions: [
             {
+                action: "System",
+                who: "Attach",
+                what: "Mapping",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Task Complete",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "Call",
+                who: "Client",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Map Approved",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
                 action: "Email",
                 who: "Client",
                 what: "Order",
-                date: moment().add(1, 'day').startOf('day').add(9, 'hours'),
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Email Client",
+                completedBy: "LucasT",
+                note: "About mapping approval"
+            },
+            {
+                action: "System",
+                who: "Artist",
+                what: "Print Review",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Print Approved",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "System",
+                who: "Artist",
+                what: "Print Pending",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Task Complete",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "Call",
+                who: "Client",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
+                actionTaken: "Proof Approved",
+                completedBy: "LucasT",
+                note: ""
+            },
+            {
+                action: "Email",
+                who: "Client",
+                what: "Order",
+                date: moment('2020-11-24T08:30'),
                 actionTaken: "Task Complete",
                 completedBy: "LucasT",
                 note: ""

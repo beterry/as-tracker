@@ -155,10 +155,12 @@ class App extends Component {
             newCompletedTask = {...newCompletedTask, action: "System", who: "Attach", what: "Mapping"};
             job.lastActions = [newCompletedTask, ...job.lastActions];
 
+            job.status.mapAttached = true;
+
             //delete scheduled task
             const taskIndex = job.scheduledTasks.findIndex(task => task.what === "Mapping" && task.who === "Attach");
 
-            if (job.status.printUploaded){
+            if (job.status.printApproved){
                 newScheduledTask = {...newScheduledTask, action: "System", who: "Finalize", what: "Order"};
                 job.scheduledTasks.splice(taskIndex, 1, newScheduledTask);
             } else {

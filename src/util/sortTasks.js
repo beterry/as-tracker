@@ -37,9 +37,9 @@ const sortTasks = (sortBy, tasks, sortDirection) => {
         } else {
             sortedTasks.sort((a,b) => {
                 if (sortDirection){
-                    return compareDatesDesc(a.date, b.date)
-                } else {
                     return compareDatesAsc(a.date, b.date)
+                } else {
+                    return compareDatesDesc(a.date, b.date)
                 }
             })
         }

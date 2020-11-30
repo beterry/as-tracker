@@ -299,21 +299,25 @@ export default class Scheduler extends Component {
         this.state = ({
             tasks: [],
             taskEdited: false,
-            save: false,
+            ...props.job.status,
         });
         this.openOutlook = this.openOutlook.bind(this);
         this.handleNewTaskButton = this.handleNewTaskButton.bind(this);
         this.handleActionTaken = this.handleActionTaken.bind(this);
+        this.newTasks = this.newTasks.bind(this);
     }
 
     componentDidMount(){
-        let tasks = []
+        let tasks = [];
+        let status = {...this.props.job.status};
         const tasksFromProps = [...this.props.job.scheduledTasks];
+
         tasksFromProps.forEach(task => {
             const spreadTask = {...task};
             tasks.push(spreadTask);
         })
-        this.setState({tasks});
+
+        this.setState({tasks, status});
     }
 
     componentWillUnmount(){
@@ -379,7 +383,20 @@ export default class Scheduler extends Component {
         }
 
         if (actionTaken === "Proof Approved"){
-            this.newTask("System", "Artist", "Print Pending");
+            if (this.state.mapAttached){
+                this.newTask("System", "Artist", "Print Pending");
+            } else if (this.state.mapApproved){
+                this.newTasks([
+                    {action: "System", who: "Artist", what: "Print Pending"},
+                    {action: "System", who: "Attach", what: "Mapping"},
+                ]);
+            } else {
+                this.newTasks([
+                    {action: "System", who: "Artist", what: "Print Pending"},
+                    {action: "Email", who: "Client", what: "Order", note: "About map approval"},
+                ]);
+            }
+            this.setState({proofApproved: true});
         }
 
         if (actionTaken === "Proof Unapproved"){
@@ -391,19 +408,35 @@ export default class Scheduler extends Component {
         }
 
         if (actionTaken === "Print Approved"){
-            this.newTask("Email", "Client", "Order");
+            if (this.state.mapAttached){
+                this.newTask("System", "Finalize", "Order");
+            } else if (this.state.mapApproved){
+                    this.newTask("System", "Attach", "Mapping");
+            };
+            this.setState({printApproved: true});
         }
 
         if (actionTaken === "Print Unapproved"){
             this.newTask("Email", "Artist", "Order");
+            this.setState({
+                printApproved: false,
+            })
         }
 
         if (actionTaken === "Map Approved"){
-            this.newTask("System", "Attach", "Mapping");
+            if (!this.state.proofApproved){
+                this.newTasks([
+                    {action: "System", who: "Attach", what: "Mapping"},
+                    {action: "Email", who: "Client", what: "Order", note: "About proof approval"},
+                ]);
+            } else{
+                this.newTask("System", "Attach", "Mapping");
+            }
         }
 
         if (actionTaken === "Map Unapproved"){
             this.newTask("Call", "Client", "Order");
+            this.setState({mapApproved: false});
         }
 
         // Call, Client, Order
@@ -440,6 +473,24 @@ export default class Scheduler extends Component {
             note: ""
         }
         tasks.push(newTask);
+        this.setState({
+            tasks,
+            taskEdited: true
+        });
+    }
+
+    newTasks(partialTasks){
+        const tasks = [...this.state.tasks];
+        partialTasks.forEach((partial) => {
+            const newTask = {
+                date: moment().add(1, "days"),
+                actionTaken: "",
+                completedBy: "",
+                note: "",
+                ...partial,
+            }
+            tasks.push(newTask);
+        })
         this.setState({
             tasks,
             taskEdited: true
