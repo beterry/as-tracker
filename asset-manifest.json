@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/as-tracker/static/css/main.c179a2a2.chunk.css",
-    "main.js": "/as-tracker/static/js/main.461f94a6.chunk.js",
-    "main.js.map": "/as-tracker/static/js/main.461f94a6.chunk.js.map",
+    "main.css": "/as-tracker/static/css/main.0fa3d186.chunk.css",
+    "main.js": "/as-tracker/static/js/main.af456f85.chunk.js",
+    "main.js.map": "/as-tracker/static/js/main.af456f85.chunk.js.map",
     "runtime-main.js": "/as-tracker/static/js/runtime-main.9266f251.js",
     "runtime-main.js.map": "/as-tracker/static/js/runtime-main.9266f251.js.map",
-    "static/js/2.b0f73943.chunk.js": "/as-tracker/static/js/2.b0f73943.chunk.js",
-    "static/js/2.b0f73943.chunk.js.map": "/as-tracker/static/js/2.b0f73943.chunk.js.map",
+    "static/js/2.a17623eb.chunk.js": "/as-tracker/static/js/2.a17623eb.chunk.js",
+    "static/js/2.a17623eb.chunk.js.map": "/as-tracker/static/js/2.a17623eb.chunk.js.map",
     "index.html": "/as-tracker/index.html",
-    "static/css/main.c179a2a2.chunk.css.map": "/as-tracker/static/css/main.c179a2a2.chunk.css.map",
-    "static/js/2.b0f73943.chunk.js.LICENSE.txt": "/as-tracker/static/js/2.b0f73943.chunk.js.LICENSE.txt",
+    "static/css/main.0fa3d186.chunk.css.map": "/as-tracker/static/css/main.0fa3d186.chunk.css.map",
+    "static/js/2.a17623eb.chunk.js.LICENSE.txt": "/as-tracker/static/js/2.a17623eb.chunk.js.LICENSE.txt",
     "static/media/icon-call.e859dd4b.svg": "/as-tracker/static/media/icon-call.e859dd4b.svg",
+    "static/media/icon-close.53c9f4b6.svg": "/as-tracker/static/media/icon-close.53c9f4b6.svg",
     "static/media/icon-complete.2b5173b8.svg": "/as-tracker/static/media/icon-complete.2b5173b8.svg",
+    "static/media/icon-dropdown.24bccb28.svg": "/as-tracker/static/media/icon-dropdown.24bccb28.svg",
     "static/media/icon-email.db3b96ed.svg": "/as-tracker/static/media/icon-email.db3b96ed.svg",
     "static/media/icon-previous.c7da84cf.svg": "/as-tracker/static/media/icon-previous.c7da84cf.svg",
     "static/media/icon-scheduled.52fd6b6c.svg": "/as-tracker/static/media/icon-scheduled.52fd6b6c.svg",
@@ -20,8 +22,8 @@
   },
   "entrypoints": [
     "static/js/runtime-main.9266f251.js",
-    "static/js/2.b0f73943.chunk.js",
-    "static/css/main.c179a2a2.chunk.css",
-    "static/js/main.461f94a6.chunk.js"
+    "static/js/2.a17623eb.chunk.js",
+    "static/css/main.0fa3d186.chunk.css",
+    "static/js/main.af456f85.chunk.js"
   ]
 }
