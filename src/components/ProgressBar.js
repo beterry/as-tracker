@@ -16,7 +16,7 @@ export default function ProgressBar({status}) {
         artColor = 'salmon';
     }
     if (status.proofUploaded){
-        artText = `#${status.proofUploaded}`;
+        artText = `#${status.proofNumber}`;
         artColor = 'skyblue';
     }
     if (status.artAtClient){
@@ -30,7 +30,7 @@ export default function ProgressBar({status}) {
 
     //Print
     if (status.printUploaded){
-        printText = `#${status.printUploaded}`;
+        printText = `#${status.printNumber}`;
         printColor = 'skyblue';
     }
     if (status.printApproved){

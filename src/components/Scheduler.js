@@ -230,7 +230,7 @@ class ScheduledTask extends Component {
                             <option value="Attach" disabled={action !== "System"}>Attach</option>
                             <option value="Accept" disabled={action !== "System"}>Accept</option>
                             <option value="Pending" disabled={action !== "System"}>Pending</option>
-                            <option value="Finalize" disabled={action !== "System"}>Finalize</option>
+                            <option value="Finalize" disabled={action !== "System" || !this.props.status.mapAttached || !this.props.status.printApproved}>Finalize</option>
                     </select>
                     <select
                         value={what}
@@ -593,7 +593,7 @@ export default class Scheduler extends Component {
                             handleChangeDate={(e) => this.handleTaskEdited("date", index, e)}
                             handleActionTaken={(e) => this.handleTaskEdited("actionTaken", index, e)}
                             deleteScheduledTask={(e) => this.deleteScheduledTask(e, index)}
-                            status={this.props.job.status}
+                            status={this.state.status}
                             contacts={this.props.job.contacts}
                         />
                     )}

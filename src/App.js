@@ -132,7 +132,8 @@ class App extends Component {
             job.lastActions = [newCompletedTask, ...job.lastActions];
 
             //increment status
-            job.status.proofUploaded += 1;
+            job.status.proofNumber += 1;
+            job.status.proofUploaded = true;
 
             //delete scheduled task
             const taskIndex = job.scheduledTasks.findIndex(task => task.what === "Proof Pending");
@@ -144,7 +145,8 @@ class App extends Component {
             job.lastActions = [newCompletedTask, ...job.lastActions];
 
             //increment status
-            job.status.printUploaded += 1;
+            job.status.printNumber += 1;
+            job.status.printUploaded = true;
 
             //delete scheduled task
             const taskIndex = job.scheduledTasks.findIndex(task => task.what === "Print Pending");
@@ -283,7 +285,7 @@ class App extends Component {
                         status = {...status, proofApproved: true};
                         break;
                     case "Proof Unapproved":
-                        status = {...status, proofApproved: false, changesAtArtist: undefined, artAtClient: undefined,};
+                        status = {...status, proofApproved: false, proofUploaded: false, changesAtArtist: undefined, artAtClient: undefined, printApproved: false, printUploaded: false};
                         break;
                     case "Map Approved":
                         status = {...status, mapApproved: true};
@@ -295,7 +297,7 @@ class App extends Component {
                         status = {...status, printApproved: true};
                         break;
                     case "Print Unapproved":
-                        status = {...status, printApproved: false};
+                        status = {...status, printApproved: false, printUploaded: false};
                         break;
                     case "Order Completed":
                         status = {...status, complete: true};
@@ -431,7 +433,7 @@ class App extends Component {
             filterDateStart: moment().subtract(7, "days"),
             filterDateEnd: moment().add(21, "days"),
             filterSpecialist: "all",
-            filterClientLabel: "all",
+            filterClientLabel: ["Default"],
             filterProduct: "all",
             hideCompleted: true,
             filterSearchWord: "",
@@ -457,14 +459,6 @@ class App extends Component {
         this.state.jobs.forEach((job) => {
             if (job.label !== "Default" && !clientLabelOptions.has(job.label)) {
                 clientLabelOptions.add(job.label);
-            }
-        })
-
-        // find products
-        let productOptions = new Set();
-        filteredJobs.forEach((job) => {
-            if (!productOptions.has(job.product)) {
-                productOptions.add(job.product);
             }
         })
 

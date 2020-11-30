@@ -70,10 +70,10 @@ const MasterLog = ({jobs}) => {
                         <tr>
                             <th onClick={() => handleSortChange("date")}>Date</th>
                             <th onClick={() => handleSortChange("date")}>Time</th>
-                            <th onClick={() => handleSortChange("action")}>Action</th>
+                            <th onClick={() => handleSortChange("action")}>Type</th>
                             <th onClick={() => handleSortChange("who")}>Who</th>
                             <th onClick={() => handleSortChange("what")}>What</th>
-                            <th onClick={() => handleSortChange("actionTaken")}>Action Taken</th>
+                            <th onClick={() => handleSortChange("actionTaken")}>Action</th>
                             <th onClick={() => handleSortChange("completedBy")}>Completed By</th>
                             <th>Comments</th>
                         </tr>
