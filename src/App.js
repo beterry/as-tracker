@@ -285,10 +285,10 @@ class App extends Component {
                 // Update status based on actions taken
                 switch(task.actionTaken){
                     case "Changes to Artist":
-                        status = {...status, changesAtArtist: moment(), artAtClient: undefined};
+                        status = {...status, changesAtArtist: moment(), artAtClient: undefined, proofUploaded: false};
                         break;
                     case "Brief to Artist":
-                        status = {...status, changesAtArtist: moment(), artAtClient: undefined};
+                        status = {...status, changesAtArtist: moment(), artAtClient: undefined, proofUploaded: false};
                         break;
                     case "Proof to Client":
                         status = {...status, artAtClient: moment()};

@@ -423,8 +423,6 @@ export default class Scheduler extends Component {
             if (!this.props.job.printOnly){
                 if (this.state.mapAttached){
                     this.newTask("System", "Finalize", "Order");
-                } else if (this.state.mapApproved){
-                        this.newTask("System", "Attach", "Mapping");
                 };
             } else {
                 this.newTask("System", "Finalize", "Order");
