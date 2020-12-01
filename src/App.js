@@ -202,7 +202,9 @@ class App extends Component {
 
         let jobs = [...this.state.jobs]
         let filterClientLabel = [...this.state.filterClientLabel];
+        let previousLabels = [];
 
+        //add new label to filter state
         if (!filterClientLabel.includes(label)){
             filterClientLabel.push(label);
         }
@@ -211,9 +213,24 @@ class App extends Component {
             let job = {...jobs.find(job => job.id === id)};
             let index = jobs.findIndex(job => job.id === id);
 
+            //add previous labels to array
+            if(!previousLabels.includes(job.label)){
+                previousLabels.push(job.label)
+            }
+
+            //reassign label to new label
             job.label = label;
 
+            //add new job to jobs
             jobs.splice(index, 1, job);
+        })
+
+        //loop through previous labels and delete if they no longer exist
+        previousLabels.forEach(prevLabel => {
+            if(!jobs.find(job => job.label === prevLabel)){
+                const labelIndex = filterClientLabel.findIndex((word) => word === prevLabel);
+                filterClientLabel.splice(labelIndex, 1);
+            }
         })
 
         this.setState({ jobs, filterClientLabel })
@@ -426,12 +443,13 @@ class App extends Component {
     }
 
     restoreDefaultFilters(){
-        this.clearSelected();
         this.setState({
+            selected: [],
+            allSelected: false,
             filterDateStart: moment().subtract(7, "days"),
             filterDateEnd: moment().add(21, "days"),
             filterSpecialist: "all",
-            filterClientLabel: ["Default"],
+            // filterClientLabel: ["Default"],
             filterProduct: "all",
             hideCompleted: true,
             filterSearchWord: "",
