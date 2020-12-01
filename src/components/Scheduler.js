@@ -210,6 +210,7 @@ class ScheduledTask extends Component {
                         value={action}
                         onChange={this.props.handleChangeAction}
                         className="mr-s"
+                        disabled={what === "Print Pending" || what === "Proof Pending" || who === "Attach"}
                     >
                         <option value="" disabled>Type</option>
                             <option value="Call">Call</option>
@@ -221,7 +222,7 @@ class ScheduledTask extends Component {
                         value={who}
                         onChange={this.props.handleChangeWho}
                         className="mr-s"
-                        disabled={!action}
+                        disabled={!action || what === "Print Pending" || what === "Proof Pending" || who === "Attach"}
                     >
                         <option value="" disabled>Who</option>
                             <option value="Client">Client</option>
@@ -236,7 +237,7 @@ class ScheduledTask extends Component {
                     <select
                         value={what}
                         onChange={this.props.handleChangeWhat}
-                        disabled={!(who && action)}
+                        disabled={!(who && action) || what === "Print Pending" || what === "Proof Pending" || who === "Attach"}
                     >
                         <option value="" disabled>What</option>
                             <option value="Order">Order</option>

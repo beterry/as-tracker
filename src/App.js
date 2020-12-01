@@ -471,8 +471,6 @@ class App extends Component {
             }
         })
 
-        console.log("All selected: ", filteredJobs.length === this.state.selected.length);
-
         return (
             <Router>
                 <Header />
