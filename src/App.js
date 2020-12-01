@@ -49,7 +49,6 @@ class App extends Component {
             filterProduct: "all",
             hideCompleted: true,
             filterSearchWord: "",
-            allSelected: false,
             user: "TarrynH",
             isAdmin: true,
             tab: "Weekly",
@@ -180,7 +179,6 @@ class App extends Component {
 
     editSelected(id, e) {
         let selected = [...this.state.selected];
-        const filteredJobs = filterJobs(this.state);
 
         if (!this.state.selected.includes(id)) {
             selected.push(id)
@@ -191,7 +189,6 @@ class App extends Component {
 
         this.setState({
             selected,
-            allSelected: selected.length === filteredJobs.length
         });
         // console.log(selected);
     }
@@ -417,10 +414,9 @@ class App extends Component {
     }
 
     handleSelectAll() {
-        if (this.state.allSelected) {
+        if (filterJobs(this.state).length === this.state.selected.length) {
             this.setState({
                 selected: [],
-                allSelected: false,
             })
         } else {
             const filteredJobs = filterJobs(this.state);
@@ -430,7 +426,6 @@ class App extends Component {
 
             this.setState({
                 selected: ids,
-                allSelected: true,
             })
         }
     }
@@ -438,14 +433,12 @@ class App extends Component {
     clearSelected() {
         this.setState({
             selected: [],
-            allSelected: false,
         })
     }
 
     restoreDefaultFilters(){
         this.setState({
             selected: [],
-            allSelected: false,
             filterDateStart: moment().subtract(7, "days"),
             filterDateEnd: moment().add(21, "days"),
             filterSpecialist: "all",
@@ -477,6 +470,8 @@ class App extends Component {
                 clientLabelOptions.add(job.label);
             }
         })
+
+        console.log("All selected: ", filteredJobs.length === this.state.selected.length);
 
         return (
             <Router>
@@ -548,7 +543,7 @@ class App extends Component {
                                 <Table
                                     handleHeaderClick={this.changeSortBy}
                                     handleSelectAll={() => this.handleSelectAll()}
-                                    allSelected={this.state.allSelected}
+                                    allSelected={filteredJobs.length === this.state.selected.length}
                                 >
                                     {sortedJobs.map((job, index) =>
                                         <JobRow
