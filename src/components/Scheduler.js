@@ -386,13 +386,8 @@ export default class Scheduler extends Component {
 
         if (actionTaken === "Proof Approved"){
             if (!this.props.job.printOnly){
-                if (this.state.mapAttached){
+                if (this.state.mapApproved){
                     this.newTask("System", "Artist", "Print Pending");
-                } else if (this.state.mapApproved){
-                    this.newTasks([
-                        {action: "System", who: "Artist", what: "Print Pending"},
-                        {action: "System", who: "Attach", what: "Mapping"},
-                    ]);
                 } else {
                     this.newTasks([
                         {action: "System", who: "Artist", what: "Print Pending"},
