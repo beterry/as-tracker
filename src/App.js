@@ -297,19 +297,19 @@ class App extends Component {
                         status = {...status, proofApproved: true};
                         break;
                     case "Proof Unapproved":
-                        status = {...status, proofApproved: false, proofUploaded: false, changesAtArtist: undefined, artAtClient: undefined, printApproved: false, printUploaded: false};
+                        status = {...status, proofApproved: false, proofUploaded: false, changesAtArtist: undefined, artAtClient: undefined, printApproved: false, printUploaded: false, complete: false,};
                         break;
                     case "Map Approved":
                         status = {...status, mapApproved: true};
                         break;
                     case "Map Unapproved":
-                        status = {...status, mapApproved: false};
+                        status = {...status, mapApproved: false, mapAttached: false, complete: false,};
                         break;
                     case "Print Approved":
                         status = {...status, printApproved: true};
                         break;
                     case "Print Unapproved":
-                        status = {...status, printApproved: false, printUploaded: false};
+                        status = {...status, printApproved: false, printUploaded: false, complete: false,};
                         break;
                     case "Order Completed":
                         status = {...status, complete: true};
