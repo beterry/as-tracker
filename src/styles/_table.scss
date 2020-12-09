@@ -93,6 +93,34 @@ tr:nth-child(even) {background: #E4E4E4;}
     }
 }
 
+th .sort-options{
+    margin-right: .5rem;
+    position: relative;
+
+    img{
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .sort-options_dropdown{
+        background-color: #C31A21;
+        padding: 2px;
+
+        border-radius: .25rem;
+        width: 75px;
+
+        position: absolute;
+        top: 100%;
+        right: 0;
+
+        button{
+            display: block;
+            width: 100%;
+        }
+    }
+}
+
+
 
 // tooltip styles
 .tooltip{

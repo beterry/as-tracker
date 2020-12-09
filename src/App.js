@@ -336,7 +336,8 @@ class App extends Component {
         this.setState({ jobs });
     }
 
-    changeSortBy(sortBy) {
+    changeSortBy(sortBy, e) {
+        e.preventDefault();
         if (sortBy === this.state.sortBy) {
             this.setState((state) => ({ sortDirection: !state.sortDirection }));
         } else {

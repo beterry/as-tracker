@@ -55,6 +55,18 @@ textarea, select, input{
     box-sizing: border-box;
 }
 
+// buttons
+.btn-icon{
+    background: none;
+    border: none;
+    border-radius: 50%;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 // margin utility
 .mr-s{
     margin-right: .5rem;
@@ -97,6 +109,10 @@ textarea, select, input{
 
 .align-center{
     align-items: center;
+}
+
+.justify-between{
+    justify-content: space-between;
 }
 
 // width utility

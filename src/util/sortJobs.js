@@ -7,7 +7,7 @@ const sortJobs = (sortBy, jobs, sortDirection) => {
             if (sortDirection){
                 sortedJobs.sort((a,b) => compareDatesDesc(a.lastActions[0].date, b.lastActions[0].date))
             } else{
-                sortedJobs.sort((a,b) => compareDatesAsc(a.lastActions[0].date, b.lastActions[0].date))
+                sortedJobs.sort((a,b) => compareDatesDesc(b.lastActions[0].date, a.lastActions[0].date))
             }
         } else if (sortBy === "company"){
             if (sortDirection){
@@ -68,6 +68,12 @@ const sortJobs = (sortBy, jobs, sortDirection) => {
                 sortedJobs.sort((a,b) => a.status - b.status)
             } else{
                 sortedJobs.sort((a,b) => b.status - a.status)
+            }
+        } else if (sortBy === "taskAction"){
+            if (sortDirection){
+                sortedJobs.sort((a, b) => compareActionIcons(a, b))
+            } else{
+                sortedJobs.sort((a, b) => compareActionIcons(b, a))
             }
         //default case
         } else {
@@ -139,6 +145,14 @@ const compareDatesAsc = (a, b) => {
         return 1;
     } else if (b.isBefore(a)){
         return -1;
+    } else {
+        return 0;
+    }
+}
+
+const compareActionIcons = (a, b) => {
+    if (a.scheduledTasks[0] && b.scheduledTasks[0]){
+        return compareStringDesc(a.scheduledTasks[0].action, b.scheduledTasks[0].action)
     } else {
         return 0;
     }
