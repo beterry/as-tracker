@@ -68,6 +68,10 @@ tr:nth-child(even) {background: #E4E4E4;}
     }
 }
 
+.task-cell_late{
+    justify-self: end;
+}
+
 .col-pbar{
     width: 5rem;
 }

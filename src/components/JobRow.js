@@ -4,9 +4,10 @@ import moment from 'moment'
 import ProgressBar from './ProgressBar';
 
 import noteImg from '../images/books.gif';
-import iconSystem from '../images/icon-system.svg'
-import iconEmail from '../images/icon-email.svg'
-import iconCall from '../images/icon-call.svg'
+import iconSystem from '../images/icon-system.svg';
+import iconEmail from '../images/icon-email.svg';
+import iconCall from '../images/icon-call.svg';
+import iconLate from '../images/icon-late.svg';
 
 import {compareDatesDesc, compareDatesAsc} from '../util/sortJobs';
 
@@ -40,7 +41,8 @@ const TaskCell = ({task}) => {
                     {time}
                 </span>
             </div>
-            
+            <div style={{flexGrow: 1}} />
+            {!task.actionTaken && moment().isAfter(task.date) ? <img src={iconLate} alt={task.action} className="task-cell_late"/> : null}
         </div>
     )
 }
@@ -82,8 +84,7 @@ export default class JobRow extends Component {
         const sortedScheduledTasks = [...scheduledTasks];
         
         //sort scheduled tasks in cell
-        if (this.props.sortBy === "scheduledTasks" && company === "Client E"){
-            console.log("sorting...");
+        if (this.props.sortBy === "scheduledTasks"){
             sortedScheduledTasks.sort((a,b) => {
                 if (a.date && b.date){
                     if (this.props.sortDirection){
