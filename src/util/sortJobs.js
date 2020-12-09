@@ -144,4 +144,4 @@ const compareDatesAsc = (a, b) => {
     }
 }
 
-export default sortJobs;
+export {sortJobs, compareDatesDesc, compareDatesAsc};

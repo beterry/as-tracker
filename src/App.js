@@ -29,7 +29,7 @@ import data from './data/db-2';
 
 //utility libraries
 import moment from 'moment';
-import sortJobs from './util/sortJobs';
+import {sortJobs} from './util/sortJobs';
 import filterJobs from './util/filterJobs';
 
 
@@ -550,6 +550,8 @@ class App extends Component {
                                             handleCheckbox={(e) => this.editSelected(job.id, e)}
                                             openSchedulerFromLine={() => this.openSchedulerFromLine(job.id)}
                                             key={job.id}
+                                            sortBy={this.state.sortBy}
+                                            sortDirection={this.state.sortDirection}
                                         />)
                                     }
                                 </Table>

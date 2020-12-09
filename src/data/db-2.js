@@ -778,7 +778,7 @@ const database = [
                 action: "System",
                 who: "Artist",
                 what: "Print Pending",
-                date: moment().add(1, 'day').startOf('day').add(11, 'hours'),
+                date: moment().add(1, 'day').startOf('day').add(13, 'hours'),
                 actionTaken: "",
                 completedBy: "",
                 note: ""
@@ -912,7 +912,7 @@ const database = [
                 action: "Call",
                 who: "Client",
                 what: "Order",
-                date: moment().add(1, 'day').startOf('day').add(11, 'hours'),
+                date: moment().subtract(1, 'hours'),
                 actionTaken: "",
                 completedBy: "",
                 note: ""

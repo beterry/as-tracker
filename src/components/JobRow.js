@@ -8,6 +8,8 @@ import iconSystem from '../images/icon-system.svg'
 import iconEmail from '../images/icon-email.svg'
 import iconCall from '../images/icon-call.svg'
 
+import {compareDatesDesc, compareDatesAsc} from '../util/sortJobs';
+
 const TaskCell = ({task}) => {
     let taskName = "";
     let src;
@@ -76,6 +78,25 @@ export default class JobRow extends Component {
             note,
             printOnly,
         } = this.props.job
+
+        const sortedScheduledTasks = [...scheduledTasks];
+        
+        //sort scheduled tasks in cell
+        if (this.props.sortBy === "scheduledTasks" && company === "Client E"){
+            console.log("sorting...");
+            sortedScheduledTasks.sort((a,b) => {
+                if (a.date && b.date){
+                    if (this.props.sortDirection){
+                        return compareDatesDesc(a.date, b.date)
+                    } else {
+                        return compareDatesAsc(a.date, b.date)
+                    }
+                } else {
+                    return 0;
+                }
+            });
+        }        
+
         return (
             <tr
                 style={{background: this.props.selected && "#65FFFF"}}
@@ -110,7 +131,7 @@ export default class JobRow extends Component {
                     onClick={this.props.openSchedulerFromLine}
                     className="col-scheduled"
                 >
-                    {scheduledTasks.map((task, index) => <TaskCell task={task} key={`${id} scheduled ${index}`}/>)}
+                    {sortedScheduledTasks.map((task, index) => <TaskCell task={task} key={`${id} scheduled ${index}`}/>)}
                 </td>
                 <td>
                     <TaskCell task={lastActions[0]} />
