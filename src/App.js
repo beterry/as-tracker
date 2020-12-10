@@ -19,7 +19,6 @@ import SpecialistFilter from './components/filters/SpecialistFilter';
 import ClientLabelFilter from './components/filters/ClientLabelFilter';
 import CheckboxFilter from './components/filters/CheckboxFilter';
 import SearchFilter from './components/filters/SearchFilter';
-import ProductFilter from './components/filters/ProductFilter';
 
 import SystemActions from './components/filters/SystemActions';
 
@@ -522,11 +521,6 @@ class App extends Component {
                                             labels={this.state.filterClientLabel}
                                             options={[...clientLabelOptions]}
                                             changeClientLabel={this.changeFilterClientLabel}
-                                        />
-                                        <ProductFilter
-                                            product={this.state.filterProduct}
-                                            tab={this.state.tab}
-                                            changeProduct={this.changeFilterProduct}
                                         />
                                         <CheckboxFilter
                                             checked={this.state.hideCompleted}
