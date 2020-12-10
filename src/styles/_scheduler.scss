@@ -65,9 +65,12 @@
     }
 }
 
+.scheduler-last{
+    background: rgba(0,0,0,.1);
+}
+
 .scheduler-last, .scheduler-scheduled{
     padding: 1rem;
-    background: rgba(105,184,235,.3);
     box-sizing: border-box;
 }
 

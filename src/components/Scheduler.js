@@ -188,7 +188,10 @@ class ScheduledTask extends Component {
         const {action, who, what, date, actionTaken, note} = this.props.task;
         
         return (
-            <form className='scheduler-scheduled'>      
+            <form
+                className='scheduler-scheduled'
+                style={{background: actionTaken ? "rgba(0,128,0,.1)" : "rgba(105,184,235,.3)"}}
+            >      
                 <div className="scheduler-scheduled_title">
                     <div className="flex align-center">
                         <img src={actionTaken ? iconCompleted : iconScheduled} alt="Scheduled" style={{width: "24px", height: "24px"}} className="mr-s"/>
