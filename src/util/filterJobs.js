@@ -22,7 +22,11 @@ const filterJobs = ({
         )
     })
 
-    if(tab === "Monthly"){
+    if(tab === "Box Toppers"){
+        filteredJobs = filteredJobs.filter(job => 
+            job.product === "BOX TOPPERS"
+        )
+    } else if(tab === "Monthly"){
         filteredJobs = filteredJobs.filter(job => 
             job.product === "NEW MOVERS POSTCARD" ||
             job.product === "BirthdayPC" ||
@@ -32,7 +36,8 @@ const filterJobs = ({
         filteredJobs = filteredJobs.filter(job => 
             job.product !== "NEW MOVERS POSTCARD" &&
             job.product !== "BirthdayPC" &&
-            job.product !== "NEW MOVERS PLASTIC"
+            job.product !== "NEW MOVERS PLASTIC" &&
+            job.product !== "BOX TOPPERS"
         )
     }
 

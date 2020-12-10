@@ -504,6 +504,10 @@ class App extends Component {
                                             className={`table-tab ${this.state.tab === "Monthly" && "active"}`}
                                             onClick={(e) => this.changeTab("Monthly", e)}
                                         >Monthly</button>
+                                        <button
+                                            className={`table-tab ${this.state.tab === "Box Toppers" && "active"}`}
+                                            onClick={(e) => this.changeTab("Box Toppers", e)}
+                                        >Box Toppers</button>
                                     </div>
                                     <form className="table-filters_form">
                                         <DateFilter
