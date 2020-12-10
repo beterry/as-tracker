@@ -556,7 +556,8 @@ class App extends Component {
                                         />)
                                     }
                                 </Table>
-                                <button onClick={(e) => e.preventDefault()}>Print Report</button>
+                                
+                                
                             </>
                         </Route>
                     </Switch>

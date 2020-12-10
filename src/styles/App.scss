@@ -127,3 +127,18 @@ textarea, select, input{
     top: 20px;
     right: 20px;
 }
+
+.count-box{
+    background: #EFEEE0;
+    padding: .5rem;
+    display: inline-block;
+    margin: .5rem 0 0 0;
+    h3{
+        font-weight: 400;
+        font-size: .875rem;
+        color: #C31A21;
+        text-transform: uppercase;
+        margin: 0 0 .5rem 0;
+    }
+
+}

@@ -71,6 +71,11 @@ export default class Table extends Component {
                         </thead>
                         <tbody>{this.props.children}</tbody>
                     </table>
+                    <div className="count-box">
+                        <h3>Total Orders: <strong>12</strong></h3>
+                        <h3>Mailing Orders: <strong>11</strong></h3>
+                        <button onClick={(e) => e.preventDefault()}>Print Report</button>
+                    </div>
                 </div>
             </section>
         )
