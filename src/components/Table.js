@@ -25,6 +25,7 @@ export default class Table extends Component {
         return (
             <section className="table">
                 <div className="table-container">
+                    <p className="showing-text">Showing <strong>{this.props.shownJobs}</strong> / {this.props.totalJobs}</p>
                     <table border="1">
                         <thead>
                             <tr>

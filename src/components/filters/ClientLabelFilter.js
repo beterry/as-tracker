@@ -21,18 +21,36 @@ class ClientLabelFilter extends Component {
         })
     }
 
+    handleCheckAll(e){
+        if (this.props.labels.length === this.props.options.length + 1){
+            this.props.deselectAll();
+        } else {
+            this.props.selectAll();
+        }
+    }
+
     render(){
         return (
             <div className="filter-labels_wrapper">
                 <button
                     className="fake-dropdown"
                     onClick={(e) => this.toggleShowOptions(e)}
+                    style={{background: this.props.labels.length === this.props.options.length + 1 ? 'white' : 'yellow'}}
                 >
                     {`Labels (${this.props.labels.length}/${this.props.options.length + 1})`}
                     <img src={iconDropdown} alt="arrow"/>
                 </button>
                 {this.state.showOptions && 
                     <DropDown close={(e) => this.toggleShowOptions(e)}>
+                            <div>
+                                <input
+                                    type="checkbox"
+                                    name={`labelOp-all`}
+                                    onChange={(e) => this.handleCheckAll(e)}
+                                    checked={this.props.labels.length === this.props.options.length + 1}/>
+                                <label htmlFor={`labelOp-default`}>All</label>
+                            </div>
+                            <hr />
                             <div>
                                 <input
                                     type="checkbox"

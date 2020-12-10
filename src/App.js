@@ -29,7 +29,7 @@ import data from './data/db-2';
 //utility libraries
 import moment from 'moment';
 import {sortJobs} from './util/sortJobs';
-import filterJobs from './util/filterJobs';
+import {filterJobsMain, filterJobsTab, filterJobsLabel, filterJobsAll} from './util/filterJobs';
 
 
 class App extends Component {
@@ -61,6 +61,7 @@ class App extends Component {
         this.changeFilterEndDate = this.changeFilterEndDate.bind(this);
         this.changeFilterSpecialist = this.changeFilterSpecialist.bind(this);
         this.changeFilterClientLabel = this.changeFilterClientLabel.bind(this);
+        this.setAllFilterClientLabels = this.setAllFilterClientLabels.bind(this);
         this.changeFilterProduct = this.changeFilterProduct.bind(this);
         this.toggleHideCompleted = this.toggleHideCompleted.bind(this);
         this.changeFilterSearchWord = this.changeFilterSearchWord.bind(this);
@@ -81,6 +82,9 @@ class App extends Component {
                 filterSpecialist: "all",
             })
         }
+
+        // loop through all jobs and add labels to filter
+        this.setAllFilterClientLabels();
     }
 
     changeUser(user) {
@@ -373,6 +377,17 @@ class App extends Component {
         this.setState({ filterClientLabel });
     }
 
+    setAllFilterClientLabels() {
+        //look through all jobs and filter by all labels
+        let clientLabelOptions = new Set();
+        this.state.jobs.forEach((job) => {
+            if (job.label !== "Default" && !clientLabelOptions.has(job.label)) {
+                clientLabelOptions.add(job.label);
+            }
+        })
+        this.setState({filterClientLabel: ["Default", ...clientLabelOptions]});
+    }
+
     changeFilterProduct(e) {
         this.clearSelected();
         this.setState({ filterProduct: e.target.value });
@@ -414,12 +429,12 @@ class App extends Component {
     }
 
     handleSelectAll() {
-        if (filterJobs(this.state).length === this.state.selected.length) {
+        if (filterJobsAll(this.state).length === this.state.selected.length) {
             this.setState({
                 selected: [],
             })
         } else {
-            const filteredJobs = filterJobs(this.state);
+            const filteredJobs = filterJobsAll(this.state);
             let ids = [];
 
             filteredJobs.forEach((job) => ids.push(job.id));
@@ -442,11 +457,11 @@ class App extends Component {
             filterDateStart: moment().subtract(7, "days"),
             filterDateEnd: moment().add(21, "days"),
             filterSpecialist: "all",
-            // filterClientLabel: ["Default"],
             filterProduct: "all",
             hideCompleted: true,
             filterSearchWord: "",
         })
+        this.setAllFilterClientLabels();
     }
 
     openSchedulerFromLine(id) {
@@ -460,8 +475,11 @@ class App extends Component {
         const firstSelectedJob = this.state.jobs.find(job => job.id === this.state.selected[0]);
 
         // filter and sort jobs
-        const filteredJobs = filterJobs(this.state)
-        const sortedJobs = sortJobs(this.state.sortBy, filteredJobs, this.state.sortDirection);
+        const filteredByTab = filterJobsTab(this.state, this.state.jobs);
+        const filteredByMain = filterJobsMain(this.state, filteredByTab);
+        const filteredByLabel = filterJobsLabel(this.state, filteredByMain);
+
+        const sortedJobs = sortJobs(this.state.sortBy, filteredByLabel, this.state.sortDirection);
 
         // find client labels
         let clientLabelOptions = new Set();
@@ -525,6 +543,8 @@ class App extends Component {
                                             labels={this.state.filterClientLabel}
                                             options={[...clientLabelOptions]}
                                             changeClientLabel={this.changeFilterClientLabel}
+                                            selectAll={this.setAllFilterClientLabels}
+                                            deselectAll={() => this.setState({filterClientLabel: []})}
                                         />
                                         <CheckboxFilter
                                             checked={this.state.hideCompleted}
@@ -540,7 +560,9 @@ class App extends Component {
                                 <Table
                                     handleHeaderClick={this.changeSortBy}
                                     handleSelectAll={() => this.handleSelectAll()}
-                                    allSelected={filteredJobs.length === this.state.selected.length}
+                                    allSelected={filteredByLabel.length === this.state.selected.length}
+                                    totalJobs={filteredByMain.length}
+                                    shownJobs={filteredByLabel.length}
                                 >
                                     {sortedJobs.map((job, index) =>
                                         <JobRow
