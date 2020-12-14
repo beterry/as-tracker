@@ -204,9 +204,9 @@ export default class Actions extends Component {
                     </div>
                 </form>
                 <div className="info-box">
-                    <h3>This Week's Group: C</h3>
-                    <p>Art Due Date: 9/20/20</p>
-                    <p>In Home Date: 10/01/2020</p>
+                    <h3>Selected Group: J</h3>
+                    <p>Art Due Date: {moment().add(21, "days").format("M/D/YYYY")}</p>
+                    <p>In Home Date: {moment().add(30, "days").format("M/D/YYYY")}</p>
                 </div>
             </section>
         )

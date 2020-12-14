@@ -8,6 +8,7 @@ const filterJobsMain = (filters, jobs) => {
         filterProduct,
         hideCompleted,
         filterSearchWord,
+        filterGroup,
     } = filters;
 
     let filteredJobs = jobs.filter((job) => {
@@ -16,6 +17,7 @@ const filterJobsMain = (filters, jobs) => {
         return (
             job.artDue.isBefore(filterDateEnd) &&
             job.artDue.isAfter(filterDateStart) &&
+            (job.group === filterGroup || filterGroup === "") &&
             (job.acctSpecialist === filterSpecialist || filterSpecialist === "all") &&
             (job.product === filterProduct || filterProduct === "all") &&
             companyName.includes(word)

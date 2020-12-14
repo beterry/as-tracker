@@ -15,6 +15,7 @@ import Scheduler from './components/Scheduler';
 import MasterLog from './components/MasterLog';
 
 import DateFilter from './components/filters/DateFilter';
+import GroupFilter from './components/filters/GroupFilter';
 import SpecialistFilter from './components/filters/SpecialistFilter';
 import ClientLabelFilter from './components/filters/ClientLabelFilter';
 import CheckboxFilter from './components/filters/CheckboxFilter';
@@ -43,6 +44,7 @@ class App extends Component {
             sortDirection: true,
             filterDateStart: moment().subtract(7, "days"),
             filterDateEnd: moment().add(21, "days"),
+            filterGroup: "",
             filterSpecialist: "all",
             filterClientLabel: ["Default"],
             filterProduct: "all",
@@ -59,6 +61,7 @@ class App extends Component {
         this.changeSortBy = this.changeSortBy.bind(this);
         this.changeFilterStartDate = this.changeFilterStartDate.bind(this);
         this.changeFilterEndDate = this.changeFilterEndDate.bind(this);
+        this.changeFilterGroup = this.changeFilterGroup.bind(this);
         this.changeFilterSpecialist = this.changeFilterSpecialist.bind(this);
         this.changeFilterClientLabel = this.changeFilterClientLabel.bind(this);
         this.setAllFilterClientLabels = this.setAllFilterClientLabels.bind(this);
@@ -358,6 +361,11 @@ class App extends Component {
         this.setState({ filterDateEnd: moment(e.target.value) });
     }
 
+    changeFilterGroup(e) {
+        this.clearSelected();
+        this.setState({ filterGroup: e.target.value });
+    }
+
     changeFilterSpecialist(e) {
         this.clearSelected();
         this.setState({ filterSpecialist: e.target.value });
@@ -456,6 +464,7 @@ class App extends Component {
             selected: [],
             filterDateStart: moment().subtract(7, "days"),
             filterDateEnd: moment().add(21, "days"),
+            filterGroup: "",
             filterSpecialist: "all",
             filterProduct: "all",
             hideCompleted: true,
@@ -508,7 +517,6 @@ class App extends Component {
                                     handleAddLabel={this.addLabel}
                                     labelOptions={[...clientLabelOptions]}
                                     handleReassign={this.reassignSpecialist}
-                                    handleQuickAction={this.takeQuickAction}
                                     openScheduler={() => this.toggleScheduler()}
                                     addLastAction={this.addLastAction}
                                 />
@@ -533,6 +541,10 @@ class App extends Component {
                                             end={this.state.filterDateEnd}
                                             changeStartDate={this.changeFilterStartDate}
                                             changeEndDate={this.changeFilterEndDate}
+                                        />
+                                        <GroupFilter
+                                            group={this.state.filterGroup}
+                                            changeGroup={this.changeFilterGroup}
                                         />
                                         <SpecialistFilter
                                             specialist={this.state.filterSpecialist}
