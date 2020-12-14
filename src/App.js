@@ -65,6 +65,7 @@ class App extends Component {
         this.changeFilterSpecialist = this.changeFilterSpecialist.bind(this);
         this.changeFilterClientLabel = this.changeFilterClientLabel.bind(this);
         this.setAllFilterClientLabels = this.setAllFilterClientLabels.bind(this);
+        this.setNoFilterClientLabels = this.setNoFilterClientLabels.bind(this);
         this.changeFilterProduct = this.changeFilterProduct.bind(this);
         this.toggleHideCompleted = this.toggleHideCompleted.bind(this);
         this.changeFilterSearchWord = this.changeFilterSearchWord.bind(this);
@@ -389,6 +390,8 @@ class App extends Component {
     }
 
     setAllFilterClientLabels() {
+        this.clearSelected();
+
         //look through all jobs and filter by all labels
         let clientLabelOptions = new Set();
         this.state.jobs.forEach((job) => {
@@ -397,6 +400,11 @@ class App extends Component {
             }
         })
         this.setState({filterClientLabel: ["Default", ...clientLabelOptions]});
+    }
+
+    setNoFilterClientLabels() {
+        this.clearSelected();
+        this.setState({filterClientLabel: []});
     }
 
     changeFilterProduct(e) {
@@ -578,7 +586,7 @@ class App extends Component {
                                             options={[...clientLabelOptions]}
                                             changeClientLabel={this.changeFilterClientLabel}
                                             selectAll={this.setAllFilterClientLabels}
-                                            deselectAll={() => this.setState({filterClientLabel: []})}
+                                            deselectAll={this.setNoFilterClientLabels}
                                         />
                                     }
                                 >
