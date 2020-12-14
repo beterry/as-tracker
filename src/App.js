@@ -539,13 +539,7 @@ class App extends Component {
                                             changeSpecialist={this.changeFilterSpecialist}
                                             isAdmin={this.state.isAdmin}
                                         />
-                                        <ClientLabelFilter
-                                            labels={this.state.filterClientLabel}
-                                            options={[...clientLabelOptions]}
-                                            changeClientLabel={this.changeFilterClientLabel}
-                                            selectAll={this.setAllFilterClientLabels}
-                                            deselectAll={() => this.setState({filterClientLabel: []})}
-                                        />
+                                        
                                         <CheckboxFilter
                                             checked={this.state.hideCompleted}
                                             handleToggle={this.toggleHideCompleted}
@@ -563,6 +557,15 @@ class App extends Component {
                                     allSelected={filteredByLabel.length === this.state.selected.length}
                                     totalJobs={filteredByMain.length}
                                     shownJobs={filteredByLabel.length}
+                                    labelFilter={
+                                        <ClientLabelFilter
+                                            labels={this.state.filterClientLabel}
+                                            options={[...clientLabelOptions]}
+                                            changeClientLabel={this.changeFilterClientLabel}
+                                            selectAll={this.setAllFilterClientLabels}
+                                            deselectAll={() => this.setState({filterClientLabel: []})}
+                                        />
+                                    }
                                 >
                                     {sortedJobs.map((job, index) =>
                                         <JobRow

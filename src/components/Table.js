@@ -25,7 +25,15 @@ export default class Table extends Component {
         return (
             <section className="table">
                 <div className="table-container">
-                    <p className="showing-text">Showing <strong>{this.props.shownJobs}</strong> / {this.props.totalJobs}</p>
+
+                    <div className="flex align-center justify-between label-wrapper">
+                        <div className="flex align-center">
+                            <label className="mr-s">Select client labels: </label>
+                            {this.props.labelFilter}
+                        </div>
+                        <p className="showing-text">Showing <strong>{this.props.shownJobs}</strong> / {this.props.totalJobs}</p>
+                    </div>
+                    
                     <table border="1">
                         <thead>
                             <tr>
