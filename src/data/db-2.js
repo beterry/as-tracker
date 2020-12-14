@@ -23,10 +23,10 @@ const database = [
             proofUploaded: true, //2
             artAtClient: moment(), //3
             proofApproved: true, //4
-            mapApproved: true, //5
-            mapAttached: true, //6
-            printApproved: true, //7
-            printUploaded: true, //8
+            mapApproved: true, //7
+            mapAttached: true, //8
+            printApproved: true, //5
+            printUploaded: true, //6
             complete: true, //9
             proofNumber: 2,
             printNumber: 3,
