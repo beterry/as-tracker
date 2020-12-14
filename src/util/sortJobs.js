@@ -65,9 +65,9 @@ const sortJobs = (sortBy, jobs, sortDirection) => {
             }
         } else if (sortBy === "status"){
             if (sortDirection){
-                sortedJobs.sort((a,b) => a.status - b.status)
+                sortedJobs.sort((a,b) => a.status.code - b.status.code)
             } else{
-                sortedJobs.sort((a,b) => b.status - a.status)
+                sortedJobs.sort((a,b) => b.status.code - a.status.code)
             }
         } else if (sortBy === "taskAction"){
             if (sortDirection){

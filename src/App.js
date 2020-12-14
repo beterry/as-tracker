@@ -139,6 +139,7 @@ class App extends Component {
             //increment status
             job.status.proofNumber += 1;
             job.status.proofUploaded = true;
+            job.status.code = 2;
 
             //delete scheduled task
             const taskIndex = job.scheduledTasks.findIndex(task => task.what === "Proof Pending");
@@ -152,6 +153,7 @@ class App extends Component {
             //increment status
             job.status.printNumber += 1;
             job.status.printUploaded = true;
+            job.status.code = 6;
 
             //delete scheduled task
             const taskIndex = job.scheduledTasks.findIndex(task => task.what === "Print Pending");
@@ -163,6 +165,7 @@ class App extends Component {
             job.lastActions = [newCompletedTask, ...job.lastActions];
 
             job.status.mapAttached = true;
+            job.status.code = 8;
 
             //delete scheduled task
             const taskIndex = job.scheduledTasks.findIndex(task => task.what === "Mapping" && task.who === "Attach");
@@ -291,34 +294,34 @@ class App extends Component {
                 // Update status based on actions taken
                 switch(task.actionTaken){
                     case "Changes to Artist":
-                        status = {...status, changesAtArtist: moment(), artAtClient: undefined, proofUploaded: false};
+                        status = {...status, changesAtArtist: moment(), artAtClient: undefined, proofUploaded: false, code: 1};
                         break;
                     case "Brief to Artist":
-                        status = {...status, changesAtArtist: moment(), artAtClient: undefined, proofUploaded: false};
+                        status = {...status, changesAtArtist: moment(), artAtClient: undefined, proofUploaded: false, code: 2};
                         break;
                     case "Proof to Client":
-                        status = {...status, artAtClient: moment()};
+                        status = {...status, artAtClient: moment(), code: 3};
                         break;
                     case "Proof Approved":
-                        status = {...status, proofApproved: true};
+                        status = {...status, proofApproved: true, code: 4};
                         break;
                     case "Proof Unapproved":
-                        status = {...status, proofApproved: false, proofUploaded: false, changesAtArtist: undefined, artAtClient: undefined, printApproved: false, printUploaded: false, complete: false,};
+                        status = {...status, proofApproved: false, proofUploaded: false, changesAtArtist: undefined, artAtClient: undefined, printApproved: false, printUploaded: false, complete: false, code: 2};
                         break;
                     case "Map Approved":
-                        status = {...status, mapApproved: true};
+                        status = {...status, mapApproved: true, code: 7};
                         break;
                     case "Map Unapproved":
-                        status = {...status, mapApproved: false, mapAttached: false, complete: false,};
+                        status = {...status, mapApproved: false, mapAttached: false, complete: false, code: 4};
                         break;
                     case "Print Approved":
-                        status = {...status, printApproved: true};
+                        status = {...status, printApproved: true, code: 5};
                         break;
                     case "Print Unapproved":
-                        status = {...status, printApproved: false, printUploaded: false, complete: false,};
+                        status = {...status, printApproved: false, printUploaded: false, complete: false, code: 4};
                         break;
                     case "Order Completed":
-                        status = {...status, complete: true};
+                        status = {...status, complete: true, code: 9};
                         break;
                     default:
                         break;
