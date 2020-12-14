@@ -207,6 +207,7 @@ export default class Actions extends Component {
                     <h3>Selected Group: J</h3>
                     <p>Art Due Date: {moment().add(21, "days").format("M/D/YYYY")}</p>
                     <p>In Home Date: {moment().add(30, "days").format("M/D/YYYY")}</p>
+                    <p>Extra’s Delivery Date: {moment().add(30, "days").format("M/D/YYYY")}</p>
                 </div>
             </section>
         )
