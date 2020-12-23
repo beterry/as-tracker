@@ -201,6 +201,12 @@ export default class Actions extends Component {
                                 Reassign
                             </button>
                         </div>
+                        <div>
+                            <button
+                                onClick={(e) => e.preventDefault()}
+                                disabled={numberSelected === 0}
+                            >Export Selected to Excel</button>
+                        </div>
                     </div>
                 </form>
                 <div className="info-box">
