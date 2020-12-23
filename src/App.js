@@ -20,6 +20,7 @@ import SpecialistFilter from './components/filters/SpecialistFilter';
 import ClientLabelFilter from './components/filters/ClientLabelFilter';
 import CheckboxFilter from './components/filters/CheckboxFilter';
 import SearchFilter from './components/filters/SearchFilter';
+import GroupDropFilter from './components/filters/groupDropFilter';
 
 import SystemActions from './components/filters/SystemActions';
 
@@ -556,6 +557,9 @@ class App extends Component {
                                         <GroupFilter
                                             group={this.state.filterGroup}
                                             changeGroup={this.changeFilterGroup}
+                                        />
+                                        <GroupDropFilter
+                                            groupSelected={this.state.filterGroup}
                                         />
                                         <SpecialistFilter
                                             specialist={this.state.filterSpecialist}
