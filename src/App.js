@@ -46,7 +46,7 @@ class App extends Component {
             filterDateEnd: moment().add(21, "days"),
             filterGroup: "",
             filterSpecialist: "all",
-            filterClientLabel: ["Default"],
+            filterClientLabel: ["No Label"],
             filterProduct: "all",
             hideCompleted: true,
             filterSearchWord: "",
@@ -395,11 +395,11 @@ class App extends Component {
         //look through all jobs and filter by all labels
         let clientLabelOptions = new Set();
         this.state.jobs.forEach((job) => {
-            if (job.label !== "Default" && !clientLabelOptions.has(job.label)) {
+            if (job.label !== "No Label" && !clientLabelOptions.has(job.label)) {
                 clientLabelOptions.add(job.label);
             }
         })
-        this.setState({filterClientLabel: ["Default", ...clientLabelOptions]});
+        this.setState({filterClientLabel: ["No Label", ...clientLabelOptions]});
     }
 
     setNoFilterClientLabels() {
@@ -504,7 +504,7 @@ class App extends Component {
         // find client labels
         let clientLabelOptions = new Set();
         this.state.jobs.forEach((job) => {
-            if (job.label !== "Default" && !clientLabelOptions.has(job.label)) {
+            if (job.label !== "No Label" && !clientLabelOptions.has(job.label)) {
                 clientLabelOptions.add(job.label);
             }
         })

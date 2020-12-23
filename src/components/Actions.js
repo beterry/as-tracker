@@ -153,7 +153,7 @@ export default class Actions extends Component {
                                 onChange={(e) => this.handleExistingLabelChange(e)}
                             >
                                 <option value="" disabled>Existing Client Label</option>
-                                <option value="Default">Default</option>
+                                <option value="No Label">No Label</option>
                                 {this.props.labelOptions.map((option, index) => 
                                     <option value={option} key={`ex.label-${index}`}>{option}</option>
                                 )}

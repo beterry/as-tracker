@@ -15,7 +15,7 @@ const database = [
         quantity: 5000,
         mailWeeks: 2,
         acctSpecialist: "LucasT",
-        label: "Default",
+        label: "No Label",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
         status: {
@@ -230,7 +230,7 @@ const database = [
         quantity: 5000,
         mailWeeks: 2,
         acctSpecialist: "Sara P",
-        label: "Default",
+        label: "No Label",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
         status: {
@@ -581,7 +581,7 @@ const database = [
         quantity: 10000,
         mailWeeks: 4,
         acctSpecialist: "SaraP",
-        label: "Default",
+        label: "No Label",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
         status: {
@@ -743,7 +743,7 @@ const database = [
         quantity: 10000,
         mailWeeks: 4,
         acctSpecialist: "LucasT",
-        label: "Default",
+        label: "No Label",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
         status: {
@@ -887,7 +887,7 @@ const database = [
         quantity: 15000,
         mailWeeks: 9,
         acctSpecialist: "NikieC",
-        label: "Default",
+        label: "No Label",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
         status: {
@@ -1013,7 +1013,7 @@ const database = [
         quantity: 15000,
         mailWeeks: 9,
         acctSpecialist: "NikieC",
-        label: "Default",
+        label: "No Label",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
         status: {
@@ -1139,7 +1139,7 @@ const database = [
         quantity: 5000,
         mailWeeks: 9,
         acctSpecialist: "LucasT",
-        label: "Default",
+        label: "No Label",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
         status: {
@@ -1356,7 +1356,7 @@ const database = [
         quantity: 10000,
         mailWeeks: 9,
         acctSpecialist: "SaraP",
-        label: "Default",
+        label: "No Label",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
         status: {
@@ -1446,7 +1446,7 @@ const database = [
         quantity: 10000,
         mailWeeks: 9,
         acctSpecialist: "SaraP",
-        label: "Default",
+        label: "No Label",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
         status: {
@@ -1528,7 +1528,7 @@ const database = [
         quantity: 15000,
         mailWeeks: 11,
         acctSpecialist: "LucasT",
-        label: "Default",
+        label: "No Label",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
         status: {
@@ -1666,7 +1666,7 @@ const database = [
         quantity: 10000,
         mailWeeks: 9,
         acctSpecialist: "NikieC",
-        label: "Default",
+        label: "No Label",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
         status: {
@@ -1748,7 +1748,7 @@ const database = [
         quantity: 5000,
         mailWeeks: 4,
         acctSpecialist: "LucasT",
-        label: "Default",
+        label: "No Label",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
         status: {
@@ -1820,7 +1820,7 @@ const database = [
         quantity: 5000,
         mailWeeks: 4,
         acctSpecialist: "LucasT",
-        label: "Default",
+        label: "No Label",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
         status: {
@@ -1886,7 +1886,7 @@ const database = [
         quantity: 5000,
         mailWeeks: 4,
         acctSpecialist: "LucasT",
-        label: "Default",
+        label: "No Label",
         artDue: moment().add(10, 'days'),
         note: 'Do NOT call client on Mondays, he will shoot you!',
         status: {

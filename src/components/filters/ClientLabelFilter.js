@@ -48,16 +48,16 @@ class ClientLabelFilter extends Component {
                                     name={`labelOp-all`}
                                     onChange={(e) => this.handleCheckAll(e)}
                                     checked={this.props.labels.length === this.props.options.length + 1}/>
-                                <label htmlFor={`labelOp-default`}>All</label>
+                                <label htmlFor={`labelOp-all`}>All</label>
                             </div>
                             <hr />
                             <div>
                                 <input
                                     type="checkbox"
                                     name={`labelOp-default`}
-                                    onChange={(e) => this.handleCheckOption(e, "Default")}
-                                    checked={this.props.labels.includes("Default")}/>
-                                <label htmlFor={`labelOp-default`}>Default</label>
+                                    onChange={(e) => this.handleCheckOption(e, "No Label")}
+                                    checked={this.props.labels.includes("No Label")}/>
+                                <label htmlFor={`labelOp-default`}>No Label</label>
                             </div>
                         {this.props.options.map((option, index) => 
                             <div key={`labelOp-${index}`} className="flex align-center">
